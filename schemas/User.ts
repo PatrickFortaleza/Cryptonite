@@ -1,6 +1,7 @@
 import { Transaction } from "./Transaction"
 
 export interface User {
+  id: string, // ObjectId
   email: string,
   password: string,
   transactions: Array<Transaction>,

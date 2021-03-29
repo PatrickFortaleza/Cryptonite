@@ -1,6 +1,7 @@
 import { User } from '../schemas/User'
 
 const userData: User = {
+  id: "890449e9-7b73-475c-b9f3-5bb50eb41968",
   email: "exampleEmail@gmail.com",
   password: "$2y$12$ITzE2KZRSM/qtWGU64OQKeYA1tf0J7Hrc9y3k.GFG4EsvUTlfwGTa",
   transactions: [{
