@@ -46,7 +46,7 @@ What we need in our Internal DB
     - Market Value (Current price of the coin)
     - Record daily value of coin price
 
-1. ERD/Database Design
-2. Lofi mockups
+1. ERD/Database Design - Deepika, Patrick
+2. Lofi mockups - AJ
 3. Test solution
-4. Find API
+4. Find API - Stefan
