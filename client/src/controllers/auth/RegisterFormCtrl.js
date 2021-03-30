@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
 import RegisterForm from "../../components/auth/RegisterForm";
 
 export default function RegisterFormCtrl() {
@@ -34,5 +33,3 @@ export default function RegisterFormCtrl() {
     />
   );
 }
-
-const styles = StyleSheet.create({});
