@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import RegisterForm from "../../components/auth/RegisterForm";
 import { Auth } from "aws-amplify";
+import { useAuth } from "../../context/AuthContext";
 
 export default function RegisterFormCtrl() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_, setPassword_] = useState("");
+  const authContext = useAuth();
+  const { setUserData, userData } = authContext;
 
   const submitForm = async () => {
     console.log("attempt submit");
@@ -20,8 +23,8 @@ export default function RegisterFormCtrl() {
           email: email,
         },
       });
-
-      console.log(response);
+      if (!response) return console.log("registration failed");
+      setUserData({ username: response.user.username });
     } catch (error) {
       console.log(error);
     }

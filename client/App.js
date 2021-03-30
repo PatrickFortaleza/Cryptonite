@@ -4,6 +4,7 @@ import Login from "./src/screens/Login.js";
 import Register from "./src/screens/Register.js";
 import Amplify from "aws-amplify";
 import config from "./AWSconfig.json";
+import { AuthProvider } from "./src/context/AuthContext";
 
 Amplify.configure({
   Auth: {
@@ -17,7 +18,9 @@ Amplify.configure({
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Register />
+      <AuthProvider>
+        <Register />
+      </AuthProvider>
     </SafeAreaView>
   );
 }
