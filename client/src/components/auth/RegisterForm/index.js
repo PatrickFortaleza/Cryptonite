@@ -13,6 +13,7 @@ export default function index({
   setEmail,
   setPassword,
   setPassword_,
+  submitForm,
   // PROPERTIES
   username,
   email,
@@ -49,6 +50,8 @@ export default function index({
                 placeholderTextColor={"grey"}
                 placeholder="Enter username"
                 style={style.input}
+                value={username}
+                autoCapitalize="none"
               />
             </View>
           </View>
@@ -64,6 +67,8 @@ export default function index({
                 placeholder="Enter email"
                 placeholderTextColor={"grey"}
                 style={style.input}
+                value={email}
+                autoCapitalize="none"
               />
             </View>
           </View>
@@ -79,6 +84,9 @@ export default function index({
                 placeholderStyle={style.input}
                 placeholderTextColor={"grey"}
                 style={style.input}
+                value={password}
+                autoCapitalize="none"
+                secureTextEntry={true}
               />
             </View>
           </View>
@@ -96,6 +104,9 @@ export default function index({
                 placeholder="Enter password"
                 placeholderTextColor={"grey"}
                 style={style.input}
+                value={password_}
+                autoCapitalize="none"
+                secureTextEntry={true}
               />
             </View>
           </View>
@@ -121,7 +132,10 @@ export default function index({
 
           <View style={style.fieldset}>
             <View>
-              <TouchableOpacity style={style.button}>
+              <TouchableOpacity
+                style={style.button}
+                onPress={() => submitForm()}
+              >
                 <Text style={{ ...style.buttonText, fontWeight: "700" }}>
                   Register
                 </Text>

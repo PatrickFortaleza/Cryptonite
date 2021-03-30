@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RegisterForm from "../../components/auth/RegisterForm";
+import { Auth } from "aws-amplify";
 
 export default function RegisterFormCtrl() {
   const [username, setUsername] = useState("");
@@ -8,8 +9,22 @@ export default function RegisterFormCtrl() {
   const [password_, setPassword_] = useState("");
 
   const submitForm = async () => {
+    console.log("attempt submit");
     const passwordsMatch = matchedStrings(password, password_);
     if (!passwordsMatch) return console.log("passwords don't match");
+    try {
+      const response = await Auth.signUp({
+        username: username,
+        password: password,
+        attributes: {
+          email: email,
+        },
+      });
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const matchedStrings = (string1, string2) => {
@@ -25,6 +40,7 @@ export default function RegisterFormCtrl() {
       setEmail={setEmail}
       setPassword={setPassword}
       setPassword_={setPassword_}
+      submitForm={submitForm}
       // PROPERTIES
       username={username}
       email={email}
