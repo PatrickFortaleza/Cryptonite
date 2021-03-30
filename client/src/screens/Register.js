@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import RegisterForm from "../components/auth/RegisterForm";
+import RegisterFormCtrl from "../controllers/auth/RegisterFormCtrl.js";
 
 export default function Register() {
   return (
     <View>
       <Text>Register</Text>
-      <RegisterForm />
+      <RegisterFormCtrl />
     </View>
   );
 }

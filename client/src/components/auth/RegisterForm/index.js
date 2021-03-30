@@ -7,7 +7,18 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export default function index() {
+export default function index({
+  // METHODS
+  setUsername,
+  setEmail,
+  setPassword,
+  setPassword_,
+  // PROPERTIES
+  username,
+  email,
+  password,
+  password_,
+}) {
   return (
     <View>
       <View style={style.formContainer}>
@@ -34,6 +45,7 @@ export default function index() {
                 Username <Text style={style.req}>*</Text>
               </Text>
               <TextInput
+                onChangeText={(text) => setUsername(text)}
                 placeholderTextColor={"grey"}
                 placeholder="Enter username"
                 style={style.input}
@@ -47,6 +59,7 @@ export default function index() {
                 Email <Text style={style.req}>*</Text>
               </Text>
               <TextInput
+                onChangeText={(text) => setEmail(text)}
                 placeholderStyle={style.input}
                 placeholder="Enter email"
                 placeholderTextColor={"grey"}
@@ -61,6 +74,7 @@ export default function index() {
                 Password <Text style={style.req}>*</Text>
               </Text>
               <TextInput
+                onChangeText={(text) => setPassword(text)}
                 placeholder="Enter password"
                 placeholderStyle={style.input}
                 placeholderTextColor={"grey"}
@@ -78,6 +92,7 @@ export default function index() {
                 </Text>
               </Text>
               <TextInput
+                onChangeText={(text) => setPassword_(text)}
                 placeholder="Enter password"
                 placeholderTextColor={"grey"}
                 style={style.input}
