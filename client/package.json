@@ -14,7 +14,8 @@
     "@react-navigation/material-bottom-tabs": "^5.3.14",
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.2",
-    "aws-amplify": "^3.3.21",
+    "amazon-cognito-identity-js": "^4.6.0",
+    "aws-amplify": "^3.3.26",
     "axios": "^0.21.1",
     "expo": "~40.0.0",
     "expo-status-bar": "~1.0.3",
@@ -30,7 +31,7 @@
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.13.14",
     "@types/jest": "^26.0.22",
     "@types/react": "^17.0.3",
     "@types/react-native": "^0.64.2",

@@ -20,6 +20,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <AuthProvider>
         <Register />
+        <Login />
       </AuthProvider>
     </SafeAreaView>
   );

@@ -24,6 +24,7 @@ export default function RegisterFormCtrl() {
         },
       });
       if (!response) return console.log("registration failed");
+      console.log(response);
       setUserData({ username: response.user.username });
     } catch (error) {
       console.log(error);
