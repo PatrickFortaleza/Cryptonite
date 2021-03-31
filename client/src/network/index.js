@@ -1,5 +1,19 @@
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import config from "../../AWSconfig.json";
 
+const getToken = async () => {
+  try {
+    const accessToken = AsyncStorage.getItem("CryptoniteuserToken");
+    if (!accessToken) throw Error("Invalid token");
+    return accessToken;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+const INVOKE_URL = config.gateway.INVOKE_URL;
 const BASE_URL = "https://api.coingecko.com/api/v3";
 
 export const ping = async () => {
@@ -57,6 +71,28 @@ export const getPrice = async ({ coinId }) => {
   } catch (error) {
     return {
       error: "Could not retrieve price data from coingecko.",
+    };
+  }
+};
+
+export const getUser = async () => {
+  const token = getToken();
+  if (!token)
+    return {
+      error: "Unable to authorize token",
+    };
+
+  try {
+    const response = await axios.get(`${INVOKE_URL}/user`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    return {
+      error: error,
     };
   }
 };

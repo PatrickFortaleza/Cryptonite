@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import useAsyncStorage from "../hooks/useAsyncStorage";
 import { Auth } from "aws-amplify";
+import { getUser } from "../network";
 const AuthContext = React.createContext();
 
 export function useAuth() {
@@ -10,6 +11,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [userData, setUserData] = useAsyncStorage("userData", null);
   const [userToken, setUserToken] = useAsyncStorage("userToken", null);
+  const [profileData, setProfileData] = useState(null);
   const [isAuthenticated, setAuthentication] = useState(false);
 
   const value = {
@@ -24,6 +26,7 @@ export function AuthProvider({ children }) {
     setUserData(null);
     setUserToken(null);
     setAuthentication(false);
+    setProfileData(null);
   };
 
   const evaluateUserData = () => {
@@ -49,6 +52,15 @@ export function AuthProvider({ children }) {
     setUserToken(jwt);
   };
 
+  const queryProfileData = async () => {
+    if (!userToken) return resetAuth();
+
+    const result = await getUser();
+    if (!result || result.error) return resetAuth();
+
+    console.log(result);
+  };
+
   useEffect(() => {
     const hasData = evaluateUserData();
     !hasData ? setAuthentication(false) : setAuthentication(true);
@@ -57,6 +69,10 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     queryPullToken();
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    queryProfileData();
+  }, [userToken]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
