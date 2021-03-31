@@ -7,7 +7,7 @@ import Data from '../../fakedata.js'
 export default function ListScreen({navigation}) {
 
   const showDetail = (company) => {
-    navigation.navigate('DetailScreen', company)
+    navigation.navigate('CryptoDetail', company)
     
   }
       
