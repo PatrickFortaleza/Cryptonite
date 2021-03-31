@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
+
+// Icons
 import { GraphActive, GraphDefault } from "../icons/Graph";
 import { StarActive, StarDefault } from "../icons/Star";
+import { PowerActive, PowerDefault } from "../icons/Power";
 import { UserActive, UserDefault } from "../icons/User";
+
+// Auth Context
+import { useAuth } from "../context/AuthContext";
 
 // Screens - PROFILE
 import Login from "../screens/Profile/Login";
 import Register from "../screens/Profile/Register";
 import Profile from "../screens/Profile/Profile";
+import Signout from "../screens/Profile/Signout";
 
 // Screens - TRADE
 import List from "../screens/Trade/List";
@@ -17,6 +24,7 @@ import Buy from "../screens/Trade/Buy";
 import Sell from "../screens/Trade/Sell";
 import Confirmation from "../screens/Trade/Confirmation";
 
+// Navigation stacks
 const BottomTab = createMaterialBottomTabNavigator();
 const ScreenStack = createStackNavigator();
 
@@ -57,25 +65,49 @@ function TradeScreenNavigator() {
 }
 
 function ProfileScreenNavigator() {
+  const AuthContext = useAuth();
+  const { isAuthenticated } = AuthContext;
+
+  return (
+    <ScreenStack.Navigator>
+      {isAuthenticated ? (
+        <>
+          <ScreenStack.Screen
+            name="Profile"
+            component={Profile}
+            options={{
+              ...navOptions,
+            }}
+          />
+        </>
+      ) : (
+        <>
+          <ScreenStack.Screen
+            name="Login"
+            component={Login}
+            options={{
+              ...navOptions,
+            }}
+          />
+          <ScreenStack.Screen
+            name="Sign-up"
+            component={Register}
+            options={{
+              ...navOptions,
+            }}
+          />
+        </>
+      )}
+    </ScreenStack.Navigator>
+  );
+}
+
+function SignoutScreenNavigator() {
   return (
     <ScreenStack.Navigator>
       <ScreenStack.Screen
-        name="Login"
-        component={Login}
-        options={{
-          ...navOptions,
-        }}
-      />
-      <ScreenStack.Screen
-        name="Sign-up"
-        component={Register}
-        options={{
-          ...navOptions,
-        }}
-      />
-      <ScreenStack.Screen
-        name="Profile"
-        component={Profile}
+        name="Signout"
+        component={Signout}
         options={{
           ...navOptions,
         }}
@@ -85,6 +117,8 @@ function ProfileScreenNavigator() {
 }
 
 export default function Index() {
+  const AuthContext = useAuth();
+  const { isAuthenticated } = AuthContext;
   return (
     <BottomTab.Navigator
       barStyle={{
@@ -116,6 +150,18 @@ export default function Index() {
           ),
         }}
       />
+      {isAuthenticated ? (
+        <BottomTab.Screen
+          name="Signout"
+          component={SignoutScreenNavigator}
+          options={{
+            ...navOptions,
+            tabBarIcon: ({ focused }) => (
+              <>{focused ? <PowerActive /> : <PowerDefault />}</>
+            ),
+          }}
+        />
+      ) : null}
     </BottomTab.Navigator>
   );
 }
