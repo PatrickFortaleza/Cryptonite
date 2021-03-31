@@ -5,6 +5,6 @@ import Sell from "../../components/list/Sell"
 export default function SellCtrl({}){
 
   return(
-    <Text>Test 001</Text>
+    <Sell></Sell>
   )
 }

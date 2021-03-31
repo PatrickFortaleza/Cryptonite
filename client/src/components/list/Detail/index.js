@@ -88,7 +88,8 @@ const styles = StyleSheet.create({
       
   },
   sell:{
-     
+    color : "#841584",
+    fontSize : 50
   },
 
   stats:{

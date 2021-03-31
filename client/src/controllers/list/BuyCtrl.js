@@ -5,6 +5,6 @@ import Buy from "../../components/list/Buy"
 export default function BuyCtrl({}){
 
   return(
-    <Text>Test 009</Text>
+    <Buy></Buy>
   )
 }
