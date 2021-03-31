@@ -7,6 +7,7 @@ export default function CompanyItem({props}){
       <View style = {styles.left}>
         <Image source={{uri: props.imageURL}} style={styles.image}/>
         <Text> {props.name}</Text>
+        <Text> TEST </Text>
       </View>
 
       <View style = {styles.center}>

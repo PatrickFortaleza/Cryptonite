@@ -8,9 +8,7 @@ import { StarActive, StarDefault } from "../icons/Star";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
 import Home from "../screens/Home";
-
 import List from "../screens/List"
-import Detail from "../screens/Detail"
 
 const BottomTab = createMaterialBottomTabNavigator();
 const ScreenStack = createStackNavigator();
@@ -42,7 +40,7 @@ function ScreenOneNavigator() {
       />
       <ScreenStack.Screen
         name="CryptoDetail"
-        component={Detail}
+        component={Home}
         options={{
           ...navOptions,
         }}

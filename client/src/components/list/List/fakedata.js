@@ -1,4 +1,4 @@
-const countries = [
+const companies = [
   
   
   { name: "Bitcoin", 
@@ -30,4 +30,4 @@ const countries = [
    
 ]
 
-export default countries
+export default companies

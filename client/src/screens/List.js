@@ -1,39 +1,14 @@
-import React from 'react';
-import { StyleSheet, SafeAreaView, FlatList, TouchableOpacity} from 'react-native';
-import ListItem from '../components/list/CompanyItem'
-import Data from '../../fakedata.js'
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import ListCtrl from "../controllers/list/ListCtrl"
 
-
-export default function ListScreen({navigation}) {
-
-  const showDetail = (company) => {
-    navigation.navigate('CryptoDetail', company)
-    
-  }
-      
+export default function List() {
   return (
-    <SafeAreaView style={styles.container}>
-        <FlatList
-            keyExtractor={company => company.name}
-            data={Data}
-            renderItem={({ item }) => {
-            return(
-                <TouchableOpacity onPress={() => {showDetail(item)}}>
-                    <ListItem props = {item}/>
-                </TouchableOpacity>
-            ) 
-            }}
-        />
-    </SafeAreaView>
-
+    <View>
+       {/* <Text>List</Text> */}
+      <ListCtrl/>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'center',
-  },
-});
+const styles = StyleSheet.create({});
