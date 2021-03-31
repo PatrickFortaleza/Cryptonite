@@ -1,90 +1,105 @@
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import React from "react";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import { GraphActive, GraphDefault } from "../icons/Graph";
+import { StarActive, StarDefault } from "../icons/Star";
 // Screens
-import Login from from '../screens/Login';
-import Register from from '../screens/Register';
-import Home from from '../screens/Home';
+import Login from "../screens/Login";
+import Register from "../screens/Register";
+import Home from "../screens/Home";
 
 const BottomTab = createMaterialBottomTabNavigator();
 const ScreenStack = createStackNavigator();
 
 const navOptions = {
   headerStyle: {
-    backgroundColor: '#191919',
+    backgroundColor: "#191919",
     elevation: 0,
-    shadowColor: '#333',
+    shadowColor: "#333",
   },
-  headerTintColor: '#ccc',
+  headerTintColor: "#ccc",
   headerTitleStyle: {
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    color: 'white'
-  }
-}
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    color: "white",
+  },
+};
 
 function ScreenOneNavigator() {
   return (
     <ScreenStack.Navigator>
-      <ScreenStack.Screen 
+      <ScreenStack.Screen
         name="Index"
         component={Home}
         options={{
-          headerTitle: 'Home',
-          ...navOptions
-          }} />
+          headerTitle: "Index",
+          ...navOptions,
+        }}
+      />
+      <ScreenStack.Screen
+        name="CryptoDetail"
+        component={Home}
+        options={{
+          ...navOptions,
+        }}
+      />
     </ScreenStack.Navigator>
   );
 }
 
-function ScreenTwoNavigator(){
+function ScreenTwoNavigator() {
   return (
     <ScreenStack.Navigator>
-      <ScreenStack.Screen 
+      <ScreenStack.Screen
         name="Login"
         component={Login}
         options={{
-          headerTitle: 'Login',
-          ...navOptions
-          }} />
-      <ScreenStack.Screen 
-        name="Register"
+          ...navOptions,
+        }}
+      />
+      <ScreenStack.Screen
+        name="Sign-up"
         component={Register}
         options={{
-          ...navOptions
-        }} />
+          ...navOptions,
+        }}
+      />
     </ScreenStack.Navigator>
-  )
+  );
 }
 
-
-export default function index() {
+export default function Index() {
   return (
     <BottomTab.Navigator
-      barStyle={{ 
-        backgroundColor: '#1A1A1A', 
+      barStyle={{
+        backgroundColor: "#1A1A1A",
         paddingBottom: 5,
         paddingTop: 5,
-        borderTopColor: '#333',
-        borderWidth: 1
+        borderTopColor: "#333",
+        borderWidth: 1,
       }}
       activeColor="#3273ff"
     >
-      <BottomTab.Screen 
-        name="Index"
+      <BottomTab.Screen
+        name="Home"
         component={ScreenOneNavigator}
         options={{
           ...navOptions,
-          tabBarIcon: ({ focused }) => <>{ focused ? <GraphActive/> : <GraphDefault />}</>
+          tabBarIcon: ({ focused }) => (
+            <>{focused ? <GraphActive /> : <GraphDefault />}</>
+          ),
         }}
       />
-      <BottomTab.Screen 
-        name="Market Movers"
+      <BottomTab.Screen
+        name="Login"
         component={ScreenTwoNavigator}
         options={{
           ...navOptions,
-          tabBarIcon: ({ focused }) => <>{ focused ? <StarActive/> : <StarDefault />}</>
+          tabBarIcon: ({ focused }) => (
+            <>{focused ? <StarActive /> : <StarDefault />}</>
+          ),
         }}
       />
     </BottomTab.Navigator>
-  )
+  );
 }

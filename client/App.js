@@ -5,6 +5,8 @@ import Register from "./src/screens/Register.js";
 import Amplify from "aws-amplify";
 import config from "./AWSconfig.json";
 import { AuthProvider } from "./src/context/AuthContext";
+import Navigation from "./src/navigation";
+import { NavigationContainer } from "@react-navigation/native";
 
 Amplify.configure({
   Auth: {
@@ -17,13 +19,19 @@ Amplify.configure({
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <AuthProvider>
-        <Register />
-        <Login />
-      </AuthProvider>
-    </SafeAreaView>
+    <NavigationContainer styles={styles.container}>
+      <SafeAreaView style={styles.container}>
+        <AuthProvider>
+          <Navigation />
+        </AuthProvider>
+      </SafeAreaView>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#191919",
+  },
+});
