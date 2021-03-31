@@ -3,10 +3,14 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { createStackNavigator } from "@react-navigation/stack";
 import { GraphActive, GraphDefault } from "../icons/Graph";
 import { StarActive, StarDefault } from "../icons/Star";
+
 // Screens
 import Login from "../screens/Login";
 import Register from "../screens/Register";
 import Home from "../screens/Home";
+
+import List from "../screens/List"
+import Detail from "../screens/Detail"
 
 const BottomTab = createMaterialBottomTabNavigator();
 const ScreenStack = createStackNavigator();
@@ -30,7 +34,7 @@ function ScreenOneNavigator() {
     <ScreenStack.Navigator>
       <ScreenStack.Screen
         name="Index"
-        component={Home}
+        component={List}
         options={{
           headerTitle: "Index",
           ...navOptions,
@@ -38,7 +42,7 @@ function ScreenOneNavigator() {
       />
       <ScreenStack.Screen
         name="CryptoDetail"
-        component={Home}
+        component={Detail}
         options={{
           ...navOptions,
         }}
