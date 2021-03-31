@@ -12,3 +12,4 @@ export default function List() {
 }
 
 const styles = StyleSheet.create({});
+ 

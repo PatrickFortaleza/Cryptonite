@@ -1,23 +1,24 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, FlatList, TouchableOpacity, Text} from 'react-native';
 import CompanyItem from '../CompanyItem'
-import Data from './fakedata.js'
 
 
 export default function List({
   //METHODS
-  showDetail
+  showDetail,
+  //PROPERTIES
+  cryptoData
 }) {
 
   return (
     <SafeAreaView style={styles.container}>
         <FlatList
-            keyExtractor={company => company.name}
-            data={Data}
+            keyExtractor={company => company.id}
+            data={cryptoData}
             renderItem={({ item }) => {
             return(
                 <TouchableOpacity onPress={() => {showDetail(item)}}>
-                    <CompanyItem props = {item}/>
+                    <CompanyItem coinData = {item}/>
                 </TouchableOpacity>
             ) }}
         />

@@ -47,7 +47,7 @@ function TradeScreenNavigator() {
       />
       <ScreenStack.Screen
         name="CryptoDetail"
-        component={Home}
+        component={Detail}
         options={{
           ...navOptions,
         }}

@@ -1,16 +1,16 @@
 import React from 'react'
 import { StyleSheet, Text, View,Image } from 'react-native';
 
-export default function CompanyItem({props}){
+export default function CompanyItem({coinData}){
   return(
     <View style = {styles.container}>
       <View style = {styles.left}>
-        <Image source={{uri: props.imageURL}} style={styles.image}/>
-        <Text> {props.name}</Text>
+        <Image source={{uri: coinData.image}} style={styles.image}/>
+        <Text> {coinData.name}</Text>
         <Text> TEST </Text>
       </View>
 
-      <View style = {styles.center}>
+      {/* <View style = {styles.center}>
         <Text> CAD {props.price}</Text>
         <Text> Holder Chart Var</Text>
       </View>  
@@ -18,7 +18,7 @@ export default function CompanyItem({props}){
       <View style = {styles.right}>
         <Text> {props.oneDay} 1D</Text>
         <Text> {props.sevenDay} 7D</Text>
-      </View>  
+      </View>   */}
             
     </View>
     )

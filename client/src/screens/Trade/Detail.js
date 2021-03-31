@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import LoginFormCtrl from "../controllers/auth/LoginFormCtrl";
+import Detail from '../../components/list/Detail'
 
-export default function Detail() {
+export default function DetailScreen() {
   return (
     <View>
-      <LoginFormCtrl />
+   <Text> Test</Text>
     </View>
   );
 }
