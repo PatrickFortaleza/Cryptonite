@@ -7,17 +7,17 @@ export default function CompanyItem({coinData}){
       <View style = {styles.left}>
         <Image source={{uri: coinData.image}} style={styles.image}/>
         <Text> {coinData.name}</Text>
-        <Text> TEST </Text>
+       
       </View>
 
       <View style = {styles.center}>
-        <Text> CAD {coinData.price}</Text>
-        <Text> Holder Chart Var</Text>
+        <Text> USD {coinData.current_price}</Text>
+        {/* <Text> Holder Chart Var</Text> */}
       </View>  
 
       <View style = {styles.right}>
-        <Text> {coinData.oneDay} 1D</Text>
-        <Text> {coinData.sevenDay} 7D</Text>
+        <Text> {coinData.high_24h} High 24H</Text>
+        <Text> {coinData.low_24h}  Low 24H</Text>
       </View>  
             
     </View>
@@ -47,9 +47,6 @@ const styles = StyleSheet.create({
    right: {
     flex: 1,
     alignItems: 'flex-end',
-    
-
-   
   }, 
   image: {
       width: 75,
