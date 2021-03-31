@@ -1,14 +1,16 @@
 import React from 'react'
 import { StyleSheet, Text, SafeAreaView, Image, Button, View} from 'react-native';
 
-export default function CompanyDetail({route}){
-
-  const{name, imageURL, price, oneDay, sevenDay, chart} = route.params
+export default function CompanyDetail({
+    name, image, current_price,
+    high_24h, low_24h
+}){
 
   return (
+
       <SafeAreaView>
-          <Image source = {{uri: chart}} style = {styles.image}/>
-          <Text style = {styles.price}> CAD {price}</Text>
+          <Image source = {{uri: image}} style = {styles.image}/>
+          <Text style = {styles.price}> CAD {current_price}</Text>
           <Text style = {styles.initials}>  {name}</Text>
 
           <View style = {styles.trade}>
@@ -18,20 +20,19 @@ export default function CompanyDetail({route}){
           
           <View>
               <Text style = {styles.stats}>Stats</Text>  
-              
               <View style = {styles.pairItem}>
                   <Text style = {styles.items}>Market Cap</Text> 
-                  <Text style = {styles.items}>{price}</Text>
+                  <Text style = {styles.items}>{current_price}</Text>
               </View>
               
               <View style = {styles.pairItem}>
                   <Text style = {styles.items}>Details</Text>  
-                  <Text style = {styles.items}>{oneDay}</Text>
+                  <Text style = {styles.items}>{high_24h}</Text>
               </View>
               
               <View style = {styles.pairItem}>
                   <Text style = {styles.items}>Another detail</Text> 
-                  <Text style = {styles.items}>{sevenDay}</Text>
+                  <Text style = {styles.items}>{low_24h}</Text>
               </View>
               
           </View>
