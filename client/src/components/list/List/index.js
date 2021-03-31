@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, FlatList, TouchableOpacity, Text, View} from 'react-native';
+import { StyleSheet, FlatList, TouchableOpacity, Text, View} from 'react-native';
 import CompanyItem from '../CompanyItem'
 
 
