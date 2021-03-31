@@ -6,7 +6,7 @@ const countries = [
     oneDay: "+1.0",
     sevenDay: "+3.0",
     imageURL: "https://logos-world.net/wp-content/uploads/2020/08/Bitcoin-Emblem.png" ,
-    chart : "Placeholder Chart"
+    chart : "https://static.coindesk.com/wp-content/uploads/2020/07/btc-chart-july.png"
 
   },
 
@@ -16,7 +16,7 @@ const countries = [
     oneDay: "-2.0",
     sevenDay: "-4.0",
     imageURL: "https://1000logos.net/wp-content/uploads/2018/04/Ethereum-Logo.png",
-    chart : "Placeholder Chart"
+    chart : "https://static.coindesk.com/wp-content/uploads/2020/07/btc-chart-july.png"
     },
 
     { name: "Dogge", 
@@ -24,7 +24,7 @@ const countries = [
     oneDay: "+3.0",
     sevenDay: "+6.0",
     imageURL: "https://flyingatom.shop/img/cms/28_0000_dogecoin-1-z.png",
-    chart : "Placeholder Chart"
+    chart : "https://static.coindesk.com/wp-content/uploads/2020/07/btc-chart-july.png"
     },
 
    
