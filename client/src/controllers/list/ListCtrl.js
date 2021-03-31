@@ -4,7 +4,7 @@ import {Text} from "react-native";
 import {cryptoData} from './fakedata.js'
 
 
-export default function ListCtrl() {
+export default function ListCtrl({navigation}) {
 
   const [cryptoData_, setCryptoData] = useState(cryptoData)
   const showDetail = (company) => {
