@@ -15,6 +15,7 @@ export default function LoginForm({
   // PROPERTIES
   username,
   password,
+  navigation,
 }) {
   return (
     <View>
@@ -74,7 +75,11 @@ export default function LoginForm({
             <View>
               <Text style={style.buttonText}>
                 Don't have an account?{" "}
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("Sign-up");
+                  }}
+                >
                   <Text
                     style={{
                       ...style.buttonText,

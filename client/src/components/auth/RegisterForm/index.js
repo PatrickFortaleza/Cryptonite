@@ -19,6 +19,7 @@ export default function index({
   email,
   password,
   password_,
+  navigation,
 }) {
   return (
     <View>
@@ -115,7 +116,11 @@ export default function index({
             <View>
               <Text style={style.buttonText}>
                 Already have an account?{" "}
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("Login");
+                  }}
+                >
                   <Text
                     style={{
                       ...style.buttonText,

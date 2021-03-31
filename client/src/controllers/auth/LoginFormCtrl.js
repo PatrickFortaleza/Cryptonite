@@ -3,7 +3,7 @@ import LoginForm from "../../components/auth/LoginForm";
 import { Auth } from "aws-amplify";
 import { useAuth } from "../../context/AuthContext";
 
-export default function LoginFormCtrl() {
+export default function LoginFormCtrl({ navigation }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const authContext = useAuth();
@@ -32,6 +32,7 @@ export default function LoginFormCtrl() {
       // PROPERTIES
       username={username}
       password={password}
+      navigation={navigation}
     />
   );
 }

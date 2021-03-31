@@ -3,14 +3,19 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { createStackNavigator } from "@react-navigation/stack";
 import { GraphActive, GraphDefault } from "../icons/Graph";
 import { StarActive, StarDefault } from "../icons/Star";
+import { UserActive, UserDefault } from "../icons/User";
 
-// Screens
-import Login from "../screens/Login";
-import Register from "../screens/Register";
-import Home from "../screens/Home";
+// Screens - PROFILE
+import Login from "../screens/Profile/Login";
+import Register from "../screens/Profile/Register";
+import Profile from "../screens/Profile/Profile";
 
-import List from "../screens/List"
-import Detail from "../screens/Detail"
+// Screens - TRADE
+import List from "../screens/Trade/List";
+import Detail from "../screens/Trade/Detail";
+import Buy from "../screens/Trade/Buy";
+import Sell from "../screens/Trade/Sell";
+import Confirmation from "../screens/Trade/Confirmation";
 
 const BottomTab = createMaterialBottomTabNavigator();
 const ScreenStack = createStackNavigator();
@@ -29,7 +34,7 @@ const navOptions = {
   },
 };
 
-function ScreenOneNavigator() {
+function TradeScreenNavigator() {
   return (
     <ScreenStack.Navigator>
       <ScreenStack.Screen
@@ -51,7 +56,7 @@ function ScreenOneNavigator() {
   );
 }
 
-function ScreenTwoNavigator() {
+function ProfileScreenNavigator() {
   return (
     <ScreenStack.Navigator>
       <ScreenStack.Screen
@@ -64,6 +69,13 @@ function ScreenTwoNavigator() {
       <ScreenStack.Screen
         name="Sign-up"
         component={Register}
+        options={{
+          ...navOptions,
+        }}
+      />
+      <ScreenStack.Screen
+        name="Profile"
+        component={Profile}
         options={{
           ...navOptions,
         }}
@@ -85,8 +97,8 @@ export default function Index() {
       activeColor="#3273ff"
     >
       <BottomTab.Screen
-        name="Home"
-        component={ScreenOneNavigator}
+        name="Trade"
+        component={TradeScreenNavigator}
         options={{
           ...navOptions,
           tabBarIcon: ({ focused }) => (
@@ -95,12 +107,12 @@ export default function Index() {
         }}
       />
       <BottomTab.Screen
-        name="Login"
-        component={ScreenTwoNavigator}
+        name="Profile"
+        component={ProfileScreenNavigator}
         options={{
           ...navOptions,
           tabBarIcon: ({ focused }) => (
-            <>{focused ? <StarActive /> : <StarDefault />}</>
+            <>{focused ? <UserActive /> : <UserDefault />}</>
           ),
         }}
       />
