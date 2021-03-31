@@ -16,8 +16,9 @@ export default function CompanyItem({coinData}){
       </View>  
 
       <View style = {styles.right}>
-        <Text> {coinData.high_24h} High 24H</Text>
-        <Text> {coinData.low_24h}  Low 24H</Text>
+      <Text>24H</Text>
+        <Text> {coinData.high_24h}</Text>
+        <Text> {coinData.low_24h}</Text>
       </View>  
             
     </View>
