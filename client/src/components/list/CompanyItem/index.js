@@ -10,15 +10,15 @@ export default function CompanyItem({coinData}){
         <Text> TEST </Text>
       </View>
 
-      {/* <View style = {styles.center}>
-        <Text> CAD {props.price}</Text>
+      <View style = {styles.center}>
+        <Text> CAD {coinData.price}</Text>
         <Text> Holder Chart Var</Text>
       </View>  
 
       <View style = {styles.right}>
-        <Text> {props.oneDay} 1D</Text>
-        <Text> {props.sevenDay} 7D</Text>
-      </View>   */}
+        <Text> {coinData.oneDay} 1D</Text>
+        <Text> {coinData.sevenDay} 7D</Text>
+      </View>  
             
     </View>
     )
