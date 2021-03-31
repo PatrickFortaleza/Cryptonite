@@ -1,11 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import ProfileCtrl from "../../controllers/profile/ProfileCtrl";
 
-export default function Profile() {
+export default function index() {
   return (
     <View>
-      <ProfileCtrl />
+      <Text>Profile Component</Text>
     </View>
   );
 }
