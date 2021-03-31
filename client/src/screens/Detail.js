@@ -3,13 +3,16 @@ import { StyleSheet, Text, SafeAreaView, Image} from 'react-native';
 
 export default function CompanyDetail({route}){
 
-    const{name, imageURL, description} = route.params
+    const{name, imageURL, price, oneDay, sevenDay, chart} = route.params
 
     return (
         <SafeAreaView>
+            <Text> {chart}</Text>
             <Image source = {{uri: imageURL}} style = {styles.image} />
             <Text>{name}</Text>
-            <Text>{description}</Text>
+            <Text>{price}</Text>
+            <Text>{price}</Text>
+            <Text>{price}</Text>
         </SafeAreaView>
     )
 }
