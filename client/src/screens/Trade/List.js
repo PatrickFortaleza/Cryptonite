@@ -5,7 +5,6 @@ import ListCtrl from "../../controllers/list/ListCtrl"
 export default function List() {
   return (
     <View>
-       {/* <Text>List</Text> */}
       <ListCtrl/>
     </View>
   );

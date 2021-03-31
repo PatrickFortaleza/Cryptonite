@@ -23,8 +23,6 @@ export default function ListCtrl() {
       // PROPERTIES
       cryptoData = {cryptoData_}
     />
-
-    // <Text>ListCtrl</Text>
   );
 }
  
