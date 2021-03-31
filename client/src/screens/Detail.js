@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, SafeAreaView, Image} from 'react-native';
+import { StyleSheet, Text, SafeAreaView, Image, Button, View} from 'react-native';
 
 export default function CompanyDetail({route}){
 
@@ -7,12 +7,15 @@ export default function CompanyDetail({route}){
 
     return (
         <SafeAreaView>
-            <Text> {chart}</Text>
-            <Image source = {{uri: imageURL}} style = {styles.image} />
-            <Text>{name}</Text>
-            <Text>{price}</Text>
-            <Text>{price}</Text>
-            <Text>{price}</Text>
+            <Image source = {{uri: chart}} style = {styles.image}/>
+            <Text style = {styles.price}> CAD {price}</Text>
+            <Text style = {styles.initials}>  {name}</Text>
+
+            <View style = {styles.trade}>
+                <Button title="BUY" onClick={"Clicked"}></Button>
+                <Button title="SELL" onClick={"Clicked"}></Button>
+            </View>
+            
         </SafeAreaView>
     )
 }
@@ -26,6 +29,23 @@ const styles = StyleSheet.create({
     },
     image:{
         height:250
-    }
+    },
+    price:{
+        fontSize : 50
+    },
+    initials:{
+        fontSize : 25
+    },
+    trade:{
+       
+    },
+
+    stats:{
+       
+    },
+    items:{
+       
+    },
+
   });
   
