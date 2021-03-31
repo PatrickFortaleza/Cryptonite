@@ -36,28 +36,3 @@ const styles = StyleSheet.create({
   },
 });
 
-
-// //===== ForTesting AJP
-// import React from 'react';
-// import { NavigationContainer} from '@react-navigation/native';
-// import { createStackNavigator } from '@react-navigation/stack';
-
-// import List from './src/screens/List'
-// import Detail from './src/screens/Detail'
-
-
-// const Stack = createStackNavigator()
-
-// export default function App() {
-//   return (
-
-//    <NavigationContainer>
-//      <Stack.Navigator>
-//         <Stack.Screen name="Companies" component={List} />
-//         <Stack.Screen name="DetailScreen" component={Detail}/>
-//      </Stack.Navigator>
-//    </NavigationContainer>
-//     );
-  
-
-// };
