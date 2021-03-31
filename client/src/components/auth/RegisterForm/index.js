@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import { LogoActive } from "../../../icons/Logo";
 
 export default function index({
   // METHODS
@@ -22,18 +23,38 @@ export default function index({
   navigation,
 }) {
   return (
-    <View>
+    <View
+      style={{
+        backgroundColor: "#1a1a1a",
+        height: "100%",
+        justifyContent: "center",
+      }}
+    >
       <View style={style.formContainer}>
         <View style={style.form}>
           <View>
             <View style={{ display: "flex" }}></View>
             <View>
+              <View style={{ alignItems: "center", marginBottom: 14 }}>
+                <LogoActive />
+              </View>
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 25,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginBottom: 7,
+                }}
+              >
+                CRYPTONITE
+              </Text>
               <Text
                 style={{
                   color: "#cecece",
                   textAlign: "center",
                   fontSize: 14,
-                  marginBottom: 12,
+                  marginBottom: 30,
                 }}
               >
                 Register a Cryptonite account
