@@ -16,8 +16,8 @@ export default function LoginFormCtrl({ navigation }) {
         username: username,
         password: password,
       });
-
-      console.log(response);
+      setUserData({ username: response.username });
+      navigation.navigate("Profile");
     } catch (error) {
       console.log(error);
     }
