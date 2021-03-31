@@ -32,7 +32,7 @@ exports.getMarkets = getMarkets;
 
 const getPrice = async (id) => {
   const result = await axios.get(`${BASE_URL}/simple/price?ids=${id}&vs_currencies=USD`);
-  return result?.usd;
+  return result;
 }
 
 exports.getPrice = getPrice;
