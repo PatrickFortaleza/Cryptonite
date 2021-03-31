@@ -3,7 +3,7 @@ import RegisterForm from "../../components/auth/RegisterForm";
 import { Auth } from "aws-amplify";
 import { useAuth } from "../../context/AuthContext";
 
-export default function RegisterFormCtrl() {
+export default function RegisterFormCtrl({ navigation }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -50,6 +50,7 @@ export default function RegisterFormCtrl() {
       email={email}
       password={password}
       password_={password_}
+      navigation={navigation}
     />
   );
 }

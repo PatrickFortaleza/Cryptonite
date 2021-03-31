@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import RegisterFormCtrl from "../controllers/auth/RegisterFormCtrl.js";
+import LoginFormCtrl from "../../controllers/auth/LoginFormCtrl";
 
-export default function Register() {
+export default function Login({ navigation }) {
   return (
     <View>
-      <RegisterFormCtrl />
+      <LoginFormCtrl navigation={navigation} />
     </View>
   );
 }

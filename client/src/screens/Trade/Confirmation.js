@@ -1,11 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import LoginFormCtrl from "../controllers/auth/LoginFormCtrl";
 
-export default function Login() {
+export default function Confirmation() {
   return (
     <View>
-      <LoginFormCtrl />
+      <Text>Confirmation</Text>
     </View>
   );
 }
