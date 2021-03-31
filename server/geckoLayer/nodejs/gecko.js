@@ -24,8 +24,15 @@ const getCoin = async (id) => {
 exports.getCoin = getCoin;
 
 const getMarkets = async () => {
-  const result = await axios.get(`${BASE_URL}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false`);
+  const result = await axios.get(`${BASE_URL}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true`);
   return result?.data;
 }
 
 exports.getMarkets = getMarkets;
+
+const getPrice = async (id) => {
+  const result = await axios.get(`${BASE_URL}/simple/price?ids=${id}&vs_currencies=USD`);
+  return result?.usd;
+}
+
+exports.getPrice = getPrice;
