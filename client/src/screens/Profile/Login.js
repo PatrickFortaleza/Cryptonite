@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import LoginFormCtrl from "../controllers/auth/LoginFormCtrl";
+import LoginFormCtrl from "../../controllers/auth/LoginFormCtrl";
 
-export default function Login() {
+export default function Login({ navigation }) {
   return (
     <View>
-      <LoginFormCtrl />
+      <LoginFormCtrl navigation={navigation} />
     </View>
   );
 }
