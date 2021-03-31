@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import { LogoActive } from "../../../icons/Logo";
 
 export default function LoginForm({
   // METHODS
@@ -18,21 +19,40 @@ export default function LoginForm({
   navigation,
 }) {
   return (
-    <View>
+    <View
+      style={{
+        backgroundColor: "#1a1a1a",
+        height: "100%",
+        justifyContent: "center",
+      }}
+    >
       <View style={style.formContainer}>
         <View style={style.form}>
           <View>
-            <View style={{ display: "flex" }}></View>
             <View>
+              <View style={{ alignItems: "center", marginBottom: 14 }}>
+                <LogoActive />
+              </View>
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 25,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginBottom: 7,
+                }}
+              >
+                CRYPTONITE
+              </Text>
               <Text
                 style={{
                   color: "#cecece",
                   textAlign: "center",
                   fontSize: 14,
-                  marginBottom: 12,
+                  marginBottom: 30,
                 }}
               >
-                Login to your Cryptonite account
+                Login to your Cryptonite account.
               </Text>
             </View>
           </View>
@@ -137,7 +157,7 @@ const style = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#333",
     paddingHorizontal: 10,
-    paddingVertical: 7,
+    paddingVertical: 10,
     marginBottom: 10,
     borderRadius: 20,
   },

@@ -3,5 +3,8 @@
     "REGION": "YOUR REGION",
     "USER_POOL_ID": "YOUR USER POOL ID",
     "APP_CLIENT_ID": "YOUR APP CLIENT ID"
-    }
+    },
+  "gateway": {
+    "INVOKE_URL": "YOUR AWS API GATEWAY INVOKE URL"
+  }
 }
