@@ -16,8 +16,17 @@ export function AuthProvider({ children }) {
     isAuthenticated,
   };
 
+  const evaluateUserData = () => {
+    return (
+      userData &&
+      Object.keys(userData).length > 0 &&
+      userData.constructor === Object
+    );
+  };
+
   useEffect(() => {
-    !userData ? setAuthentication(false) : setAuthentication(true);
+    const hasData = evaluateUserData();
+    !hasData ? setAuthentication(false) : setAuthentication(true);
   }, [userData]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
