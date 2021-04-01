@@ -9,12 +9,15 @@ export default function SellCtrl({prop}){
 
   const submitForm = async () => {
     try {
-      // const response = await Auth.signIn({
-      //   quantity : quantity,
-      //   marketPrice: marketPrice,
-      //   bookValue : bookValue
-      // });
+      // network to gateway
+      const response = {
+        quantity: quantity,
+        marketPrice: marketPrice,
+        bookValue: bookValue
+      }
+      console.log(response)
       // navigation.navigate("Complete");
+
     } catch (error) {
       console.log(error);
     }
