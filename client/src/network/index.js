@@ -4,9 +4,9 @@ import config from "../../AWSconfig.json";
 
 const getToken = async () => {
   try {
-    const accessToken = AsyncStorage.getItem("CryptoniteuserToken");
+    const accessToken = await AsyncStorage.getItem("CryptoniteuserToken");
     if (!accessToken) throw Error("Invalid token");
-    return accessToken;
+    return JSON.parse(accessToken);
   } catch (error) {
     console.log(error);
     return null;
@@ -76,7 +76,7 @@ export const getPrice = async ({ coinId }) => {
 };
 
 export const getUser = async () => {
-  const token = getToken();
+  const token = await getToken();
   if (!token)
     return {
       error: "Unable to authorize token",

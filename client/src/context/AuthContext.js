@@ -43,12 +43,11 @@ export function AuthProvider({ children }) {
     const currentSession = await Auth.currentSession();
     if (!currentSession) return resetAuth();
 
-    const accessToken = currentSession.getAccessToken();
+    const accessToken = currentSession.getIdToken();
     if (!accessToken) return resetAuth();
 
     const jwt = accessToken.getJwtToken();
     if (!jwt) return resetAuth();
-
     setUserToken(jwt);
   };
 
