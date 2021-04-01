@@ -21,7 +21,7 @@ exports.handler = async (event) => {
         { _id : sub},
         {
             "$inc": { "cash" : purchaseValue },
-            $push: {transactions: {coinId: coinId, numberOfCoins: -(numberOfCoins), marketValue: price} }
+          $push: {transactions: {coinId: coinId, numberOfCoins: -(numberOfCoins), marketValue: price, dateOfPurchase: new Date()} }
         }
         );
        
