@@ -55,12 +55,12 @@ export default function CompanyDetail({
               </View>
               
               <View style = {styles.pairItem}>
-                  <Text style = {styles.items}>Details</Text>  
+                  <Text style = {styles.items}>High in 24hours</Text>  
                   <Text style = {styles.items}>{high_24h}</Text>
               </View>
               
               <View style = {styles.pairItem}>
-                  <Text style = {styles.items}>Another detail</Text> 
+                  <Text style = {styles.items}>Low in 24hours</Text> 
                   <Text style = {styles.items}>{low_24h}</Text>
               </View>
               
