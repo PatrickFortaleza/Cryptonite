@@ -16,54 +16,63 @@ export default function Buy({
   console.log(prop.image)
 
   return (
-    <SafeAreaView  style={{
-      backgroundColor: "#1a1a1a",
-      height: "100%",
-      justifyContent: "center",
-    }}>
-      <View style={{justifyContent: "center"}}>
-        <Image source = {{uri: prop.image}} style = {styles.image}/>
-        <Text style = {styles.header}>Company : {prop.name}</Text>
+    <SafeAreaView style = {styles.container}>
+      <View style = {styles.main}>
+        <View style = {styles.title}>
+          <Image source = {{uri: prop.image}} style = {styles.image}/>
+          <Text style = {styles.header}>{prop.name}</Text>
+        </View>
+        
+        <View style = {styles.pair} >
+          <Text style = {styles.quantity}>Quantity</Text>
+          <TextInput
+            onChangeText={(number) => setAmount(number)}
+            placeholderTextColor={"grey"}
+            placeholder="Enter Quantity"
+            style = {styles.quantity}
+          />
+        </View>
+        
+        <View style = {styles.pair} >
+          <Text style = {styles.marketPrice}>Market Price </Text>
+          <Text style = {styles.marketPrice}>{prop.current_price}</Text>
+        </View>
 
-      </View>
-      
-      <View style = {styles.pair} >
-        <Text style = {styles.quantity}>Quantity</Text>
-        <TextInput
-          onChangeText={(number) => setAmount(number)}
-          placeholderTextColor={"grey"}
-          placeholder="Enter Quantity"
-          style = {styles.quantity}
-        />
-      </View>
-      
-      <View style = {styles.pair} >
-        <Text style = {styles.marketPrice}>Market Price </Text>
-        <Text style = {styles.marketPrice}>{prop.current_price}</Text>
-      </View>
-
-      <View style = {styles.pair}>
-        <Text style = {styles.total}>Total</Text>
-        <Text style = {styles.total}>{amount * prop.current_price}</Text>
-      </View>
-  
-      <View >
-        <TouchableOpacity
-          onPress={() => {
-            setQuantity(amount)
-            setMarketPrice(prop.current_price)
-            setBookValue(amount * prop.current_price)
-            submitForm()
-          }}
-        >
-          <Text style = {styles.buyButton}>BUY</Text>
-        </TouchableOpacity>
+        <View style = {styles.pair}>
+          <Text style = {styles.total}>Total</Text>
+          <Text style = {styles.total}>{amount * prop.current_price}</Text>
+        </View>
+    
+        <View >
+          <TouchableOpacity
+            onPress={() => {
+              setQuantity(amount)
+              setMarketPrice(prop.current_price)
+              setBookValue(amount * prop.current_price)
+              submitForm()
+            }}
+          >
+            <Text style = {styles.buyButton}>BUY</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#1a1a1a",
+    height: "100%"
+  },
+  title : {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 20
+  },
+  main : {
+    height: "100%"
+  },
   header :{
     fontSize : 35,
     color: "white",
