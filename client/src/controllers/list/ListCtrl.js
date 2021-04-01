@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import List from "../../components/list/List";
-import { Text } from "react-native";
 import { getMarkets } from "../../network";
 
 export default function ListCtrl({ navigation }) {
