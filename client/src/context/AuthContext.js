@@ -19,6 +19,9 @@ export function AuthProvider({ children }) {
     userData,
     setUserToken,
     userToken,
+    profileData,
+    setProfileData,
+    queryProfileData,
     isAuthenticated,
   };
 
@@ -58,7 +61,7 @@ export function AuthProvider({ children }) {
     const result = await getUser();
     if (!result || result.error) return resetAuth();
 
-    console.log(result);
+    setProfileData(result);
   };
 
   useEffect(() => {
