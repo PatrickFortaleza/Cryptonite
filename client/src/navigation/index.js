@@ -60,6 +60,20 @@ function TradeScreenNavigator() {
           ...navOptions,
         }}
       />
+      <ScreenStack.Screen
+        name="Buy"
+        component={Buy}
+        options={{
+          ...navOptions,
+        }}
+      />
+      <ScreenStack.Screen
+        name="Sell"
+        component={Sell}
+        options={{
+          ...navOptions,
+        }}
+      />
     </ScreenStack.Navigator>
   );
 }

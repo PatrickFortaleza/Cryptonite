@@ -3,12 +3,30 @@ import {Text} from "react-native";
 import Detail from "../../components/list/Detail"
 
 export default function DetailCtrl({
-  name, image, current_price,
-  high_24h, low_24h
+  // METHOD
+  navigation,
+
+  // Properties
+  name, image, 
+  current_price,
+  high_24h, 
+  low_24h
 }) {
+
+  const showBuy = (company) => {
+    navigation.navigate("Buy", company)
+    
+  } 
+
+  const showSell = async () => {
+    navigation.navigate("Sell")
+  } 
 
   return (
     <Detail 
+      // METHOD
+      showBuy = {showBuy}
+      showSell = {showSell}
       // PROPERTIES
       name = {name}
       image = {image}
