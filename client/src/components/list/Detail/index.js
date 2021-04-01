@@ -1,21 +1,51 @@
 import React from 'react'
-import { StyleSheet, Text, SafeAreaView, Image, Button, View} from 'react-native';
+import { 
+    StyleSheet, 
+    Text, 
+    SafeAreaView, 
+    Image, 
+    Button, 
+    TouchableOpacity, 
+    View
+} from 'react-native';
 
 export default function CompanyDetail({
-    name, image, current_price,
-    high_24h, low_24h
+    //METHOD
+    showBuy,
+    showSell,
+    // PROPERTIES
+    name, 
+    image, 
+    current_price,
+    high_24h, 
+    low_24h,
 }){
+    //pass the object to the buy page through route
+    let item = {
+        name : name,
+        image : image, 
+        current_price : current_price,
+        high_24h : high_24h, 
+        low_24h : low_24h,
+    }
+
+    console.log(item)
 
   return (
 
-      <SafeAreaView>
+      <SafeAreaView data={item}>
           <Image source = {{uri: image}} style = {styles.image}/>
           <Text style = {styles.price}> CAD {current_price}</Text>
           <Text style = {styles.initials}>  {name}</Text>
 
           <View style = {styles.trade}>
-              <Button title="BUY" onClick={"Clicked"} style = {styles.buy}></Button>
-              <Button title="SELL" onClick={"Clicked"} style = {styles.sell}></Button>
+            <TouchableOpacity onPress={() => showBuy(item)}>
+                <Text style = {styles.buy}>Buy</Text> 
+            </TouchableOpacity>
+             
+            <TouchableOpacity onPress={() => {showSell()}}>
+                <Text style = {styles.sell}>Sell</Text> 
+            </TouchableOpacity>
           </View>
           
           <View>
@@ -64,10 +94,12 @@ const styles = StyleSheet.create({
   },
   buy:{
       color : "#841584",
+      fontSize : 50
       
   },
   sell:{
-     
+    color : "#841584",
+    fontSize : 50
   },
 
   stats:{
