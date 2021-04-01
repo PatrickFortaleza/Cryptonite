@@ -12,14 +12,14 @@ export default function DetailScreen({ route , navigation}) {
     <View>
       <DetailCtrl 
         // METHOD
-        navigation = {navigation}
-        
+       
         // PROPERTIES
         name = {name}
         image = {image}
         current_price = {current_price}
         high_24h = {high_24h}
         low_24h = {low_24h}
+        navigation = {navigation}
         />
     </View>
   );

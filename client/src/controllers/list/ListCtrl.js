@@ -13,7 +13,7 @@ export default function ListCtrl({navigation}) {
 
   useEffect(()=> {
     setCryptoData(cryptoData)
-    console.log(cryptoData)
+    //console.log(cryptoData)
   },[])
 
   return (

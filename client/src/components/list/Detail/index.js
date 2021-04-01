@@ -20,16 +20,26 @@ export default function CompanyDetail({
     high_24h, 
     low_24h,
 }){
+    //pass the object to the buy page through route
+    let item = {
+        name : name,
+        image : image, 
+        current_price : current_price,
+        high_24h : high_24h, 
+        low_24h : low_24h,
+    }
+
+    console.log(item)
 
   return (
 
-      <SafeAreaView>
+      <SafeAreaView data={item}>
           <Image source = {{uri: image}} style = {styles.image}/>
           <Text style = {styles.price}> CAD {current_price}</Text>
           <Text style = {styles.initials}>  {name}</Text>
 
           <View style = {styles.trade}>
-            <TouchableOpacity onPress={() => {showBuy()}}>
+            <TouchableOpacity onPress={() => showBuy(item)}>
                 <Text style = {styles.buy}>Buy</Text> 
             </TouchableOpacity>
              

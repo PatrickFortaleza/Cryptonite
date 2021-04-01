@@ -13,15 +13,14 @@ export default function DetailCtrl({
   low_24h
 }) {
 
-  const showBuy = async () => {
-    navigation.navigate("Buy")
+  const showBuy = (company) => {
+    navigation.navigate("Buy", company)
+    
   } 
 
   const showSell = async () => {
     navigation.navigate("Sell")
   } 
-
-
 
   return (
     <Detail 

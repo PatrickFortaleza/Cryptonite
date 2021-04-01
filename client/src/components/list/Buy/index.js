@@ -5,8 +5,14 @@ import CompanyItem from '../CompanyItem'
 export default function Buy({
   //METHODS
   //PROPERTIES
+  prop
 }) {
   return (
-    <Text>Buy component</Text>
+    <SafeAreaView>
+      <Text>Buy component {prop.name}</Text>
+      <Text>Market Price {prop.current_price}</Text>
+      <Text>Total {prop.current_price}</Text>
+    </SafeAreaView>
+    
   )
 }
