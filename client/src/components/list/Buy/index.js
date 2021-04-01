@@ -45,6 +45,7 @@ export default function Buy({
     
         <View >
           <TouchableOpacity
+            style = {styles.button}
             onPress={() => {
               setQuantity(amount)
               setMarketPrice(prop.current_price)
@@ -52,7 +53,7 @@ export default function Buy({
               submitForm()
             }}
           >
-            <Text style = {styles.buyButton}>BUY</Text>
+            <Text style = {styles.buttonText}>BUY</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -78,15 +79,15 @@ const styles = StyleSheet.create({
     color: "white",
   },
   quantity :{
-    fontSize : 25,
+    fontSize : 20,
     color: "white",
   },
   marketPrice : {
-    fontSize : 25,
+    fontSize : 20,
     color: "white",
   },
   total : {
-    fontSize : 35,
+    fontSize : 25,
     color: "white",
     paddingBottom : 40
   },
@@ -98,8 +99,15 @@ const styles = StyleSheet.create({
   amount : {
     flexDirection: 'row'
   },
-  buyButton : {
-    fontSize : 35,
+  button: {
+    backgroundColor: "#0079ff",
+    marginTop: 17,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    borderRadius: 30,
+  },
+  buttonText : {
+    fontSize : 25,
     color: "white",
     textAlign: 'center'
   },

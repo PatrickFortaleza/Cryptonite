@@ -3,8 +3,6 @@ import {Text} from "react-native";
 import Buy from "../../components/list/Buy"
 
 export default function BuyCtrl({prop}){
-
-  
   const [quantity, setQuantity] = useState(0)
   const [marketPrice, setMarketPrice] = useState(0)
   const [bookValue, setBookValue] = useState(0)
@@ -21,7 +19,7 @@ export default function BuyCtrl({prop}){
       console.log(error);
     }
   };
-
+ 
   return(
     <Buy 
       //METHOD

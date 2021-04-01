@@ -42,7 +42,7 @@ export default function CompanyDetail({
                 <Text style = {styles.buy}>Buy</Text> 
             </TouchableOpacity>
              
-            <TouchableOpacity onPress={() => {showSell()}}>
+            <TouchableOpacity onPress={() => {showSell(item)}}>
                 <Text style = {styles.sell}>Sell</Text> 
             </TouchableOpacity>
           </View>
