@@ -26,7 +26,10 @@ export default function Buy({
         <View style = {styles.pair} >
           <Text style = {styles.quantity}>Quantity</Text>
           <TextInput
-            onChangeText={(number) => setAmount(number)}
+            onChangeText={(number) => {
+              setAmount(number)
+              
+            }}
             placeholderTextColor={"grey"}
             placeholder="Enter Quantity"
             style = {styles.quantity}
