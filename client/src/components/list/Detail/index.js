@@ -28,7 +28,6 @@ export default function CompanyDetail({
         high_24h : high_24h, 
         low_24h : low_24h,
     }
-
     console.log(item)
 
   return (

@@ -65,16 +65,20 @@ export default function Buy({
 
 const styles = StyleSheet.create({
   header :{
-    fontSize : 35
+    fontSize : 35,
+    color: "white",
   },
   quantity :{
     fontSize : 25,
+    color: "white",
   },
   marketPrice : {
-    fontSize : 25
+    fontSize : 25,
+    color: "white",
   },
   total : {
     fontSize : 35,
+    color: "white",
     paddingBottom : 40
   },
   pair : {
@@ -87,6 +91,7 @@ const styles = StyleSheet.create({
   },
   buyButton : {
     fontSize : 35,
+    color: "white",
     textAlign: 'center'
   },
   image : {
