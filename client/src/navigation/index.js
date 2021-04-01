@@ -24,6 +24,9 @@ import Buy from "../screens/Trade/Buy";
 import Sell from "../screens/Trade/Sell";
 import Confirmation from "../screens/Trade/Confirmation";
 
+// Screens - COMMON
+import Search from "../screens/Common/Search";
+
 // Navigation stacks
 const BottomTab = createMaterialBottomTabNavigator();
 const ScreenStack = createStackNavigator();
@@ -70,6 +73,13 @@ function TradeScreenNavigator() {
       <ScreenStack.Screen
         name="Sell"
         component={Sell}
+        options={{
+          ...navOptions,
+        }}
+      />
+      <ScreenStack.Screen
+        name="Search"
+        component={Search}
         options={{
           ...navOptions,
         }}
