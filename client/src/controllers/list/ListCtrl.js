@@ -7,7 +7,8 @@ export default function ListCtrl({ navigation }) {
   const [cryptoData_, setCryptoData] = useState([]);
 
   const showDetail = (company) => {
-    navigation.navigate("CryptoDetail", company);
+    console.log(company)
+     navigation.navigate("CryptoDetail", company);
   };
 
   const queryMarkets = async () => {
