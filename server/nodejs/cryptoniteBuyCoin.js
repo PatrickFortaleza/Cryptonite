@@ -7,27 +7,31 @@ exports.handler = async (event) => {
     if (!sub) {
     return proxyResponse('User not authorized', 400);
   }
-    
+
     const numberOfCoins = event.numberOfCoins;
-    const coinId = event.pathParameters.coin;   
+    const coinId = event.pathParameters.coin;
     const marketValue = await getPrice(coinId);
-   const price = marketValue.data[coinId].usd;
-    console.log(price);
+    const price = marketValue.data[coinId].usd;
     const db = await connectToDatabase();
     const purchaseValue = (numberOfCoins * price);
     const user = db.collection('users');
     try{
-        const update = user.update(
-        { _id : sub},
+        const update = await user.update(
+        {   _id : sub,
+            cash : {$gt: purchaseValue}
+        },
         {
             "$inc": { "cash" : -purchaseValue },
-            $push: {transactions: {coinId: coinId, numberOfCoins: numberOfCoins, marketValue: price} }
+            $push: {transactions: {coinId: coinId, numberOfCoins: numberOfCoins, marketValue: price, dateOfPurchase: new Date()} }
         }
         );
-       
-        return proxyResponse(update);
+
+        if (update.result?.n === 0){
+            return proxyResponse("Insufficient balance", 400);
+        }
+        return proxyResponse({});
     } catch (error){
     return proxyResponse(error.stack, 500);
   }
-    
+
 };
