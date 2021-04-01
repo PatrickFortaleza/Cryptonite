@@ -4,7 +4,7 @@ import Buy from "../../components/list/Buy"
 
 export default function BuyCtrl({prop}){
   const [quantity, setQuantity] = useState(0)
-  const [marketPrice, setMarketPrice] = useState(0)
+  const [marketPrice, setMarketPrice] = useState(prop.current_price)
   const [bookValue, setBookValue] = useState(0)
 
   const submitForm = async () => {
@@ -22,6 +22,20 @@ export default function BuyCtrl({prop}){
       console.log(error);
     }
   };
+
+  const calculateBookValue = async () => {
+    console.log("calculateBookValue")
+    const result = quantity * marketPrice
+    console.log(result)
+    if(typeof result !== "number") return 0
+
+    setBookValue(result)
+    
+  }
+
+  useEffect(()=>{
+    calculateBookValue()
+  },[quantity])
  
   return(
     <Buy 
@@ -33,6 +47,7 @@ export default function BuyCtrl({prop}){
 
       //PROPERTIES
       prop = {prop}
+      bookValue = {bookValue}
     
     />
 
