@@ -18,8 +18,8 @@ export default function DetailCtrl({
     
   } 
 
-  const showSell = async () => {
-    navigation.navigate("Sell")
+  const showSell = (company) => {
+    navigation.navigate("Sell", company)
   } 
 
   return (

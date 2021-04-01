@@ -28,12 +28,11 @@ export default function CompanyDetail({
         high_24h : high_24h, 
         low_24h : low_24h,
     }
-
     console.log(item)
 
   return (
 
-      <SafeAreaView data={item}>
+      <SafeAreaView data={item} style = {styles.container}>
           <Image source = {{uri: image}} style = {styles.image}/>
           <Text style = {styles.price}> CAD {current_price}</Text>
           <Text style = {styles.initials}>  {name}</Text>
@@ -43,7 +42,7 @@ export default function CompanyDetail({
                 <Text style = {styles.buy}>Buy</Text> 
             </TouchableOpacity>
              
-            <TouchableOpacity onPress={() => {showSell()}}>
+            <TouchableOpacity onPress={() => {showSell(item)}}>
                 <Text style = {styles.sell}>Sell</Text> 
             </TouchableOpacity>
           </View>
@@ -56,12 +55,12 @@ export default function CompanyDetail({
               </View>
               
               <View style = {styles.pairItem}>
-                  <Text style = {styles.items}>Details</Text>  
+                  <Text style = {styles.items}>High in 24hours</Text>  
                   <Text style = {styles.items}>{high_24h}</Text>
               </View>
               
               <View style = {styles.pairItem}>
-                  <Text style = {styles.items}>Another detail</Text> 
+                  <Text style = {styles.items}>Low in 24hours</Text> 
                   <Text style = {styles.items}>{low_24h}</Text>
               </View>
               
@@ -72,19 +71,19 @@ export default function CompanyDetail({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#f194ff", //'#fff',
-    alignItems: 'stretch',
-    justifyContent: 'center',
+    backgroundColor: "#1a1a1a",
+    height: "100%"
   },
   image:{
       height:250
   },
   price:{
-      fontSize : 50
+      fontSize : 50,
+      color: "white",
   },
   initials:{
-      fontSize : 25
+      fontSize : 25,
+      color: "white",
   },
   trade:{
       paddingTop: 75,
@@ -94,20 +93,24 @@ const styles = StyleSheet.create({
   },
   buy:{
       color : "#841584",
-      fontSize : 50
+      fontSize : 50,
+      color: "white",
       
   },
   sell:{
     color : "#841584",
-    fontSize : 50
+    fontSize : 50,
+    color: "white",
   },
 
   stats:{
       fontSize : 25,
+      color: "white",
       paddingLeft : 10,
       paddingBottom: 10
   },
   pairItem:{
+  
       flexDirection: 'row',
       justifyContent: 'space-between',
       paddingLeft : 10,
@@ -116,6 +119,7 @@ const styles = StyleSheet.create({
       
   },
   items:{
+      color: "white",
       fontSize : 18
   },
 
