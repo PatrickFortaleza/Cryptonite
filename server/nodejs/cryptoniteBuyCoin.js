@@ -1,35 +1,33 @@
 const connectToDatabase = require('/opt/nodejs/database');
+const proxyResponse = require('/opt/nodejs/baseResponse');
+const {getPrice} = require('/opt/nodejs/gecko')
 
 exports.handler = async (event) => {
-    
-     if (!event.request?.userName || !event.request?.userAttributes){
-    console.log("Improper user object.")
-    return;
+    const sub = event.requestContext?.authorizer?.claims?.sub;
+    if (!sub) {
+    return proxyResponse('User not authorized', 400);
   }
     
     const numberOfCoins = event.numberOfCoins;
-    const marketValue = event.marketValue;
-    const coinId = event.pathParameters.coin;  
-    
+    const coinId = event.pathParameters.coin;   
+    const marketValue = await getPrice(coinId);
+   const price = marketValue.data[coinId].usd;
+    console.log(price);
     const db = await connectToDatabase();
-    const purchaseValue = (numberOfCoins * marketValue);
+    const purchaseValue = (numberOfCoins * price);
     const user = db.collection('users');
     try{
         const update = user.update(
-        { _id : event.request.userAttributes.sub},
+        { _id : sub},
         {
             "$inc": { "cash" : -purchaseValue },
-            $push: {transactions: {coinId: coinId, numberOfCoins: numberOfCoins, marketValue: marketValue} }
+            $push: {transactions: {coinId: coinId, numberOfCoins: numberOfCoins, marketValue: price} }
         }
         );
        
-        const response = {
-            statusCode: 200,
-            body: JSON.stringify(update),
-        };
-        return response;
+        return proxyResponse(update);
     } catch (error){
-    console.log(error.message)
+    return proxyResponse(error.stack, 500);
   }
     
 };

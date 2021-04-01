@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-export default function Signout({ handleSignout }) {
+export default function Signout({ handleSignout, handleReturn }) {
   return (
     <View style={{ ...style.container }}>
       <View>
@@ -9,7 +9,7 @@ export default function Signout({ handleSignout }) {
           <Text style={style.heading}>Do you wish to sign out?</Text>
         </View>
         <View style={style.actions}>
-          <TouchableOpacity style={style.button}>
+          <TouchableOpacity style={style.button} onPress={() => handleReturn()}>
             <Text style={style.buttonText}>Back To Profile</Text>
           </TouchableOpacity>
           <TouchableOpacity

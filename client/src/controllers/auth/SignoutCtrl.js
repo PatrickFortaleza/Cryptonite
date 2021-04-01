@@ -3,7 +3,7 @@ import Signout from "../../components/auth/Signout";
 import { Auth } from "aws-amplify";
 import { useAuth } from "../../context/AuthContext";
 
-export default function SignoutCtrl() {
+export default function SignoutCtrl({ navigation }) {
   const authContext = useAuth();
   const { setUserData } = authContext;
 
@@ -17,5 +17,9 @@ export default function SignoutCtrl() {
     }
   };
 
-  return <Signout handleSignout={handleSignout} />;
+  const handleReturn = () => {
+    navigation.navigate("Profile");
+  };
+
+  return <Signout handleReturn={handleReturn} handleSignout={handleSignout} />;
 }
