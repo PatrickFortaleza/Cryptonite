@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, SafeAreaView, FlatList, TouchableOpacity, Text, TextInput, View} from 'react-native';
+import { StyleSheet, SafeAreaView, Image, TouchableOpacity, Text, TextInput, View} from 'react-native';
 
 
 export default function Buy({
@@ -9,37 +9,54 @@ export default function Buy({
       setBookValue, 
       submitForm, 
     //PROPERTIES
-    prop
+      prop
   }) {
 
-    const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState(0)
+  console.log(prop.image)
 
   return (
-    <SafeAreaView>
-      <Text>Company : {prop.name}</Text>
+    <SafeAreaView  style={{
+      backgroundColor: "#1a1a1a",
+      height: "100%",
+      justifyContent: "center",
+    }}>
+      <View style={{justifyContent: "center"}}>
+        <Image source = {{uri: prop.image}} style = {styles.image}/>
+        <Text style = {styles.header}>Company : {prop.name}</Text>
 
-      <View style = {styles.amount}>
-        <Text >Quantity</Text>
+      </View>
+      
+      <View style = {styles.pair} >
+        <Text style = {styles.quantity}>Quantity</Text>
         <TextInput
           onChangeText={(number) => setAmount(number)}
           placeholderTextColor={"grey"}
           placeholder="Enter Quantity"
+          style = {styles.quantity}
         />
       </View>
       
-      <Text>Market Price {prop.current_price}</Text>
-      <Text>Total {amount * prop.current_price}</Text>
+      <View style = {styles.pair} >
+        <Text style = {styles.marketPrice}>Market Price </Text>
+        <Text style = {styles.marketPrice}>{prop.current_price}</Text>
+      </View>
 
-      <View>
+      <View style = {styles.pair}>
+        <Text style = {styles.total}>Total</Text>
+        <Text style = {styles.total}>{amount * prop.current_price}</Text>
+      </View>
+  
+      <View >
         <TouchableOpacity
           onPress={() => {
-            submitForm()
             setQuantity(amount)
             setMarketPrice(prop.current_price)
             setBookValue(amount * prop.current_price)
+            submitForm()
           }}
         >
-          <Text>BUY</Text>
+          <Text style = {styles.buyButton}>BUY</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -47,7 +64,33 @@ export default function Buy({
 }
 
 const styles = StyleSheet.create({
+  header :{
+    fontSize : 35
+  },
+  quantity :{
+    fontSize : 25,
+  },
+  marketPrice : {
+    fontSize : 25
+  },
+  total : {
+    fontSize : 35,
+    paddingBottom : 40
+  },
+  pair : {
+    flexDirection : 'row',
+    justifyContent : 'space-between',
+    padding : 20,
+  },
   amount : {
     flexDirection: 'row'
+  },
+  buyButton : {
+    fontSize : 35,
+    textAlign: 'center'
+  },
+  image : {
+    height:50,
+    width : 50
   }
 });

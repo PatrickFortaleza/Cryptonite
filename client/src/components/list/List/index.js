@@ -12,6 +12,7 @@ export default function List({
 
   return (
     <FlatList
+   
           style={styles.flatList}
           keyExtractor={company => company.id}
           data={cryptoData}
@@ -33,4 +34,7 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     justifyContent: 'center',
   },
+  flatList: {
+    backgroundColor: "#1a1a1a",
+  }
 });
