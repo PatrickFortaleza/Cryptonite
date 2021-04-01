@@ -22,11 +22,12 @@ export function AuthProvider({ children }) {
     isAuthenticated,
   };
 
-  const resetAuth = () => {
+  const resetAuth = async () => {
     setUserData(null);
     setUserToken(null);
     setAuthentication(false);
     setProfileData(null);
+    await Auth.signOut();
   };
 
   const evaluateUserData = () => {
