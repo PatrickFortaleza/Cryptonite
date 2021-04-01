@@ -19,14 +19,18 @@ export function AuthProvider({ children }) {
     userData,
     setUserToken,
     userToken,
+    profileData,
+    setProfileData,
+    queryProfileData,
     isAuthenticated,
   };
 
-  const resetAuth = () => {
+  const resetAuth = async () => {
     setUserData(null);
     setUserToken(null);
     setAuthentication(false);
     setProfileData(null);
+    await Auth.signOut();
   };
 
   const evaluateUserData = () => {
@@ -57,7 +61,7 @@ export function AuthProvider({ children }) {
     const result = await getUser();
     if (!result || result.error) return resetAuth();
 
-    console.log(result);
+    setProfileData(result);
   };
 
   useEffect(() => {

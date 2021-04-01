@@ -1,28 +1,31 @@
-import React ,{useState, useEffect} from "react";
-import List from "../../components/list/List"
-import {Text} from "react-native";
-import {cryptoData} from './fakedata.js'
+import React, { useState, useEffect } from "react";
+import List from "../../components/list/List";
+import { Text } from "react-native";
+import { getMarkets } from "../../network";
 
+export default function ListCtrl({ navigation }) {
+  const [cryptoData_, setCryptoData] = useState([]);
 
-export default function ListCtrl({navigation}) {
-
-  const [cryptoData_, setCryptoData] = useState(cryptoData)
   const showDetail = (company) => {
-    navigation.navigate('CryptoDetail', company)
-  } 
+    navigation.navigate("CryptoDetail", company);
+  };
 
-  useEffect(()=> {
-    setCryptoData(cryptoData)
-    //console.log(cryptoData)
-  },[])
+  const queryMarkets = async () => {
+    const result = await getMarkets();
+    if (!result || result.error) return setCryptoData([]);
+    setCryptoData(result);
+  };
+
+  useEffect(() => {
+    queryMarkets();
+  }, []);
 
   return (
     <List
       // METHODS
       showDetail={showDetail}
       // PROPERTIES
-      cryptoData = {cryptoData_}
+      cryptoData={cryptoData_}
     />
   );
 }
- 
