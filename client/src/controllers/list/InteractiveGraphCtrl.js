@@ -13,7 +13,7 @@ export default function InteractiveGraphCtrl({ sparkline }) {
       return setComputedSparkline([]);
 
     const sliceDays = 24 * days;
-    const slicedSparkline = sparkline.price.slice(0, sliceDays);
+    const slicedSparkline = sparkline.price.slice(168 - sliceDays, 168);
     setComputedSparkline(slicedSparkline);
   };
 

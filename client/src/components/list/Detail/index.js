@@ -33,17 +33,31 @@ export default function CompanyDetail({
   };
 
   return (
-    <View data={item} style={styles.container}>
-      <View style={styles.listHead}>
-        <Text style={styles.heading}>{name}</Text>
-        <Text style={styles.subheading}>
-          {symbol.toUpperCase()}&nbsp;&nbsp;| &nbsp;Trade&nbsp;
-        </Text>
+    <View data={item} style={{ ...styles.container, flexDirection: "column" }}>
+      <View style={{ flexDirection: "row" }}>
+        <View style={{ ...styles.listHead, flex: 1 }}>
+          <Text style={styles.heading}>{name}</Text>
+          <Text style={styles.subheading}>
+            {symbol.toUpperCase()}&nbsp;&nbsp;| &nbsp;Trade&nbsp;
+          </Text>
+        </View>
+        <View style={{ flex: 1, alignItems: "flex-end", paddingTop: 5 }}>
+          <View style={{ ...styles.imageContainer }}>
+            <Image source={{ uri: image }} style={styles.image} />
+          </View>
+        </View>
       </View>
-      <InteractiveGraphCtrl sparkline={sparkline_in_7d} />
+      <View>
+        <InteractiveGraphCtrl sparkline={sparkline_in_7d} />
+      </View>
       {/* <Image source={{ uri: image }} style={styles.image} /> */}
-      {/* <Text style={styles.price}> CAD {current_price}</Text>
-      <Text style={styles.initials}> {name}</Text> */}
+      <View style={{ marginTop: 50, paddingHorizontal: 10 }}>
+        <Text style={{ ...styles.heading, fontSize: 40 }}>
+          ${current_price}{" "}
+          <Text style={styles.subheading}>&nbsp;USD&nbsp;</Text>
+        </Text>
+        <Text style={styles.subheading}>Real-Time Price</Text>
+      </View>
 
       {/* <View style={styles.trade}>
         <TouchableOpacity onPress={() => showBuy(item)}>
@@ -85,8 +99,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#1a1a1a",
     height: "100%",
   },
+  imageContainer: {
+    width: 75,
+    height: 75,
+    padding: 10,
+  },
   image: {
-    height: 250,
+    flex: 1,
+    borderRadius: 75 / 2,
+    overflow: "hidden",
   },
   price: {
     fontSize: 50,
