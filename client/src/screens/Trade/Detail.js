@@ -5,6 +5,7 @@ import DetailCtrl from "../../controllers/list/DetailCtrl";
 export default function DetailScreen({ route, navigation }) {
   const {
     name,
+    symbol,
     current_price,
     image,
     high_24h,
@@ -21,6 +22,7 @@ export default function DetailScreen({ route, navigation }) {
         name={name}
         image={image}
         current_price={current_price}
+        symbol={symbol}
         high_24h={high_24h}
         low_24h={low_24h}
         navigation={navigation}

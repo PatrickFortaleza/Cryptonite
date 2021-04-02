@@ -9,6 +9,7 @@ export default function DetailCtrl({
   // Properties
   name,
   image,
+  symbol,
   current_price,
   high_24h,
   low_24h,
@@ -29,6 +30,7 @@ export default function DetailCtrl({
       showSell={showSell}
       // PROPERTIES
       name={name}
+      symbol={symbol}
       image={image}
       current_price={current_price}
       high_24h={high_24h}

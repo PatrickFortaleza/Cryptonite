@@ -52,5 +52,6 @@ const style = StyleSheet.create({
     backgroundColor: "#494949",
     paddingVertical: 2,
     paddingHorizontal: 7,
+    borderRadius: 3,
   },
 });

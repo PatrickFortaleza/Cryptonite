@@ -16,6 +16,7 @@ export default function CompanyDetail({
   showSell,
   // PROPERTIES
   name,
+  symbol,
   image,
   current_price,
   high_24h,
@@ -33,6 +34,12 @@ export default function CompanyDetail({
 
   return (
     <View data={item} style={styles.container}>
+      <View style={styles.listHead}>
+        <Text style={styles.heading}>{name}</Text>
+        <Text style={styles.subheading}>
+          {symbol.toUpperCase()}&nbsp;&nbsp;| &nbsp;Trade&nbsp;
+        </Text>
+      </View>
       <InteractiveGraphCtrl sparkline={sparkline_in_7d} />
       {/* <Image source={{ uri: image }} style={styles.image} /> */}
       {/* <Text style={styles.price}> CAD {current_price}</Text>
@@ -122,5 +129,25 @@ const styles = StyleSheet.create({
   items: {
     color: "white",
     fontSize: 18,
+  },
+  listHead: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    width: `100%`,
+    paddingRight: 20,
+    paddingLeft: 20,
+    borderBottomColor: "#282828",
+    borderBottomWidth: 1,
+  },
+  heading: {
+    color: "#fff",
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    fontSize: 21,
+  },
+  subheading: {
+    color: "#ccc",
+    fontSize: 12,
+    marginTop: 7,
   },
 });
