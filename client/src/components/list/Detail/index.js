@@ -6,6 +6,7 @@ import {
   Image,
   Button,
   TouchableOpacity,
+  ScrollView,
   View,
 } from "react-native";
 import InteractiveGraphCtrl from "../../../controllers/list/InteractiveGraphCtrl";
@@ -18,10 +19,11 @@ export default function CompanyDetail({
   showSell,
   // PROPERTIES
   crypto,
+  isAuthenticated,
 }) {
   const { price_change_percentage_24h, price_change_24h } = crypto;
   return (
-    <View style={{ ...styles.container, flexDirection: "column" }}>
+    <ScrollView style={{ ...styles.container, flexDirection: "column" }}>
       <View style={{ flexDirection: "row" }}>
         <View style={{ ...styles.listHead, flex: 1 }}>
           <Text style={styles.heading}>{crypto.name}</Text>
@@ -154,44 +156,47 @@ export default function CompanyDetail({
           </Text>
         </View>
       </View>
-      <View
-        style={{ flexDirection: "row", marginTop: 20, paddingHorizontal: 10 }}
-      >
-        <TouchableOpacity
-          style={{ ...styles.buy, flex: 1, marginRight: 10 }}
-          onPress={() => showBuy(crypto)}
-        >
-          <Text
-            style={{
-              color: "white",
-              textAlign: "center",
-              fontWeight: "bold",
-              fontSize: 20,
-            }}
-          >
-            Buy
-          </Text>
-        </TouchableOpacity>
 
-        <TouchableOpacity
-          style={{ ...styles.sell, flex: 1 }}
-          onPress={() => {
-            showSell(crypto);
-          }}
+      {isAuthenticated ? (
+        <View
+          style={{ flexDirection: "row", marginTop: 20, paddingHorizontal: 10 }}
         >
-          <Text
-            style={{
-              color: "white",
-              textAlign: "center",
-              fontWeight: "bold",
-              fontSize: 20,
+          <TouchableOpacity
+            style={{ ...styles.buy, flex: 1, marginRight: 10 }}
+            onPress={() => showBuy(crypto)}
+          >
+            <Text
+              style={{
+                color: "white",
+                textAlign: "center",
+                fontWeight: "bold",
+                fontSize: 20,
+              }}
+            >
+              Buy
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{ ...styles.sell, flex: 1 }}
+            onPress={() => {
+              showSell(crypto);
             }}
           >
-            Sell
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+            <Text
+              style={{
+                color: "white",
+                textAlign: "center",
+                fontWeight: "bold",
+                fontSize: 20,
+              }}
+            >
+              Sell
+            </Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
+    </ScrollView>
   );
 }
 

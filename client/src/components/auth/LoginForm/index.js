@@ -23,7 +23,7 @@ export default function LoginForm({
       style={{
         backgroundColor: "#1a1a1a",
         height: "100%",
-        justifyContent: "center",
+        justifyContent: "flex-start",
       }}
     >
       <View style={style.formContainer}>
