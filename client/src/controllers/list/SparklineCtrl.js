@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import Sparkline from "../../components/list/Sparkline";
 
 let mounted = false;
-export default function SparklineCtrl({ sparkLine, hasFill, height, width }) {
+export default function SparklineCtrl({
+  sparkLine,
+  hasFill,
+  height,
+  width,
+  noDays,
+}) {
   const [yCoords, setYCoords] = useState([]);
   const [xCoords, setXCoords] = useState([]);
   const [coordinates, setCoordinates] = useState([]);
@@ -117,7 +123,9 @@ export default function SparklineCtrl({ sparkLine, hasFill, height, width }) {
     <Sparkline
       StringPathStroke={svgPathStroke}
       StringPathFill={svgPathFill}
+      noDays={noDays}
       hasFill={hasFill}
+      sparkLineLength={sparkLine.length}
     />
   );
 }

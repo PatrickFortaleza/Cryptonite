@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
+import { formatPrice } from "../../../utility";
 import SparklineCtrl from "../../../controllers/list/SparklineCtrl";
 
 export default function CompanyItem({ coinData }) {
@@ -25,19 +26,21 @@ export default function CompanyItem({ coinData }) {
       </View>
 
       <View style={{ ...styles.center, flexDirection: "column" }}>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 2 }}>
           <Text style={{ ...styles.text, textAlign: "right", marginTop: 20 }}>
-            USD $
+            <Text style={{ fontSize: 10, color: "gray" }}> USD</Text> $
             {coinData.current_price < 1
-              ? coinData.current_price.toFixed(4)
-              : coinData.current_price.toFixed(2)}
+              ? formatPrice(coinData.current_price.toFixed(4))
+              : coinData.current_price % 1 === 0
+              ? formatPrice(coinData.current_price.toFixed(0))
+              : formatPrice(coinData.current_price.toFixed(2))}
           </Text>
         </View>
-        <View style={{ width: 100, flex: 2 }}>
+        <View style={{ width: 100, flex: 3 }}>
           <SparklineCtrl
             sparkLine={coinData.sparkline_in_7d.price}
             hasFill={false}
-            height={25}
+            height={20}
             width={100}
           />
         </View>
