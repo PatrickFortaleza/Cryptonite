@@ -1,42 +1,33 @@
-import React ,{useState, useEffect} from "react";
-import {Text} from "react-native";
-import Detail from "../../components/list/Detail"
+import React from "react";
+import Detail from "../../components/list/Detail";
+import { useAuth } from "../../context/AuthContext";
 
 export default function DetailCtrl({
-  // METHOD
-  navigation,
-
   // Properties
-  name, 
-  image, 
-  current_price,
-  high_24h, 
-  low_24h,
-  id
+  crypto,
+  navigation,
 }) {
+  const AuthContext = useAuth();
+  const { isAuthenticated } = AuthContext;
 
   const showBuy = (company) => {
-    navigation.navigate("Buy", company)
-    
-  } 
+    if (!isAuthenticated) return null;
+    navigation.navigate("Buy", company);
+  };
 
   const showSell = (company) => {
-    navigation.navigate("Sell", company)
-  } 
+    if (!isAuthenticated) return null;
+    navigation.navigate("Sell", company);
+  };
 
   return (
-    <Detail 
+    <Detail
       // METHOD
-      showBuy = {showBuy}
-      showSell = {showSell}
+      showBuy={showBuy}
+      showSell={showSell}
       // PROPERTIES
-      name = {name}
-      image = {image}
-      current_price = {current_price}
-      high_24h = {high_24h}
-      low_24h = {low_24h}
-      id = {id}
+      crypto={crypto}
+      isAuthenticated={isAuthenticated}
     />
   );
 }
- 

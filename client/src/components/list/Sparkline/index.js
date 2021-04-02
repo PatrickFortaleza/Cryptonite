@@ -1,31 +1,60 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
+import { computeDays } from "../../../utility";
 
 export default function Sparkline(props) {
   return (
     <View style={styles.container}>
       {props.StringPathStroke ? (
-        <Svg height="100" width="100%" children={props.children}>
-          {props.hasFill ? (
+        <View style={{ borderBottomWidth: 1, borderColor: "blue" }}>
+          <Svg
+            height="100"
+            width="100%"
+            children={props.children}
+            key={Math.random()}
+          >
+            {props.hasFill ? (
+              <Path
+                d={props.StringPathFill}
+                stroke="none"
+                strokeWidth="0"
+                fill="#13346d"
+              />
+            ) : null}
             <Path
-              d={props.StringPathFill}
-              stroke="none"
-              strokeWidth="0"
-              fill="#13346d"
+              d={props.StringPathStroke}
+              stroke="#005dff"
+              strokeWidth="2.5"
+              fill="none"
             />
-          ) : null}
-          <Path
-            d={props.StringPathStroke}
-            stroke="#005dff"
-            strokeWidth="2.5"
-            fill="none"
-          />
-        </Svg>
+          </Svg>
+        </View>
       ) : null}
-      <View style={styles.banner}>
-        <Text style={styles.bannerText}>Last 7 days</Text>
-      </View>
+
+      {!props.noDays ? (
+        <View
+          style={{
+            borderColor: "#005dff",
+            position: "absolute",
+            left: "50%",
+            bottom: "40%",
+            transform: [{ translateX: "-50%" }],
+            width: "100%",
+          }}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              color: "#eee",
+              fontSize: 11,
+              flex: 1,
+            }}
+          >
+            {computeDays(+props.sparkLineLength)}d
+          </Text>
+        </View>
+      ) : null}
     </View>
   );
 }
