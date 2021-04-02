@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import InteractiveGraph from "../../components/list/InteractiveGraph";
 
 export default function InteractiveGraphCtrl({ sparkline }) {
-  const [days, setDays] = useState(1);
+  const [days, setDays] = useState(7);
   const [computedSparkline, setComputedSparkline] = useState([]);
 
   const calculateSparkline = () => {
