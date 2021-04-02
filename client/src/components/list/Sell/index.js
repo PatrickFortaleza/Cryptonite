@@ -10,7 +10,8 @@ export default function Sell({
       setBookValue, 
       submitForm, 
     //PROPERTIES
-      prop
+      prop,
+      bookValue
   }) {
 
   const [amount, setAmount] = useState(0)
@@ -27,7 +28,9 @@ export default function Sell({
         <View style = {styles.pair} >
           <Text style = {styles.quantity}>Quantity</Text>
           <TextInput
-            onChangeText={(number) => setAmount(number)}
+            onChangeText={(number) => {
+              setQuantity(+number)
+            }}
             placeholderTextColor={"grey"}
             placeholder="Enter Quantity"
             style = {styles.quantity}
@@ -41,16 +44,13 @@ export default function Sell({
 
         <View style = {styles.pair}>
           <Text style = {styles.total}>Total</Text>
-          <Text style = {styles.total}>{amount * prop.current_price}</Text>
+          <Text style = {styles.total}>{bookValue}</Text>
         </View>
     
         <View >
           <TouchableOpacity
             style = {styles.button}
             onPress={() => {
-              setQuantity(amount)
-              setMarketPrice(prop.current_price)
-              setBookValue(amount * prop.current_price)
               submitForm()
             }}
           >

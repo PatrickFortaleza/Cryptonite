@@ -19,6 +19,7 @@ export default function CompanyDetail({
     current_price,
     high_24h, 
     low_24h,
+    id
 }){
     //pass the object to the buy page through route
     let item = {
@@ -27,6 +28,7 @@ export default function CompanyDetail({
         current_price : current_price,
         high_24h : high_24h, 
         low_24h : low_24h,
+        id: id
     }
     console.log(item)
 

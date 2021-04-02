@@ -6,7 +6,7 @@ export default function Sell({ route, navigation }) {
 
   let prop = route.params
   console.log("Sell", route.params)
-  console.log("Test", prop)
+  console.log("Sell", prop)
   return (
     <View>
        <SellCtrl prop = {prop}/>

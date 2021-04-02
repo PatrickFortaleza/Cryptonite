@@ -7,10 +7,12 @@ export default function DetailCtrl({
   navigation,
 
   // Properties
-  name, image, 
+  name, 
+  image, 
   current_price,
   high_24h, 
-  low_24h
+  low_24h,
+  id
 }) {
 
   const showBuy = (company) => {
@@ -33,6 +35,7 @@ export default function DetailCtrl({
       current_price = {current_price}
       high_24h = {high_24h}
       low_24h = {low_24h}
+      id = {id}
     />
   );
 }
