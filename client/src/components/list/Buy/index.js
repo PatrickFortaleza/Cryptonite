@@ -8,6 +8,7 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { formatPrice} from "../../../utility"
 
 export default function Buy({
   //METHODS
@@ -44,15 +45,15 @@ export default function Buy({
 
         <View style={styles.pair}>
           <Text style={styles.marketPrice}>Market Price </Text>
-          <Text style={styles.marketPrice}>{crypto.current_price}</Text>
+          <Text style={styles.marketPrice}>$ {formatPrice((crypto.current_price).toFixed(2))}</Text>
         </View>
 
         <View style={styles.pair}>
           <Text style={styles.total}>Total</Text>
-          <Text style={styles.total}>{bookValue}</Text>
+          <Text style={styles.total}>$  {formatPrice(bookValue.toFixed(2))}</Text>
         </View>
 
-        <View>
+        <View style={styles.buttonBottom}> 
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -85,8 +86,10 @@ const styles = StyleSheet.create({
     color: "white",
   },
   quantity: {
+    textAlign : "right",
     fontSize: 20,
     color: "white",
+    //backgroundColor: ""
   },
   marketPrice: {
     fontSize: 20,
@@ -104,6 +107,12 @@ const styles = StyleSheet.create({
   },
   amount: {
     flexDirection: "row",
+  },
+  buttonBottom : {
+    position: "absolute",
+    bottom : 0,
+    width : "100%",
+    paddingBottom : 20 
   },
   button: {
     backgroundColor: "#0079ff",

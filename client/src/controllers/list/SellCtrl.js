@@ -16,10 +16,16 @@ export default function SellCtrl({
     try {
     // network to gateway
     const response = await sellCoin(crypto.id, quantity)
-    const text ={text: "This object"}
-    console.log("sellCoin ", text)
-    //navigation.navigate("Confirmation", company)
-    navigation.navigate("Confirmation", text)
+
+    const transaction = { 
+      company, 
+      quantity,
+      bookValue 
+    }
+   
+    navigation.navigate("Confirmation", transaction); 
+    //navigation.navigate("Confirmation", response)
+   
     
     } catch (error) {
       console.log(error);
@@ -49,6 +55,7 @@ export default function SellCtrl({
       //PROPERTIES
       crypto = {crypto}
       bookValue = {bookValue}
+      quantity = {quantity}
     
     />
 

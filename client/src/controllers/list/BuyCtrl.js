@@ -9,7 +9,6 @@ export default function BuyCtrl({
   crypto, 
   navigation
 }) {
-  console.log("BuyCtrl : ", crypto)
 
   const [quantity, setQuantity] = useState(0);
   const [marketPrice, setMarketPrice] = useState(crypto.current_price);

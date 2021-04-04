@@ -37,7 +37,7 @@ export default function Confirmation({
         <Text style={styles.total}>{transaction.bookValue}</Text>
       </View>
 
-      <View>
+      <View style={styles.bottom}>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     textAlign : "center",
     color: "white",
+    
    
     paddingTop : 35 ,
     paddingBottom: 35
@@ -109,14 +110,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 30,
+    textAlign : "center"
   },
   buttonText: {
     fontSize: 25,
     color: "white",
     textAlign: "center",
   },
-  image: {
-    height: 50,
-    width: 50,
+
+  bottom:{
+    position : "absolute",
+    bottom : 0,
+    paddingBottom: 20,
+    width : "100%"
+    
   },
 });

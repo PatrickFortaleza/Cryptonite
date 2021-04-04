@@ -51,7 +51,7 @@ export default function Sell({
           <Text style = {styles.total}>{bookValue}</Text>
         </View>
 
-        <View>
+        <View style = {styles.buttonBottom}>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -104,12 +104,22 @@ const styles = StyleSheet.create({
   amount: {
     flexDirection: "row",
   },
+  buttonBottom : {
+    position: "absolute",
+    bottom : 0,
+    width : "100%",
+    paddingBottom : 20 
+  },
   button: {
     backgroundColor: "#0079ff",
     marginTop: 17,
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 30,
+    backgroundColor: "#1b2c49",
+   
+    borderWidth: 2,
+    borderColor: "#3273ff",
   },
   buttonText: {
     fontSize: 25,
