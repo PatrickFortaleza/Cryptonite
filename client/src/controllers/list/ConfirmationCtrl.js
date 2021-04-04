@@ -2,12 +2,17 @@ import React from "react"
 import { StyleSheet, Text, View } from "react-native";
 import Confirmation from "../../components/list/Confirmation"
 
-export default function ConfirmationCtrl(){
-
+export default function ConfirmationCtrl({
+  // PROPERTIES
+  transaction,
+  navigation
+}){
 
   return (
-    <Text>
-      <Confirmation/>
-    </Text>
+      <Confirmation
+        //PROPERTIES
+        transaction = {transaction}
+        navigation = {navigation}
+      />
   )
 }

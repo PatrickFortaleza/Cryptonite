@@ -9,15 +9,25 @@ export default function BuyCtrl({
   crypto, 
   navigation
 }) {
+  console.log("BuyCtrl : ", crypto)
+
   const [quantity, setQuantity] = useState(0);
   const [marketPrice, setMarketPrice] = useState(crypto.current_price);
   const [bookValue, setBookValue] = useState(0);
+
 
   const submitForm = async (company) => {
     try {
       // network to gateway
       const response = await buyCoin(crypto.id, quantity)
-      navigation.navigate("Confirmation", company); 
+
+      const transaction = { 
+        company, 
+        quantity,
+        bookValue 
+      }
+
+      navigation.navigate("Confirmation", transaction); 
       // navigation.navigate("Confirmation", response)
       
     } catch (error) {
@@ -45,6 +55,7 @@ export default function BuyCtrl({
       //PROPERTIES
       crypto={crypto}
       bookValue={bookValue}
+      quantity = {quantity}
       
     />
   );
