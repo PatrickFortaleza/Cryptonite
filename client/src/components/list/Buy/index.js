@@ -12,14 +12,14 @@ import {
 export default function Buy({
   //METHODS
   setQuantity,
-  setMarketPrice,
-  setBookValue,
+  //setMarketPrice,
+  //setBookValue,
   submitForm,
   //PROPERTIES
   prop,
   bookValue,
+
 }) {
-  const [amount, setAmount] = useState(0);
 
   return (
     <SafeAreaView style={styles.container}>

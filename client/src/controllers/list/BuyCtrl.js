@@ -4,17 +4,24 @@ import Buy from "../../components/list/Buy"
 import { buyCoin } from "../../network"
 
 
-export default function BuyCtrl({ prop }) {
+export default function BuyCtrl({ 
+  //Properties
+  prop , 
+  navigation
+}) {
   const [quantity, setQuantity] = useState(0);
   const [marketPrice, setMarketPrice] = useState(prop.current_price);
   const [bookValue, setBookValue] = useState(0);
 
   const submitForm = async () => {
+
     try {
       // network to gateway
       const response = await buyCoin(prop.id, quantity)
       console.log(response)
-      // navigation.navigate("Complete");
+
+      navigation.navigate("Confirmation"); 
+      
     } catch (error) {
       console.log(error.response.data);
     }
@@ -40,6 +47,7 @@ export default function BuyCtrl({ prop }) {
       //PROPERTIES
       prop={prop}
       bookValue={bookValue}
+      
     />
   );
 }

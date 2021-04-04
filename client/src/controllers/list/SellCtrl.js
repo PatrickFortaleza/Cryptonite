@@ -3,18 +3,24 @@ import {Text} from "react-native";
 import Sell from "../../components/list/Sell"
 import {sellCoin} from "../../network"
 
-export default function SellCtrl({prop}){
+export default function SellCtrl({
+  // PROPERTIES
+  prop,
+  navigation
+
+}){
   const [quantity, setQuantity] = useState(0)
   const [marketPrice, setMarketPrice] = useState(prop.current_price)
   const [bookValue, setBookValue] = useState(0)
 
   const submitForm = async () => {
     try {
-     
+      navigation.navigate("Confirmation")
     // network to gateway
     const response = await sellCoin(prop.id, quantity)
     console.log(response)
-    // navigation.navigate("Complete");
+    
+      
 
     } catch (error) {
       console.log(error);

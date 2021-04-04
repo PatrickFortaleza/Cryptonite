@@ -4,8 +4,7 @@ import DetailCtrl from "../../controllers/list/DetailCtrl";
 
 export default function DetailScreen({ route, navigation }) {
   const crypto = route.params;
-
-
+  
   return (
     <View>
       <DetailCtrl
