@@ -4,7 +4,7 @@ import SellCtrl from "../../controllers/list/SellCtrl"
 
 export default function Sell({ route, navigation }) {
   const crypto = route.params
-
+  console.log("Sell Screen", crypto)
   return (
     <View>
        <SellCtrl 

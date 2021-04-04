@@ -7,34 +7,31 @@ export default function SellCtrl({
   // PROPERTIES
   crypto,
   navigation
-
 }){
   const [quantity, setQuantity] = useState(0)
   const [marketPrice, setMarketPrice] = useState(crypto.current_price)
   const [bookValue, setBookValue] = useState(0)
 
-  const submitForm = async () => {
+  const submitForm = async (company) => {
     try {
-      navigation.navigate("Confirmation")
     // network to gateway
     const response = await sellCoin(crypto.id, quantity)
-    console.log(response)
+    const text ={text: "This object"}
+    console.log("sellCoin ", text)
+    //navigation.navigate("Confirmation", company)
+    navigation.navigate("Confirmation", text)
     
-      
-
     } catch (error) {
       console.log(error);
     }
   };
 
   const calculateBookValue = async () => {
-    console.log("calculateBookValue")
     const result = quantity * marketPrice
     console.log(result)
     if(typeof result !== "number") return 0
 
     setBookValue(result)
-    
   }
 
   useEffect(()=>{

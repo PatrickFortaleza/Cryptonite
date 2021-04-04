@@ -9,7 +9,6 @@ export default function Confirmation({route}) {
   return (
     <View>
       <ConfirmationCtrl/>
-      {/* <Text> Confirmation Screen</Text> */}
     </View>
   );
 }

@@ -20,8 +20,6 @@ export default function Sell({
       bookValue
   }) {
 
-  const [amount, setAmount] = useState(0)
-  console.log(crypto.image)
 
   return (
     <SafeAreaView style={styles.container}>
@@ -57,7 +55,7 @@ export default function Sell({
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              submitForm()
+              submitForm(crypto)
             }}
           >
             <Text style={styles.buttonText}>SELL</Text>

@@ -5,8 +5,8 @@ import { buyCoin } from "../../network"
 
 
 export default function BuyCtrl({ 
-  //Properties
-  crypto , 
+  //PROPERTIES
+  crypto, 
   navigation
 }) {
   const [quantity, setQuantity] = useState(0);
@@ -17,9 +17,8 @@ export default function BuyCtrl({
     try {
       // network to gateway
       const response = await buyCoin(crypto.id, quantity)
-      console.log(response)
-
       navigation.navigate("Confirmation", company); 
+      // navigation.navigate("Confirmation", response)
       
     } catch (error) {
       console.log(error.response.data);
