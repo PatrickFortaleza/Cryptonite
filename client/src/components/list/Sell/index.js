@@ -16,19 +16,19 @@ export default function Sell({
       setBookValue, 
       submitForm, 
     //PROPERTIES
-      prop,
+      crypto,
       bookValue
   }) {
 
   const [amount, setAmount] = useState(0)
-  console.log(prop.image)
+  console.log(crypto.image)
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.main}>
         <View style={styles.title}>
-          <Image source={{ uri: prop.image }} style={styles.image} />
-          <Text style={styles.header}>{prop.name}</Text>
+          <Image source={{ uri: crypto.image }} style={styles.image} />
+          <Text style={styles.header}>{crypto.name}</Text>
         </View>
 
         <View style={styles.pair}>
@@ -45,7 +45,7 @@ export default function Sell({
 
         <View style={styles.pair}>
           <Text style={styles.marketPrice}>Market Price </Text>
-          <Text style={styles.marketPrice}>{prop.current_price}</Text>
+          <Text style={styles.marketPrice}>{crypto.current_price}</Text>
         </View>
 
         <View style = {styles.pair}>

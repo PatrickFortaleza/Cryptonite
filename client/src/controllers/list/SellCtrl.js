@@ -5,19 +5,19 @@ import {sellCoin} from "../../network"
 
 export default function SellCtrl({
   // PROPERTIES
-  prop,
+  crypto,
   navigation
 
 }){
   const [quantity, setQuantity] = useState(0)
-  const [marketPrice, setMarketPrice] = useState(prop.current_price)
+  const [marketPrice, setMarketPrice] = useState(crypto.current_price)
   const [bookValue, setBookValue] = useState(0)
 
   const submitForm = async () => {
     try {
       navigation.navigate("Confirmation")
     // network to gateway
-    const response = await sellCoin(prop.id, quantity)
+    const response = await sellCoin(crypto.id, quantity)
     console.log(response)
     
       
@@ -50,7 +50,7 @@ export default function SellCtrl({
       submitForm = {submitForm}
 
       //PROPERTIES
-      prop = {prop}
+      crypto = {crypto}
       bookValue = {bookValue}
     
     />

@@ -6,21 +6,20 @@ import { buyCoin } from "../../network"
 
 export default function BuyCtrl({ 
   //Properties
-  prop , 
+  crypto , 
   navigation
 }) {
   const [quantity, setQuantity] = useState(0);
-  const [marketPrice, setMarketPrice] = useState(prop.current_price);
+  const [marketPrice, setMarketPrice] = useState(crypto.current_price);
   const [bookValue, setBookValue] = useState(0);
 
-  const submitForm = async () => {
-
+  const submitForm = async (company) => {
     try {
       // network to gateway
-      const response = await buyCoin(prop.id, quantity)
+      const response = await buyCoin(crypto.id, quantity)
       console.log(response)
 
-      navigation.navigate("Confirmation"); 
+      navigation.navigate("Confirmation", company); 
       
     } catch (error) {
       console.log(error.response.data);
@@ -45,7 +44,7 @@ export default function BuyCtrl({
       setBookValue={setBookValue}
       submitForm={submitForm}
       //PROPERTIES
-      prop={prop}
+      crypto={crypto}
       bookValue={bookValue}
       
     />

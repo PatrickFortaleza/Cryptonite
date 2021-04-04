@@ -3,13 +3,13 @@ import { StyleSheet, Text, View } from "react-native";
 import SellCtrl from "../../controllers/list/SellCtrl"
 
 export default function Sell({ route, navigation }) {
-  const prop = route.params
+  const crypto = route.params
 
   return (
     <View>
        <SellCtrl 
        // PROPERTIES
-       prop = {prop}
+       crypto = {crypto}
        navigation = {navigation}
        />
     </View>
