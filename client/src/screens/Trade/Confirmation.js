@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 export default function Confirmation() {
   return (
     <View>
-      <Text>Confirmation</Text>
+      <Text>Confirmation Screen</Text>
     </View>
   );
 }
