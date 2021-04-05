@@ -51,7 +51,6 @@ export default function SellCtrl({
 
   const calculateBookValue = async () => {
     const result = quantity * marketPrice
-    console.log(result)
     if(typeof result !== "number") return 0
 
     setBookValue(result)
