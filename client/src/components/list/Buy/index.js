@@ -17,9 +17,10 @@ export default function Buy({
   //PROPERTIES
   crypto,
   bookValue,
+  user
 
 }) {
-
+  console.log("Buy component", user)
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.main}>
@@ -48,6 +49,33 @@ export default function Buy({
         <View style={styles.pair}>
           <Text style={styles.total}>Total</Text>
           <Text style={styles.total}>$  {formatPrice(bookValue.toFixed(2))}</Text>
+        </View>
+
+        <View style={styles.userStats}>
+          <Text style={styles.statsHeader}>Key Stats</Text>
+        </View>
+
+        <View style={styles.userStats}>
+          <Text style={styles.stats}>User</Text>
+          <Text style={styles.stats}>{user.userData.username}</Text>
+        </View>
+
+        <View style={styles.userStats}>
+          <Text style={styles.stats}>Number of Coins</Text>
+          <Text style={styles.stats}>TBA</Text>
+          {/* <Text style={styles.stats}>{object.numberOfCoins}</Text> */}
+        </View>
+
+        
+        <View style={styles.userStats}>
+            <Text style={styles.stats}>Wallet</Text>
+            <Text style={styles.stats}>TBA</Text>
+            {/* <Text style={styles.stats}> $ {formatPrice(user.profileData.cash.toFixed(2))}</Text> */}
+          </View>
+
+        <View style={styles.userStats}>
+          <Text style={styles.stats}>Portfolio BookValue</Text>
+          <Text style={styles.stats}>{user.profileData.bookValue}</Text>
         </View>
 
         <View style={styles.buttonBottom}> 
@@ -92,8 +120,25 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "white",
   },
+  userStats:{
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal : 20,
+    paddingBottom: 10
+  },
+  statsHeader: {
+    fontSize: 20,
+    fontWeight : "bold",
+    color: "white",
+  },
+
+  stats: {
+    fontSize: 17,
+    color: "white",
+  },
   total: {
     fontSize: 25,
+    fontWeight: "bold",
     color: "white",
     paddingBottom: 40,
   },
