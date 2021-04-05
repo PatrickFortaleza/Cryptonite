@@ -19,9 +19,14 @@ export default function Confirmation({
   user
   
 }) {
+  console.log(transaction)
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.header}>Transaction Complete!</Text>
+       <View style={styles.title}>
+          <Image source={{ uri: transaction.company.image }} style={styles.image} />
+          <Text style={styles.header}>{transaction.company.name}</Text>
+        </View>
+      <Text style={styles.subHeader}>Transaction Complete!</Text>
       <Text style={styles.summary}>Summary</Text>
       <View style={styles.line}></View>
       <View style={styles.pair}>
@@ -42,7 +47,7 @@ export default function Confirmation({
       </View>
 
       <View style={styles.userStats}>
-        <Text style={styles.statsHeader}>Key Stats</Text>
+        <Text style={styles.statsHeader}>Portfolio</Text>
       </View>
       <View style={styles.line}></View>
 
@@ -96,11 +101,14 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 35,
+    color: "white",
+  },
+  subHeader: {
+    fontSize: 25,
     textAlign : "center",
     color: "white",
-    
-   
-    paddingTop : 35 ,
+ 
+    paddingTop : 5 ,
     paddingBottom: 35
   },
   summary: {
@@ -181,13 +189,15 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
   },
-
   bottom:{
     position : "absolute",
     bottom : 0,
     paddingBottom: 20,
     width : "100%",
     paddingHorizontal : 50
-    
+  },
+  image: {
+    height: 50,
+    width: 50,
   },
 });
