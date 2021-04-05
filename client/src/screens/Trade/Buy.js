@@ -3,15 +3,15 @@ import { StyleSheet, Text, View } from "react-native";
 import BuyCtrl from "../../controllers/list/BuyCtrl"
 
 export default function Buy({ route, navigation }) {
-
-  let prop = route.params
-  console.log("Buy", route.params)
-  console.log("Test", prop)
-  
+  let crypto = route.params
+  console.log(crypto)
 
   return (
     <View>
-      <BuyCtrl prop = {prop}
+      <BuyCtrl 
+      // Properties
+      crypto = {crypto}
+      navigation = {navigation}
       />
     </View>
   );

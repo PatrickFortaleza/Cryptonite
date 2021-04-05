@@ -1,10 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import ConfirmationCtrl from "../../controllers/list/ConfirmationCtrl"
 
-export default function Confirmation() {
+export default function Confirmation({route, navigation}) {
+  const transaction = route.params
+  
   return (
     <View>
-      <Text>Confirmation</Text>
+      <ConfirmationCtrl
+        //PROPERTIES
+        transaction = {transaction}
+        navigation = {navigation}
+      />
     </View>
   );
 }
