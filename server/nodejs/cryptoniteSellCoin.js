@@ -9,7 +9,7 @@ exports.handler = async (event) => {
   }
     
     const numberOfCoins = event.numberOfCoins;
-    const coinId ="dogecoin";      //event.pathParameters.coin; 
+    const coinId =event.pathParameters.coin; 
     const marketValue = await getPrice(coinId);
    const price = marketValue.data[coinId].usd;
     const db = await connectToDatabase();
@@ -25,12 +25,21 @@ exports.handler = async (event) => {
     ]).toArray()
     var totalCoins = result[0].totalCoins
     
+    db.users.aggregate( [
+        { $unwind: "$transactions" },
+        { $match: { "transactions.coinId" : "eos" , "_id": "f901b5bd-605d-4e25-a6fd-d8b16ed33034", "transactions.numberOfCoins": {$gt: 1}} },
+        { $replaceRoot: { newRoot: "$transactions" } },
+        {$sort: {"dateOfPurchase" : -1} }
+        ])
+
+
+
     if(numberOfCoins < totalCoins){
         const update = user.updateOne(
         { _id : sub, },
         {
             "$inc": { "cash" : purchaseValue },
-            $push: {transactions: {coinId: coinId, numberOfCoins: -(numberOfCoins), marketValue: price} }
+            $push: {transactions: {coinId: coinId, numberOfCoins: -(numberOfCoins), marketValue: price, dateOfSale: new Date()} }
         }
         );
         return proxyResponse({});
