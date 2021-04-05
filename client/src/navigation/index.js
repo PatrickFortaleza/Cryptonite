@@ -84,6 +84,14 @@ function TradeScreenNavigator() {
           ...navOptions,
         }}
       />
+
+      <ScreenStack.Screen
+        name="Confirmation"
+        component={Confirmation}
+        options={{
+          ...navOptions,
+        }}
+      />
     </ScreenStack.Navigator>
   );
 }

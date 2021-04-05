@@ -1,34 +1,60 @@
 import React ,{useState, useEffect} from "react";
-import {Text} from "react-native";
+import {Alert, Text} from "react-native";
 import Sell from "../../components/list/Sell"
 import {sellCoin} from "../../network"
 
-export default function SellCtrl({prop}){
+export default function SellCtrl({
+  // PROPERTIES
+  crypto,
+  navigation
+}){
   const [quantity, setQuantity] = useState(0)
-  const [marketPrice, setMarketPrice] = useState(prop.current_price)
+  const [marketPrice, setMarketPrice] = useState(crypto.current_price)
   const [bookValue, setBookValue] = useState(0)
 
-  const submitForm = async () => {
-    try {
-     
-    // network to gateway
-    const response = await sellCoin(prop.id, quantity)
-    console.log(response)
-    // navigation.navigate("Complete");
+  const submitForm = async (company) => {
 
-    } catch (error) {
-      console.log(error);
+    if(quantity <= 0 || !Number.isInteger(quantity)){
+      Alert.alert(
+        "Input not valid",
+        "Please enter a number greater than 0",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ]
+      );
+    }
+
+    if(quantity > 0 && Number.isInteger(quantity)){
+      try {
+        // network to gateway
+        const response = await sellCoin(crypto.id, quantity)
+  
+        const transaction = { 
+          company, 
+          quantity,
+          bookValue 
+        }
+  
+        navigation.navigate("Confirmation", transaction); 
+        // navigation.navigate("Confirmation", response)
+        
+      } catch (error) {
+        console.log(error.response.data);
+      }
     }
   };
 
   const calculateBookValue = async () => {
-    console.log("calculateBookValue")
     const result = quantity * marketPrice
     console.log(result)
     if(typeof result !== "number") return 0
 
     setBookValue(result)
-    
   }
 
   useEffect(()=>{
@@ -44,8 +70,9 @@ export default function SellCtrl({prop}){
       submitForm = {submitForm}
 
       //PROPERTIES
-      prop = {prop}
+      crypto = {crypto}
       bookValue = {bookValue}
+      quantity = {quantity}
     
     />
 
