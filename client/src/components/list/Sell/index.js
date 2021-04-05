@@ -28,28 +28,31 @@ export default function Sell({
           <Text style={styles.header}>{crypto.name}</Text>
         </View>
 
-        <View style={styles.pair}>
-          <Text style={styles.quantity}>Quantity</Text>
-          <TextInput
-            onChangeText={(number) => {
-              setQuantity(+number)
-            }}
-            placeholderTextColor={"grey"}
-            placeholder="Enter Quantity"
-            style={styles.quantity}
-          />
-        </View>
+        <View style={styles.box}>
+          <View style={styles.pair}>
+            <Text style={styles.quantity}>Quantity</Text>
+            <TextInput
+              onChangeText={(number) => {
+                setQuantity(+number)
+              }}
+              placeholderTextColor={"grey"}
+              placeholder="Enter Quantity"
+              style={styles.quantity}
+            />
+          </View>
 
-        <View style={styles.pair}>
-          <Text style={styles.marketPrice}>Market Price </Text>
-          <Text style={styles.marketPrice}>$ {formatPrice((crypto.current_price).toFixed(2))}</Text>
-        </View>
+          <View style={styles.pair}>
+            <Text style={styles.marketPrice}>Market Price </Text>
+            <Text style={styles.marketPrice}>$ {formatPrice((crypto.current_price).toFixed(2))}</Text>
+          </View>
 
-        <View style = {styles.pair}>
-          <Text style = {styles.total}>Total</Text>
-          <Text style={styles.total}>$  {formatPrice(bookValue.toFixed(2))}</Text>
+          <View style = {styles.pair}>
+            <Text style = {styles.total}>Total</Text>
+            <Text style={styles.total}>$  {formatPrice(bookValue.toFixed(2))}</Text>
+          </View>
         </View>
-
+       
+        <View style={styles.containerBottom}>
         <View style={styles.userStats}>
           <Text style={styles.statsHeader}>Key Stats</Text>
         </View>
@@ -76,6 +79,9 @@ export default function Sell({
           <Text style={styles.stats}>{formatPrice(user.profileData.bookValue.toFixed(2))}</Text>
         </View>
 
+        </View>
+        
+
 
 
         <View style = {styles.buttonBottom}>
@@ -98,10 +104,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#1a1a1a",
     height: "100%",
   },
+  containerBottom: {
+    paddingVertical : 40,
+  },
   title: {
     flexDirection: "row",
     justifyContent: "center",
     padding: 20,
+  },
+  box : {
+    borderWidth : 1,
+    borderColor : "#3273ff"
   },
   main: {
     height: "100%",
@@ -123,7 +136,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "bold",
     color: "white",
-    paddingBottom: 40,
+    paddingBottom: 20,
   },
   pair: {
     flexDirection: "row",
