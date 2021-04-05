@@ -16,7 +16,7 @@ export default function BuyCtrl({
 
   const submitForm = async (company) => {
     
-    if(!quantity || quantity <= 0){
+    if(quantity <= 0 || !Number.isInteger(quantity)){
       Alert.alert(
         "Input not valid",
         "Please enter a number greater than 0",
@@ -31,7 +31,7 @@ export default function BuyCtrl({
       );
     }
 
-    if(!!quantity && quantity > 0){
+    if(quantity > 0 && Number.isInteger(quantity)){
       try {
         // network to gateway
         const response = await buyCoin(crypto.id, quantity)
