@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
   },
   total: {
     fontSize: 25,
+    fontWeight: "bold",
     color: "white",
     paddingBottom: 40,
   },

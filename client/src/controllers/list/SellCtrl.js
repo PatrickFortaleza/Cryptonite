@@ -9,6 +9,8 @@ export default function SellCtrl({
   navigation,
   user
 }){
+
+  console.log("Crypto ID", crypto.id)
   const [quantity, setQuantity] = useState(0)
   const [marketPrice, setMarketPrice] = useState(crypto.current_price)
   const [bookValue, setBookValue] = useState(0)
