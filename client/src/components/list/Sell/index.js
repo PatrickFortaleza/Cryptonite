@@ -19,7 +19,6 @@ export default function Sell({
       bookValue
   }) {
 
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.main}>

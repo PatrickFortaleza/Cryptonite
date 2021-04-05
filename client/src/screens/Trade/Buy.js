@@ -4,7 +4,6 @@ import BuyCtrl from "../../controllers/list/BuyCtrl"
 
 export default function Buy({ route, navigation }) {
   let crypto = route.params
-  console.log(crypto)
 
   return (
     <View>

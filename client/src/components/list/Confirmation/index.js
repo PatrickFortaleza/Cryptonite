@@ -18,7 +18,6 @@ export default function Confirmation({
   navigation
   
 }) {
-  console.log("Confirmation Component", transaction)
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.header}>Transaction Complete!</Text>
