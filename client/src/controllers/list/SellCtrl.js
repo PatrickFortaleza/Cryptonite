@@ -6,8 +6,10 @@ import {sellCoin} from "../../network"
 export default function SellCtrl({
   // PROPERTIES
   crypto,
-  navigation
+  navigation,
+  user
 }){
+
   const [quantity, setQuantity] = useState(0)
   const [marketPrice, setMarketPrice] = useState(crypto.current_price)
   const [bookValue, setBookValue] = useState(0)
@@ -51,7 +53,6 @@ export default function SellCtrl({
 
   const calculateBookValue = async () => {
     const result = quantity * marketPrice
-    console.log(result)
     if(typeof result !== "number") return 0
 
     setBookValue(result)
@@ -73,6 +74,7 @@ export default function SellCtrl({
       crypto = {crypto}
       bookValue = {bookValue}
       quantity = {quantity}
+      user = {user}
     
     />
 

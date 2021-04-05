@@ -15,15 +15,20 @@ export default function Confirmation({
   //METHODS
   //PROPERTIES
   transaction,
-  navigation
+  navigation,
+  user
   
 }) {
-  console.log("Confirmation Component", transaction)
+  console.log(transaction)
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.header}>Transaction Complete!</Text>
+       <View style={styles.title}>
+          <Image source={{ uri: transaction.company.image }} style={styles.image} />
+          <Text style={styles.header}>{transaction.company.name}</Text>
+        </View>
+      <Text style={styles.subHeader}>Transaction Complete!</Text>
       <Text style={styles.summary}>Summary</Text>
-
+      <View style={styles.line}></View>
       <View style={styles.pair}>
         <Text style={styles.quantity}>Quantity </Text>
         <Text style={styles.quantity}>{transaction.quantity}</Text>
@@ -34,9 +39,37 @@ export default function Confirmation({
         <Text style={styles.marketPrice}> $ { formatPrice(transaction.company.current_price.toFixed(2))}</Text>
       </View>
 
+      <View style={styles.lineSecondary}></View>
+
       <View style={styles.pair}>
         <Text style={styles.total}>Total</Text>
         <Text style={styles.total}>$ {formatPrice(transaction.bookValue.toFixed(2))}</Text>
+      </View>
+
+      <View style={styles.userStats}>
+        <Text style={styles.statsHeader}>Portfolio</Text>
+      </View>
+      <View style={styles.line}></View>
+
+      <View style={styles.userStats}>
+        <Text style={styles.stats}>User</Text>
+        <Text style={styles.stats}>{user.userData.username}</Text>
+      </View>
+
+      <View style={styles.userStats}>
+        <Text style={styles.stats}>Number of Coins</Text>
+        <Text style={styles.stats}>TBA</Text>
+        {/* <Text style={styles.stats}>{!object.numberOfCoins ? "n/a" : object.numberOfCoins}</Text> */}
+      </View>
+
+      <View style={styles.userStats}>
+        <Text style={styles.stats}>Wallet</Text>
+        <Text style={styles.stats}>{!user.profileData.cash ? "0.00" : formatPrice(user.profileData.cash.toFixed(2))}</Text>
+      </View>
+
+      <View style={styles.userStats}>
+        <Text style={styles.stats}>Portfolio BookValue</Text>
+        <Text style={styles.stats}>{formatPrice(user.profileData.bookValue.toFixed(2))}</Text>
       </View>
 
       <View style={styles.bottom}>
@@ -68,15 +101,19 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 35,
+    color: "white",
+  },
+  subHeader: {
+    fontSize: 25,
     textAlign : "center",
     color: "white",
-    
-   
-    paddingTop : 35 ,
+ 
+    paddingTop : 5 ,
     paddingBottom: 35
   },
   summary: {
-    fontSize: 25,
+    fontSize: 20,
+    fontWeight : "bold",
     color: "white",
     padding: 20,
     paddingTop : 0,
@@ -91,17 +128,50 @@ const styles = StyleSheet.create({
     color: "white",
   },
   total: {
-    fontSize: 25,
+    fontSize: 18,
     color: "white",
     paddingBottom: 40,
-    paddingTop: 40
+    
+    borderTopColor : "red"
+  },
+  userStats:{
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal : 20,
+    paddingBottom: 5
+  },
+  statsHeader: {
+    fontSize: 20,
+    fontWeight : "bold",
+    color: "white",
+  },
+
+  stats: {
+    fontSize: 17,
+    color: "white",
   },
   pair: {
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 20,
     paddingTop : 0,
-    paddingBottom : 0 
+    paddingBottom : 0,
+  },
+  line: {
+    paddingHorizontal: 50,
+    borderTopWidth : 1.25,
+    borderTopColor : "#3273ff",
+    marginHorizontal: 20,
+    marginBottom: 10,
+    marginTop: 10,
+  },
+  lineSecondary: {
+    paddingHorizontal: 50,
+    borderTopWidth : 1.00,
+    borderTopColor : "gray",
+    marginHorizontal: 20,
+    marginBottom: 10,
+    marginTop: 10,
   },
   amount: {
     flexDirection: "row",
@@ -119,13 +189,15 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
   },
-
   bottom:{
     position : "absolute",
     bottom : 0,
     paddingBottom: 20,
     width : "100%",
     paddingHorizontal : 50
-    
+  },
+  image: {
+    height: 50,
+    width: 50,
   },
 });

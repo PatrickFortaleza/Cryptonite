@@ -1,9 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import ConfirmationCtrl from "../../controllers/list/ConfirmationCtrl"
+import { useAuth } from "../../context/AuthContext";
 
 export default function Confirmation({route, navigation}) {
   const transaction = route.params
+  const user = useAuth();
   
   return (
     <View>
@@ -11,6 +13,7 @@ export default function Confirmation({route, navigation}) {
         //PROPERTIES
         transaction = {transaction}
         navigation = {navigation}
+        user = {user}
       />
     </View>
   );

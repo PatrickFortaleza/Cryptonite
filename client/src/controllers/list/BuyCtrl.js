@@ -7,6 +7,7 @@ export default function BuyCtrl({
   //PROPERTIES
   crypto,
   navigation,
+  user
 }) {
   const [quantity, setQuantity] = useState(0);
   const [marketPrice, setMarketPrice] = useState(crypto.current_price);
@@ -64,6 +65,7 @@ export default function BuyCtrl({
       crypto={crypto}
       bookValue={bookValue}
       quantity={quantity}
+      user = {user}
     />
   );
 }
