@@ -29,6 +29,7 @@ export default function Buy({
           <Text style={styles.header}>{crypto.name}</Text>
         </View>
 
+        <View style={styles.box}>
         <View style={styles.pair}>
           <Text style={styles.quantity}>Quantity</Text>
           <TextInput
@@ -50,6 +51,11 @@ export default function Buy({
           <Text style={styles.total}>Total</Text>
           <Text style={styles.total}>$  {formatPrice(bookValue.toFixed(2))}</Text>
         </View>
+
+        </View>
+       
+        
+        <View style={styles.containerBottom}>
 
         <View style={styles.userStats}>
           <Text style={styles.statsHeader}>Key Stats</Text>
@@ -76,6 +82,8 @@ export default function Buy({
           <Text style={styles.stats}>Portfolio BookValue</Text>
           <Text style={styles.stats}>{formatPrice(user.profileData.bookValue.toFixed(2))}</Text>
         </View>
+        </View>
+        
 
         <View style={styles.buttonBottom}> 
           <TouchableOpacity
@@ -96,6 +104,13 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#1a1a1a",
     height: "100%",
+  },
+  containerBottom: {
+    paddingVertical : 40,
+  },
+  box : {
+    borderWidth : 1,
+    borderColor : "#3273ff"
   },
   title: {
     flexDirection: "row",
@@ -139,7 +154,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "bold",
     color: "white",
-    paddingBottom: 40,
+    paddingBottom: 15,
   },
   pair: {
     flexDirection: "row",

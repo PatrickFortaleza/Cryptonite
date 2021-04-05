@@ -5,7 +5,8 @@ import Confirmation from "../../components/list/Confirmation"
 export default function ConfirmationCtrl({
   // PROPERTIES
   transaction,
-  navigation
+  navigation,
+  user
 }){
 
   return (
@@ -13,6 +14,7 @@ export default function ConfirmationCtrl({
         //PROPERTIES
         transaction = {transaction}
         navigation = {navigation}
+        user = {user}
       />
   )
 }
