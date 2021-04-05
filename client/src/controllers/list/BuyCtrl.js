@@ -1,5 +1,5 @@
 import React,{ useState, useEffect } from "react";
-import {Text} from "react-native";
+import {Alert, Text} from "react-native";
 import Buy from "../../components/list/Buy"
 import { buyCoin } from "../../network"
 
@@ -14,24 +14,42 @@ export default function BuyCtrl({
   const [marketPrice, setMarketPrice] = useState(crypto.current_price);
   const [bookValue, setBookValue] = useState(0);
 
-
   const submitForm = async (company) => {
-    try {
-      // network to gateway
-      const response = await buyCoin(crypto.id, quantity)
-
-      const transaction = { 
-        company, 
-        quantity,
-        bookValue 
-      }
-
-      navigation.navigate("Confirmation", transaction); 
-      // navigation.navigate("Confirmation", response)
-      
-    } catch (error) {
-      console.log(error.response.data);
+    
+    if(!quantity || quantity <= 0){
+      Alert.alert(
+        "Input not valid",
+        "Please enter a number greater than 0",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ]
+      );
     }
+
+    if(!!quantity && quantity > 0){
+      try {
+        // network to gateway
+        const response = await buyCoin(crypto.id, quantity)
+  
+        const transaction = { 
+          company, 
+          quantity,
+          bookValue 
+        }
+  
+        navigation.navigate("Confirmation", transaction); 
+        // navigation.navigate("Confirmation", response)
+        
+      } catch (error) {
+        console.log(error.response.data);
+      }
+    }
+    
   };
 
   const calculateBookValue = async () => {

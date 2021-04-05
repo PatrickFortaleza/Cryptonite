@@ -8,12 +8,11 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { formatPrice} from "../../../utility"
 
 export default function Sell({
     //METHODS
       setQuantity, 
-      setMarketPrice, 
-      setBookValue, 
       submitForm, 
     //PROPERTIES
       crypto,
@@ -43,12 +42,12 @@ export default function Sell({
 
         <View style={styles.pair}>
           <Text style={styles.marketPrice}>Market Price </Text>
-          <Text style={styles.marketPrice}>{crypto.current_price}</Text>
+          <Text style={styles.marketPrice}>$ {formatPrice((crypto.current_price).toFixed(2))}</Text>
         </View>
 
         <View style = {styles.pair}>
           <Text style = {styles.total}>Total</Text>
-          <Text style = {styles.total}>{bookValue}</Text>
+          <Text style={styles.total}>$  {formatPrice(bookValue.toFixed(2))}</Text>
         </View>
 
         <View style = {styles.buttonBottom}>
@@ -86,6 +85,7 @@ const styles = StyleSheet.create({
   quantity: {
     fontSize: 20,
     color: "white",
+    textAlign : "right",
   },
   marketPrice: {
     fontSize: 20,
@@ -108,7 +108,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom : 0,
     width : "100%",
-    paddingBottom : 20 
+    paddingBottom : 20, 
+    paddingHorizontal: 50
   },
   button: {
     backgroundColor: "#0079ff",

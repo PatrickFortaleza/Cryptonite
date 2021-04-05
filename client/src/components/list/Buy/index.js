@@ -13,8 +13,6 @@ import { formatPrice} from "../../../utility"
 export default function Buy({
   //METHODS
   setQuantity,
-  //setMarketPrice,
-  //setBookValue,
   submitForm,
   //PROPERTIES
   crypto,
@@ -89,7 +87,7 @@ const styles = StyleSheet.create({
     textAlign : "right",
     fontSize: 20,
     color: "white",
-    //backgroundColor: ""
+   
   },
   marketPrice: {
     fontSize: 20,
@@ -112,7 +110,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom : 0,
     width : "100%",
-    paddingBottom : 20 
+    paddingBottom : 20 ,
+    paddingHorizontal: 50
+    
+    
   },
   button: {
     backgroundColor: "#0079ff",
@@ -120,6 +121,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 30,
+    
   },
   buttonText: {
     fontSize: 25,
