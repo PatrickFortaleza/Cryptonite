@@ -6,7 +6,8 @@ import {sellCoin} from "../../network"
 export default function SellCtrl({
   // PROPERTIES
   crypto,
-  navigation
+  navigation,
+  user
 }){
   const [quantity, setQuantity] = useState(0)
   const [marketPrice, setMarketPrice] = useState(crypto.current_price)
@@ -72,6 +73,7 @@ export default function SellCtrl({
       crypto = {crypto}
       bookValue = {bookValue}
       quantity = {quantity}
+      user = {user}
     
     />
 

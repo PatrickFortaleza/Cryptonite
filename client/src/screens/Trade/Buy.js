@@ -5,7 +5,6 @@ import { useAuth } from "../../context/AuthContext";
 
 export default function Buy({ route, navigation }) {
   let crypto = route.params
-
   const user = useAuth();
 
   return (

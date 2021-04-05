@@ -16,7 +16,8 @@ export default function Sell({
       submitForm, 
     //PROPERTIES
       crypto,
-      bookValue
+      bookValue,
+      user
   }) {
 
   return (
@@ -48,6 +49,35 @@ export default function Sell({
           <Text style = {styles.total}>Total</Text>
           <Text style={styles.total}>$  {formatPrice(bookValue.toFixed(2))}</Text>
         </View>
+
+        <View style={styles.userStats}>
+          <Text style={styles.statsHeader}>Key Stats</Text>
+        </View>
+
+        <View style={styles.userStats}>
+          <Text style={styles.stats}>User</Text>
+          <Text style={styles.stats}>{user.userData.username}</Text>
+        </View>
+
+        <View style={styles.userStats}>
+          <Text style={styles.stats}>Number of Coins</Text>
+          <Text style={styles.stats}>TBA</Text>
+          {/* <Text style={styles.stats}>{object.numberOfCoins}</Text> */}
+        </View>
+
+        
+        <View style={styles.userStats}>
+            <Text style={styles.stats}>Wallet</Text>
+            <Text style={styles.stats}>TBA</Text>
+            {/* <Text style={styles.stats}> $ {formatPrice(user.profileData.cash.toFixed(2))}</Text> */}
+          </View>
+
+        <View style={styles.userStats}>
+          <Text style={styles.stats}>Portfolio BookValue</Text>
+          <Text style={styles.stats}>{user.profileData.bookValue}</Text>
+        </View>
+
+
 
         <View style = {styles.buttonBottom}>
           <TouchableOpacity
@@ -102,6 +132,22 @@ const styles = StyleSheet.create({
   },
   amount: {
     flexDirection: "row",
+  },
+  userStats:{
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal : 20,
+    paddingBottom: 10
+  },
+  statsHeader: {
+    fontSize: 20,
+    fontWeight : "bold",
+    color: "white",
+  },
+
+  stats: {
+    fontSize: 17,
+    color: "white",
   },
   buttonBottom : {
     position: "absolute",
