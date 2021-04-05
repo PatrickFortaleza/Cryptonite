@@ -64,7 +64,7 @@ exports.handler = async (event) => {
       const update = user.updateOne(
         { _id: sub },
         {
-          $inc: { cash: purchaseValue },
+          $inc: { cash: purchaseValue, bookValue: -purchaseValue },
           $push: {
             transactions: {
               coinId: coinId,
