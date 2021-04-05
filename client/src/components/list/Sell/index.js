@@ -8,27 +8,24 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { formatPrice} from "../../../utility"
 
 export default function Sell({
     //METHODS
       setQuantity, 
-      setMarketPrice, 
-      setBookValue, 
       submitForm, 
     //PROPERTIES
-      prop,
+      crypto,
       bookValue
   }) {
 
-  const [amount, setAmount] = useState(0)
-  console.log(prop.image)
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.main}>
         <View style={styles.title}>
-          <Image source={{ uri: prop.image }} style={styles.image} />
-          <Text style={styles.header}>{prop.name}</Text>
+          <Image source={{ uri: crypto.image }} style={styles.image} />
+          <Text style={styles.header}>{crypto.name}</Text>
         </View>
 
         <View style={styles.pair}>
@@ -45,19 +42,19 @@ export default function Sell({
 
         <View style={styles.pair}>
           <Text style={styles.marketPrice}>Market Price </Text>
-          <Text style={styles.marketPrice}>{prop.current_price}</Text>
+          <Text style={styles.marketPrice}>$ {formatPrice((crypto.current_price).toFixed(2))}</Text>
         </View>
 
         <View style = {styles.pair}>
           <Text style = {styles.total}>Total</Text>
-          <Text style = {styles.total}>{bookValue}</Text>
+          <Text style={styles.total}>$  {formatPrice(bookValue.toFixed(2))}</Text>
         </View>
 
-        <View>
+        <View style = {styles.buttonBottom}>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              submitForm()
+              submitForm(crypto)
             }}
           >
             <Text style={styles.buttonText}>SELL</Text>
@@ -88,6 +85,7 @@ const styles = StyleSheet.create({
   quantity: {
     fontSize: 20,
     color: "white",
+    textAlign : "right",
   },
   marketPrice: {
     fontSize: 20,
@@ -106,12 +104,23 @@ const styles = StyleSheet.create({
   amount: {
     flexDirection: "row",
   },
+  buttonBottom : {
+    position: "absolute",
+    bottom : 0,
+    width : "100%",
+    paddingBottom : 20, 
+    paddingHorizontal: 50
+  },
   button: {
     backgroundColor: "#0079ff",
     marginTop: 17,
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 30,
+    backgroundColor: "#1b2c49",
+   
+    borderWidth: 2,
+    borderColor: "#3273ff",
   },
   buttonText: {
     fontSize: 25,
