@@ -19,7 +19,7 @@ export default function BuyCtrl({
     if(quantity <= 0 || !Number.isInteger(quantity)){
       Alert.alert(
         "Input not valid",
-        "Please enter a number greater than 0",
+        "Please enter an Integer greater than 0",
         [
           {
             text: "Cancel",
