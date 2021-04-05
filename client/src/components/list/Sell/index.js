@@ -62,19 +62,18 @@ export default function Sell({
         <View style={styles.userStats}>
           <Text style={styles.stats}>Number of Coins</Text>
           <Text style={styles.stats}>TBA</Text>
-          {/* <Text style={styles.stats}>{object.numberOfCoins}</Text> */}
+          {/* <Text style={styles.stats}>{!object.numberOfCoins ? "n/a" : object.numberOfCoins}</Text> */}
         </View>
 
         
         <View style={styles.userStats}>
             <Text style={styles.stats}>Wallet</Text>
-            <Text style={styles.stats}>TBA</Text>
-            {/* <Text style={styles.stats}> $ {formatPrice(user.profileData.cash.toFixed(2))}</Text> */}
+            <Text style={styles.stats}>{!user.profileData.cash ? "0.00" : formatPrice(user.profileData.cash.toFixed(2))}</Text>
           </View>
 
         <View style={styles.userStats}>
           <Text style={styles.stats}>Portfolio BookValue</Text>
-          <Text style={styles.stats}>{user.profileData.bookValue}</Text>
+          <Text style={styles.stats}>{formatPrice(user.profileData.bookValue.toFixed(2))}</Text>
         </View>
 
 
