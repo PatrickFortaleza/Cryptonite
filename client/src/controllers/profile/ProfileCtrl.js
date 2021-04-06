@@ -13,6 +13,10 @@ export default function ProfileCtrl({ navigation }) {
     navigation.navigate("CryptoDetail", { crypto: crypto });
   };
 
+  const navigateToTransactions = () => {
+    navigation.navigate("Transactions");
+  };
+
   const queryMarkets = async () => {
     setMarketsLoaded(false);
     const result = await getMarkets();
@@ -36,6 +40,7 @@ export default function ProfileCtrl({ navigation }) {
       marketsLoaded={marketsLoaded}
       markets={markets}
       navigateToDetail={navigateToDetail}
+      navigateToTransactions={navigateToTransactions}
     />
   );
 }
