@@ -20,7 +20,7 @@ exports.handler = async (event) => {
     return proxyResponse("Improper body", 400);
   }
 
-
+// get the current price
   const getCurrentPrice = async (id) => {
     const marketValue = await getPrice(id);
     const price = marketValue.data[id].usd;
