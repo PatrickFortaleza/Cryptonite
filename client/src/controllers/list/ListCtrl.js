@@ -7,7 +7,6 @@ export default function ListCtrl({ navigation }) {
   const [listLoaded, setListLoaded] = useState(false);
 
   const showDetail = (company) => {
-    console.log(company);
     navigation.navigate("CryptoDetail", company);
   };
 

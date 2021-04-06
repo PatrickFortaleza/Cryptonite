@@ -24,6 +24,12 @@ export default function RegisterFormCtrl({ navigation }) {
         },
       });
       if (!response) return console.log("registration failed");
+      const signInResponse = await Auth.signIn({
+        username: username,
+        password: password,
+      });
+      if (!signInResponse)
+        return console.log("unable to authenticate registration");
       console.log(response);
       setUserData({ username: response.user.username });
     } catch (error) {
