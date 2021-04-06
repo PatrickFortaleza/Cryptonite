@@ -9,8 +9,20 @@ export default function PortfolioValue({ value }) {
   });
 
   return (
-    <View style={styles.container}>
-      <View style={{ ...styles.listHead, flexDirection: "row" }}>
+    <View
+      style={{
+        ...styles.container,
+        flexDirection: "row",
+        justifyContent: "flex-end",
+      }}
+    >
+      <View
+        style={{
+          ...styles.listHead,
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
         <View
           style={{
             marginRight: 10,
