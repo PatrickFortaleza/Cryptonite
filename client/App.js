@@ -6,8 +6,6 @@ import { AuthProvider } from "./src/context/AuthContext";
 import Navigation from "./src/navigation";
 import { NavigationContainer } from "@react-navigation/native";
 
-import Profile from './src/components/profile/Profile';
-
 Amplify.configure({
   Auth: {
     mandatorySignId: true,
@@ -18,7 +16,6 @@ Amplify.configure({
 });
 
 export default function App() {
-  return <Profile/>
   return (
     <NavigationContainer styles={styles.container}>
       <SafeAreaView style={styles.container}>

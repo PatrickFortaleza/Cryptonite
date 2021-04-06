@@ -1,25 +1,38 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
-export default function Profile({ user }) {
+import CardView from '../CardView';
+import CurrencyList from '../CurrencyList';
+
+export default function Profile({ user, markets }) {
+  if (!user) {
+    return <View style={styles.container}>
+      <Text>Loading...</Text>
+    </View>
+  }
+  const { username, cash } = user;
+
+  const moneyFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+
+
   return (
     <View style={styles.container}>
-      <View style={styles.cardContainer}>
-        <View>
-          <Icon size={32} color="black" name="user-circle" />
-        </View>
-        <View>
-          <Text style={styles.text}>John Doe</Text>
-          <Text style={styles.smallText}>San Francisco, CA</Text>
-        </View>
-      </View>
-      <View style={styles.cardContainer}>
-        <View>
-          <Icon size={32} color="black" name="wallet" />
-        </View>
-        <View>
-          <Text style={styles.text}>Wallet: $50, 000</Text>
-        </View>
+      <CardView
+        image={<Icon size={40} color="white" name="user-circle" />}
+        topText={username}
+        bottomText='San Francisco, CA'
+        width={200}
+      />
+      <CardView
+        image={<Icon size={40} color='white' name='wallet' />}
+        topText={`Wallet: ${moneyFormatter.format(cash)}`}
+        width={200}
+      />
+      <View style={{ paddingTop: '15%' }}>
+        <CurrencyList markets={markets} />
       </View>
     </View>
   );
@@ -27,24 +40,9 @@ export default function Profile({ user }) {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: '#191919',
-    maxWidth: '100%',
-    margin: 'auto',
-    padding: 20
+    height: '100%',
+    backgroundColor: '#1A1A1A',
+    paddingTop: '15%',
+    alignItems: 'center',
   },
-  profileImage: {
-    borderRadius: 200
-  },
-  cardContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    paddingBottom: 20
-  },
-  text: {
-    paddingLeft: 10
-  },
-  smallText: {
-    paddingLeft: 10,
-    fontSize: 10
-  }
 });
