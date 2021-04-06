@@ -7,7 +7,7 @@ export default function Sparkline(props) {
   return (
     <View style={styles.container}>
       {props.StringPathStroke ? (
-        <View style={{ borderBottomWidth: 1, borderColor: "blue" }}>
+        <View>
           <Svg
             height="100"
             width="100%"
