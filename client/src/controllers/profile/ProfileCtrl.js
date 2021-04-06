@@ -11,12 +11,8 @@ export default function ProfileCtrl() {
 
   const queryMarkets = async () => {
     setMarketsLoaded(false);
-    console.log("query markets invoked");
-    console.log(`markets loaded: ${marketsLoaded}`);
     const result = await getMarkets();
     await setMarketsLoaded((bool) => (bool = true));
-    console.log("query markets finished");
-    console.log(`markets loaded: ${marketsLoaded}`);
     if (!result || result.error) {
       setMarkets([]);
       return;
