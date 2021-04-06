@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
   View,
+  Switch,
 } from "react-native";
 import InteractiveGraphCtrl from "../../../controllers/list/InteractiveGraphCtrl";
 import { formatPrice, roundLogic } from "../../../utility";
@@ -17,9 +18,11 @@ export default function CompanyDetail({
   //METHOD
   showBuy,
   showSell,
+  toggleSwitch,
   // PROPERTIES
   crypto,
   isAuthenticated,
+  isEnabled
 }) {
   const { price_change_percentage_24h, price_change_24h } = crypto;
   return (
@@ -72,6 +75,19 @@ export default function CompanyDetail({
           </Text>
         </Text>
         <Text style={styles.subheading}>24h Change</Text>
+        <Button
+          //onPress={toggleWatchList}
+          title="+ Add to watchlist"
+          color='#007AFF'
+        />
+
+        <Switch
+        trackColor={{ false: "#767577", true: "#81b0ff" }}
+        thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+        />
       </View>
       <View
         style={{

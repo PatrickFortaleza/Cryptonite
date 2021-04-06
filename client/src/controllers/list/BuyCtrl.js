@@ -29,7 +29,7 @@ export default function BuyCtrl({
       try {
         // network to gateway
         const response = await buyCoin(crypto.id, quantity);
-
+        //console.log(response)
         const transaction = {
           company,
           quantity,
