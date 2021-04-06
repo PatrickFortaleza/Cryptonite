@@ -19,7 +19,7 @@ export default function PortfolioValue({ value }) {
       <View
         style={{
           ...styles.listHead,
-          flexDirection: "row",
+          flexDirection: "row-reverse",
           justifyContent: "space-between",
         }}
       >
