@@ -11,6 +11,7 @@ export default function Profile({
   markets,
   marketsLoaded,
   navigateToDetail,
+  navigateToTransactions,
 }) {
   if (!user) {
     return (
@@ -72,7 +73,7 @@ export default function Profile({
             {parseDate(Date.now())}
           </Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigateToTransactions()}>
           <Text style={{ color: "#005dff" }}>View Transactions</Text>
         </TouchableOpacity>
       </View>

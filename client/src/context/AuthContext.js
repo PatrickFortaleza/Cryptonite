@@ -61,6 +61,8 @@ export function AuthProvider({ children }) {
     const result = await getUser();
     if (!result || result.error) return resetAuth();
 
+    console.log("User Profile:");
+    console.log(result);
     setProfileData(result);
   };
 

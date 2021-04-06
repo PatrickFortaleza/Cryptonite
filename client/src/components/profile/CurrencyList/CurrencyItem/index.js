@@ -52,7 +52,7 @@ export default function CurrencyItem({
       <View style={{ flex: 2, textAlign: "right" }}>
         <View style={styles.row}>
           <Text style={styles.rowLabel}>Holdings: </Text>
-          <Text style={styles.rowData}>{coinCount} Coins</Text>
+          <Text style={styles.rowData}>{coinCount} Coin(s)</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.rowLabel}>Book Value: </Text>
