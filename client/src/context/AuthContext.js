@@ -14,6 +14,8 @@ export function AuthProvider({ children }) {
   const [profileData, setProfileData] = useState(null);
   const [isAuthenticated, setAuthentication] = useState(false);
 
+
+
   const value = {
     setUserData,
     userData,
@@ -23,6 +25,7 @@ export function AuthProvider({ children }) {
     setProfileData,
     queryProfileData,
     isAuthenticated,
+    
   };
 
   const resetAuth = async () => {

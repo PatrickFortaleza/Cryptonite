@@ -75,19 +75,15 @@ export default function CompanyDetail({
           </Text>
         </Text>
         <Text style={styles.subheading}>24h Change</Text>
-        <Button
-          //onPress={toggleWatchList}
-          title="+ Add to watchlist"
-          color='#007AFF'
-        />
-
-        <Switch
-        trackColor={{ false: "#767577", true: "#81b0ff" }}
-        thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-        />
+      </View>
+      <View style={styles.pairItem}>
+          <Text style={styles.heading}>Watchlist</Text>
+          <Switch
+          trackColor={{ false: "#767577", true: "#81b0ff" }}
+          thumbColor={isEnabled ? "#007AFF" : "#f4f3f4"}
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+          />
       </View>
       <View
         style={{
@@ -242,7 +238,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingLeft: 10,
     paddingRight: 10,
-    paddingBottom: 10,
+    paddingTop: 10
   },
   items: {
     color: "white",

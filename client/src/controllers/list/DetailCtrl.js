@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Detail from "../../components/list/Detail";
 import { useAuth } from "../../context/AuthContext";
+import { useWatchList} from "../../context/WatchListContext"
 import { useState } from "react";
+import useAsyncStorage from "../../hooks/useAsyncStorage"
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function DetailCtrl({
   // Properties
@@ -9,10 +12,27 @@ export default function DetailCtrl({
   navigation,
 }) {
   const AuthContext = useAuth();
-  const { isAuthenticated } = AuthContext;
+  const WatchListContext = useWatchList();
 
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const { isAuthenticated } = AuthContext;
+  const { watchListData, setWatchListData} = WatchListContext;
+  
+  const toggleSwitch = async () => {
+    //setIsEnabled(previousState => !previousState);
+    //const watchList_ = await watchListData
+  //   const id = crypto.id
+  //   const existingData = [watchListData]
+  //  const updatedArray = [...watchListData, id]
+  //   setWatchListData(updatedArray)
+  //   console.log( existingData)
+  //   console.log(updatedArray)
+
+  console.log(await watchListData)
+  }
+
+  // useEffect(()=> {
+  //   setIsEnabled(isEnabled)   
+  // },[isEnabled])
 
   const showBuy = (company) => {
     if (!isAuthenticated) return null;
@@ -33,7 +53,7 @@ export default function DetailCtrl({
       // PROPERTIES
       crypto={crypto}
       isAuthenticated={isAuthenticated}
-      isEnabled = {isEnabled}
+      //isEnabled = {isEnabled}
     />
   );
 }
