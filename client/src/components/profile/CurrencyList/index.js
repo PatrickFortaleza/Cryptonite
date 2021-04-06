@@ -1,13 +1,16 @@
 import React from "react";
-import { FlatList, View } from "react-native";
+import { FlatList, View, TouchableOpacity } from "react-native";
 import CurrencyItem from "./CurrencyItem";
 import ItemPreloader from "../../common/ItemPreloader";
 
-export default function CurrencyList({ markets, marketsLoaded }) {
+export default function CurrencyList({
+  markets,
+  marketsLoaded,
+  navigateToDetail,
+}) {
   const renderPlaceholder = () => (
     <View style={{ height: "100%", flexDirection: "column", marginTop: 0 }}>
       <FlatList
-        style={styles.flatList}
         keyExtractor={(_, index) => `${index}`}
         data={[...Array(20)]}
         renderItem={() => {
@@ -37,6 +40,8 @@ export default function CurrencyList({ markets, marketsLoaded }) {
               totalBookValue={99000}
               totalMarketValue={100000}
               currency={item.item}
+              item={item}
+              navigateToDetail={navigateToDetail}
             />
           );
         }}

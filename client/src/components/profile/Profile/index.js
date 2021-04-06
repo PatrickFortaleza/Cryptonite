@@ -6,7 +6,12 @@ import CurrencyList from "../CurrencyList";
 import LoadingPreloader from "../../common/LoadingPreloader";
 import { parseDate } from "../../../utility";
 
-export default function Profile({ user, markets, marketsLoaded }) {
+export default function Profile({
+  user,
+  markets,
+  marketsLoaded,
+  navigateToDetail,
+}) {
   if (!user) {
     return (
       <View style={styles.container}>
@@ -72,7 +77,11 @@ export default function Profile({ user, markets, marketsLoaded }) {
         </TouchableOpacity>
       </View>
       <View>
-        <CurrencyList markets={markets} marketsLoaded={marketsLoaded} />
+        <CurrencyList
+          markets={markets}
+          navigateToDetail={navigateToDetail}
+          marketsLoaded={marketsLoaded}
+        />
       </View>
     </View>
   );

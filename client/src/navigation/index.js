@@ -111,6 +111,13 @@ function ProfileScreenNavigator() {
               ...navOptions,
             }}
           />
+          <ScreenStack.Screen
+            name="CryptoDetail"
+            component={Detail}
+            options={{
+              ...navOptions,
+            }}
+          />
         </>
       ) : (
         <>

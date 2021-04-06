@@ -3,8 +3,10 @@ import { StyleSheet, Text, View } from "react-native";
 import DetailCtrl from "../../controllers/list/DetailCtrl";
 
 export default function DetailScreen({ route, navigation }) {
-  const crypto = route.params;
-  
+  let crypto = route.params;
+
+  if (Object.keys(crypto).length < 3) crypto = route.params.crypto.item;
+
   return (
     <View>
       <DetailCtrl

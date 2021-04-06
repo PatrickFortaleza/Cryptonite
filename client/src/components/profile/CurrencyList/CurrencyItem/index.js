@@ -7,6 +7,8 @@ export default function CurrencyItem({
   onPress,
   totalBookValue,
   totalMarketValue,
+  navigateToDetail,
+  item,
 }) {
   const moneyFormatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -15,7 +17,7 @@ export default function CurrencyItem({
 
   return (
     <TouchableOpacity
-      onPress={onPress}
+      onPress={() => navigateToDetail({ crypto: { ...item } })}
       style={{
         ...styles.container,
         flexDirection: "row",
