@@ -18,13 +18,28 @@ export default function Buy({
   crypto,
   bookValue,
   user,
+  portfolioStats,
 }) {
+  const moneyFormatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.main}>
-        <View style={styles.title}>
-          <Image source={{ uri: crypto.image }} style={styles.image} />
-          <Text style={styles.header}>{crypto.name}</Text>
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ ...styles.listHead, flex: 1 }}>
+            <Text style={styles.heading}>{crypto.name}</Text>
+            <Text style={styles.subheading}>
+              {crypto.symbol.toUpperCase()}&nbsp;&nbsp;| &nbsp;BUY&nbsp;
+            </Text>
+          </View>
+          <View style={{ flex: 1, alignItems: "flex-end", paddingTop: 5 }}>
+            <View style={{ ...styles.imageContainer }}>
+              <Image source={{ uri: crypto.image }} style={styles.image} />
+            </View>
+          </View>
         </View>
 
         <View style={styles.box}>
@@ -55,38 +70,66 @@ export default function Buy({
           </View>
         </View>
 
-        <View style={styles.containerBottom}>
-          <View style={styles.userStats}>
-            <Text style={styles.statsHeader}>Key Stats</Text>
-          </View>
-
-          <View style={styles.userStats}>
-            <Text style={styles.stats}>User</Text>
-            <Text style={styles.stats}>{user.userData.username}</Text>
-          </View>
-
-          <View style={styles.userStats}>
-            <Text style={styles.stats}>Number of Coins</Text>
-            <Text style={styles.stats}>TBA</Text>
-            {/* <Text style={styles.stats}>{!object.numberOfCoins ? "n/a" : object.numberOfCoins}</Text> */}
-          </View>
-
-          <View style={styles.userStats}>
-            <Text style={styles.stats}>Wallet</Text>
-            <Text style={styles.stats}>
-              {!user.profileData.cash
-                ? "0.00"
-                : formatPrice(user.profileData.cash.toFixed(2))}
-            </Text>
-          </View>
-
-          <View style={styles.userStats}>
-            <Text style={styles.stats}>Portfolio BookValue</Text>
-            <Text style={styles.stats}>
-              {formatPrice(user.profileData.bookValue.toFixed(2))}
-            </Text>
-          </View>
+        <View style={{ ...styles.userStats, marginTop: 7 }}>
+          <Text style={styles.stats}>Available Cash</Text>
+          <Text style={styles.stats}>
+            {!user.profileData.cash
+              ? "$0.00"
+              : `${moneyFormatter.format(user.profileData.cash)}`}{" "}
+            USD
+          </Text>
         </View>
+
+        {portfolioStats !== undefined &&
+        Object.keys(portfolioStats).length > 0 ? (
+          <>
+            <View style={styles.containerBottom}>
+              <View
+                style={{
+                  ...styles.userStats,
+                  borderTopWidth: 1,
+                  borderBottomWidth: 2,
+                  borderColor: "#333",
+                  paddingTop: 10,
+                  marginBottom: 10,
+                  backgroundColor: "#232323",
+                }}
+              >
+                <Text style={styles.statsHeader}>CURRENT HOLDINGS</Text>
+              </View>
+
+              <View style={styles.userStats}>
+                <Text style={styles.stats}>Position</Text>
+                <Text style={styles.stats}>
+                  {portfolioStats.totalCoins} Coin(s)
+                </Text>
+              </View>
+
+              <View style={styles.userStats}>
+                <Text style={styles.stats}>Book Value Per Coin</Text>
+                <Text style={styles.stats}>
+                  {" "}
+                  {`${moneyFormatter.format(portfolioStats.averagePrice)}`} USD
+                </Text>
+              </View>
+
+              <View style={styles.userStats}>
+                <Text style={styles.stats}>Total Book Value</Text>
+                <Text style={styles.stats}>
+                  {`${moneyFormatter.format(portfolioStats.totalAmount)}`} USD
+                </Text>
+              </View>
+
+              <View style={styles.userStats}>
+                <Text style={styles.stats}>Total Market Value</Text>
+                <Text style={styles.stats}>
+                  {`${moneyFormatter.format(portfolioStats.totalCurrValue)}`}{" "}
+                  USD
+                </Text>
+              </View>
+            </View>
+          </>
+        ) : null}
 
         <View style={styles.buttonBottom}>
           <TouchableOpacity
@@ -95,7 +138,15 @@ export default function Buy({
               submitForm(crypto);
             }}
           >
-            <Text style={styles.buttonText}>BUY</Text>
+            <Text
+              style={{
+                ...styles.buttonText,
+                textTransform: "capitalize",
+                fontWeight: "bold",
+              }}
+            >
+              BUY
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -185,8 +236,34 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
   },
+  listHead: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    width: `100%`,
+    paddingRight: 20,
+    paddingLeft: 20,
+    borderBottomColor: "#282828",
+    borderBottomWidth: 1,
+  },
+  heading: {
+    color: "#fff",
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    fontSize: 21,
+  },
+  subheading: {
+    color: "#ccc",
+    fontSize: 12,
+    marginTop: 7,
+  },
+  imageContainer: {
+    width: 75,
+    height: 75,
+    padding: 10,
+  },
   image: {
-    height: 50,
-    width: 50,
+    flex: 1,
+    borderRadius: 75 / 2,
+    overflow: "hidden",
   },
 });
