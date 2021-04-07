@@ -83,6 +83,7 @@ export default function CompanyDetail({
           thumbColor={isEnabled ? "#007AFF" : "#f4f3f4"}
           onValueChange={toggleSwitch}
           value={isEnabled}
+          style={{ transform: [{ scaleX: .8 }, { scaleY: .8 }] }}
           />
       </View>
       <View
