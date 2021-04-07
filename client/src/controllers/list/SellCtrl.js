@@ -35,7 +35,6 @@ export default function SellCtrl({
       try {
         // network to gateway
         const response = await sellCoin(crypto.id, quantity);
-        const result = await queryProfileData();
         const transaction = {
           company,
           quantity,
