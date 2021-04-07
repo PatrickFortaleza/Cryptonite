@@ -28,5 +28,21 @@ $ expo start
 <img src="./planning/lofiPrototype/image.png" alt="Prototype">
 
 ## Demo
-![Buy Coin](./client/demo/buyCoin.gif)
-<img src="./client/demo/searchScreen.gif" alt="Search Screen">
+
+### SearchScreen
+![Search Screen](./client/demo/searchScreen.gif)
+
+### Register
+![Register](./client/demo/register.gif)
+
+### Sign in and Sign out
+![Sign in Sign out](./client/demo/loginSignOut.gif)
+
+### Buy Coins
+![Buy Coin](./client/demo/searchScreen.gif)
+
+### Sell Coins
+![Sell coin](./client/demo/searchScreen.gif)
+
+### Transaction History
+![Transaction History](./client/demo/transactionhistory.gif)
