@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
   View,
+  Switch,
 } from "react-native";
 import InteractiveGraphCtrl from "../../../controllers/list/InteractiveGraphCtrl";
 import { formatPrice, roundLogic } from "../../../utility";
@@ -17,9 +18,11 @@ export default function CompanyDetail({
   //METHOD
   showBuy,
   showSell,
+  toggleWatchList,
   // PROPERTIES
   crypto,
   isAuthenticated,
+  isInWatchList,
 }) {
   const { price_change_percentage_24h, price_change_24h } = crypto;
   return (
@@ -73,6 +76,16 @@ export default function CompanyDetail({
         </Text>
         <Text style={styles.subheading}>24h Change</Text>
       </View>
+      <View style={styles.pairItem}>
+        <Text style={styles.headingWatchList}>Watchlist</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#81b0ff" }}
+          thumbColor={isInWatchList ? "#007AFF" : "#f4f3f4"}
+          onValueChange={toggleWatchList}
+          value={isInWatchList}
+          style={{ transform: [{ scaleX: 0.7 }, { scaleY: 0.7 }] }}
+        />
+      </View>
       <View
         style={{
           backgroundColor: "#232323",
@@ -81,7 +94,7 @@ export default function CompanyDetail({
           borderColor: "#353535",
           paddingVertical: 5,
           paddingHorizontal: 10,
-          marginTop: 20,
+          marginTop: 5,
         }}
       >
         <Text style={styles.heading}>Key Statistics</Text>
@@ -226,7 +239,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingLeft: 10,
     paddingRight: 10,
-    paddingBottom: 10,
+    paddingTop: 10,
   },
   items: {
     color: "white",
@@ -246,6 +259,12 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     fontWeight: "bold",
     fontSize: 21,
+  },
+  headingWatchList: {
+    color: "#fff",
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    fontSize: 18,
   },
   subheading: {
     color: "#ccc",
