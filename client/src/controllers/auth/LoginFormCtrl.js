@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import LoginForm from "../../components/auth/LoginForm";
 import { Auth } from "aws-amplify";
 import { useAuth } from "../../context/AuthContext";
+import errorAlert from '../../utility/alert';
 
 export default function LoginFormCtrl({ navigation }) {
   const [username, setUsername] = useState("");
@@ -19,7 +20,7 @@ export default function LoginFormCtrl({ navigation }) {
       setUserData({ username: response.username });
       navigation.navigate("Profile");
     } catch (error) {
-      console.log(error);
+      errorAlert({title: 'Login error', message: 'Incorrect username or password'});
     }
   };
 

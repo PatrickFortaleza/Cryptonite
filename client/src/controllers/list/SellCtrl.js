@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Alert, Text } from "react-native";
-import Sell from "../../components/list/Sell";
+import Sell from "../../components/list/Sell"
+import { sellCoin } from "../../network"
 import { useAuth } from "../../context/AuthContext";
-import { sellCoin } from "../../network";
+import errorAlert from '../../utility/alert';
+
 
 export default function SellCtrl({
   // PROPERTIES
@@ -20,31 +22,41 @@ export default function SellCtrl({
   const { positions } = profileData;
 
   const submitForm = async (company) => {
+
     if (quantity <= 0 || !Number.isInteger(quantity)) {
-      Alert.alert("Input not valid", "Please enter a number greater than 0", [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel",
-        },
-        { text: "OK", onPress: () => console.log("OK Pressed") },
-      ]);
+      Alert.alert(
+        "Input not valid",
+        "Please enter a number greater than 0",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ]
+      );
     }
 
     if (quantity > 0 && Number.isInteger(quantity)) {
       try {
         // network to gateway
-        const response = await sellCoin(crypto.id, quantity);
+        const response = await sellCoin(crypto.id, quantity)
+        if (response.error) {
+          errorAlert({ title: "Error", message: response.error?.response?.data });
+          return;
+        }
+
         const transaction = {
           company,
           quantity,
-          bookValue,
-        };
+          bookValue
+        }
 
         navigation.navigate("Confirmation", transaction);
         // navigation.navigate("Confirmation", response)
       } catch (error) {
-        console.log(error.response.data);
+        errorAlert({ title: "Error", message: error.response.data });
       }
     }
   };
