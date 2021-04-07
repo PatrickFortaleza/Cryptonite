@@ -99,16 +99,12 @@ export const getUser = async () => {
 
 export const buyCoin = async (coinId, numberOfCoins) => {
   const token = await getToken();
-  console.log(token);
   if (!token)
     return {
       error: "Unable to authorize token",
     };
 
-  console.log(coinId);
-  console.log(numberOfCoins);
   try {
-    console.log(`${INVOKE_URL}/buy/${coinId}`);
     const response = await axios.post(
       `${INVOKE_URL}/buy/${coinId}`,
       {
@@ -132,14 +128,12 @@ export const buyCoin = async (coinId, numberOfCoins) => {
 
 export const sellCoin = async (coinId, numberOfCoins) => {
   const token = await getToken();
-  console.log(token);
   if (!token)
     return {
       error: "Unable to authorize token",
     };
 
   try {
-    console.log(`${INVOKE_URL}/sell/${coinId}`);
     const response = await axios.post(
       `${INVOKE_URL}/sell/${coinId}`,
       {
@@ -152,6 +146,29 @@ export const sellCoin = async (coinId, numberOfCoins) => {
         },
       }
     );
+    return response.data;
+  } catch (error) {
+    console.log(error.response);
+    return {
+      error: error,
+    };
+  }
+};
+
+export const getPortfolio = async () => {
+  const token = await getToken();
+  if (!token)
+    return {
+      error: "Unable to authorize token",
+    };
+
+  try {
+    const response = await axios.get(`${INVOKE_URL}/user/portfolio`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     console.log(error.response);

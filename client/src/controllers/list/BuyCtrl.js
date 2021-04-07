@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Alert, Text } from "react-native";
 import Buy from "../../components/list/Buy";
+import { useAuth } from "../../context/AuthContext";
 import { buyCoin } from "../../network";
 
 export default function BuyCtrl({
   //PROPERTIES
   crypto,
   navigation,
-  user
+  user,
 }) {
+  const authContext = useAuth();
   const [quantity, setQuantity] = useState(0);
   const [marketPrice, setMarketPrice] = useState(crypto.current_price);
+  const [portfolioStats, setPortfolioStats] = useState({});
   const [bookValue, setBookValue] = useState(0);
+
+  const { profileData } = authContext;
+  const { positions } = profileData;
 
   const submitForm = async (company) => {
     if (quantity <= 0 || !Number.isInteger(quantity)) {
@@ -50,9 +56,23 @@ export default function BuyCtrl({
     setBookValue(result);
   };
 
+  const findEvaluatePortfolioStat = () => {
+    console.log(crypto.id);
+    const foundStat = positions.filter(
+      (position) => position.coin === crypto.id
+    )[0];
+    console.log(foundStat);
+    if (!foundStat) setPortfolioStats({});
+    setPortfolioStats(foundStat);
+  };
+
   useEffect(() => {
     calculateBookValue();
   }, [quantity]);
+
+  useEffect(() => {
+    positions.length > 0 ? findEvaluatePortfolioStat() : null;
+  }, [positions]);
 
   return (
     <Buy
@@ -65,7 +85,8 @@ export default function BuyCtrl({
       crypto={crypto}
       bookValue={bookValue}
       quantity={quantity}
-      user = {user}
+      user={user}
+      portfolioStats={portfolioStats}
     />
   );
 }
