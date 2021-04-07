@@ -2,6 +2,8 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
+* [Mockups](#mockups)
+* [Demo](#demo)
 
 ## General info
 This project is a mobile mock trading app that allows users to “Buy” and “Sell” crypto currency coins within a fake “Portfolio”.
@@ -46,3 +48,5 @@ $ expo start
 
 ### Transaction History
 <img src="./client/demo/transactionhistory.gif" alt="Transaction History" width=300>
+
+
