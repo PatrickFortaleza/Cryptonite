@@ -3,6 +3,8 @@ import { Alert, Text } from "react-native";
 import Buy from "../../components/list/Buy";
 import { buyCoin } from "../../network";
 
+import errorAlert from '../../utility/alert';
+
 export default function BuyCtrl({
   //PROPERTIES
   crypto,
@@ -29,7 +31,10 @@ export default function BuyCtrl({
       try {
         // network to gateway
         const response = await buyCoin(crypto.id, quantity);
-
+        if (response.error){
+          errorAlert({title: "Error", message: response.error?.response?.data});
+          return;
+        }
         const transaction = {
           company,
           quantity,
@@ -39,7 +44,7 @@ export default function BuyCtrl({
         navigation.navigate("Confirmation", transaction);
         // navigation.navigate("Confirmation", response)
       } catch (error) {
-        console.log(error.response.data);
+        console.error(error.response.data);
       }
     }
   };

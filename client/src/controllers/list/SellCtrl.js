@@ -1,7 +1,7 @@
-import React ,{useState, useEffect} from "react";
-import {Alert, Text} from "react-native";
+import React, { useState, useEffect } from "react";
+import { Alert, Text } from "react-native";
 import Sell from "../../components/list/Sell"
-import {sellCoin} from "../../network"
+import { sellCoin } from "../../network"
 
 import errorAlert from '../../utility/alert';
 
@@ -10,7 +10,7 @@ export default function SellCtrl({
   crypto,
   navigation,
   user
-}){
+}) {
 
   const [quantity, setQuantity] = useState(0)
   const [marketPrice, setMarketPrice] = useState(crypto.current_price)
@@ -18,7 +18,7 @@ export default function SellCtrl({
 
   const submitForm = async (company) => {
 
-    if(quantity <= 0 || !Number.isInteger(quantity)){
+    if (quantity <= 0 || !Number.isInteger(quantity)) {
       Alert.alert(
         "Input not valid",
         "Please enter a number greater than 0",
@@ -33,53 +33,57 @@ export default function SellCtrl({
       );
     }
 
-    if(quantity > 0 && Number.isInteger(quantity)){
+    if (quantity > 0 && Number.isInteger(quantity)) {
       try {
         // network to gateway
         const response = await sellCoin(crypto.id, quantity)
-  
-        const transaction = { 
-          company, 
-          quantity,
-          bookValue 
+        if (response.error) {
+          errorAlert({ title: "Error", message: response.error?.response?.data });
+          return;
         }
-  
-        navigation.navigate("Confirmation", transaction); 
+
+        const transaction = {
+          company,
+          quantity,
+          bookValue
+        }
+
+        navigation.navigate("Confirmation", transaction);
         // navigation.navigate("Confirmation", response)
-        
+
       } catch (error) {
-        errorAlert({title: "Error", message: error.response.data});
+        errorAlert({ title: "Error", message: error.response.data });
       }
     }
   };
 
   const calculateBookValue = async () => {
     const result = quantity * marketPrice
-    if(typeof result !== "number") return 0
+    if (typeof result !== "number") return 0
 
     setBookValue(result)
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     calculateBookValue()
-  },[quantity])
+  }, [quantity])
 
-  return(
-    <Sell 
+  return (
+    <Sell
       //METHOD
-      setQuantity = {setQuantity}
-      setMarketPrice = {setMarketPrice}
-      setBookValue = {setBookValue}
-      submitForm = {submitForm}
+      setQuantity={setQuantity}
+      setMarketPrice={setMarketPrice}
+      setBookValue={setBookValue}
+      submitForm={submitForm}
 
       //PROPERTIES
-      crypto = {crypto}
-      bookValue = {bookValue}
-      quantity = {quantity}
-      user = {user}
-    
+      crypto={crypto}
+      bookValue={bookValue}
+      quantity={quantity}
+      user={user}
+
     />
 
-    
+
   )
 }
