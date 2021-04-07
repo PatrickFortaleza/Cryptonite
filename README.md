@@ -30,19 +30,19 @@ $ expo start
 ## Demo
 
 ### SearchScreen
-<img src="(./client/demo/searchScreen.gif)" alt="Search Screen" width=300>
+<img src="./client/demo/searchScreen.gif" alt="Search Screen" width=300>
 
 ### Register
-<img src="(./client/demo/register.gif)" alt="Register" width=300>
+<img src="./client/demo/register.gif" alt="Register" width=300>
 
 ### Sign in and Sign out
-<img src="(./client/demo/loginSignout.gif)" alt="Sign in Sign out" width=300>
+<img src="./client/demo/loginSignout.gif" alt="Sign in Sign out" width=300>
 
 ### Buy Coins
-<img src="(./client/demo/searchScreen.gif)" alt="Buy Coin" width=300>
+<img src="./client/demo/searchScreen.gif" alt="Buy Coin" width=300>
 
 ### Sell Coins
-<img src="(./client/demo/searchScreen.gif)" alt="Sell coin" width=300>
+<img src="./client/demo/searchScreen.gif" alt="Sell coin" width=300>
 
 ### Transaction History
-<img src="(./client/demo/transactionhistory.gif)" alt="Transaction History" width=300>
+<img src="./client/demo/transactionhistory.gif" alt="Transaction History" width=300>
