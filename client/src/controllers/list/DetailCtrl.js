@@ -5,6 +5,7 @@ import { useWatchList} from "../../context/WatchListContext"
 import { useState } from "react";
 import useAsyncStorage from "../../hooks/useAsyncStorage"
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { loadingBar } from "@aws-amplify/ui";
 
 export default function DetailCtrl({
   // Properties
@@ -15,8 +16,19 @@ export default function DetailCtrl({
   const WatchListContext = useWatchList();
   const { isAuthenticated } = AuthContext;
 
-  const [isWatchList, setIsWatchList] = useState(false);
-  const [ watchListData, setWatchListData] = useState([]);  
+  const [isWatchList, setIsWatchList] = useState();
+  const [watchListData, setWatchListData] = useState([]);  
+
+  const evaluateWatchList = ()=>{
+    const idArray = watchListData
+    if(idArray.length < 1) return
+    const id = crypto.id    
+    const bool = idArray.includes(id)
+
+    if(bool === true) setIsWatchList(true)
+    if(bool === false) setIsWatchList(false)
+
+  }
 
   // Save / update async storage watchListData
   const save = async () => {
@@ -30,9 +42,9 @@ export default function DetailCtrl({
   // Load / retrieves watchListData storage
   const load = async () => {
     try{
-      let watchListData = await AsyncStorage.getItem('watchListData')
-      if(watchListData !== null){
-        setWatchListData(JSON.parse(watchListData))
+      const getData = await AsyncStorage.getItem('watchListData')
+      if(getData !== null){
+        setWatchListData(JSON.parse(getData))
       }
     }catch(err){
       console.log(err)
@@ -41,20 +53,24 @@ export default function DetailCtrl({
 
   const toggleSwitch = () => {
     setIsWatchList(previousState => !previousState)
-
     // If switch is turned on saves crypto.id to async storage
-    if(isWatchList == true){
+    if(isWatchList === false){
       const id = crypto.id
-      const updatedArray = [...watchListData, id]
-      setWatchListData(updatedArray)
-      save()
-      console.log(watchListData)
+      const existingArray = [...watchListData]
+      const isCoinInArray = existingArray.includes(id)
+      if(isCoinInArray === false){
+        const updatedArray = [...watchListData, id]
+        setWatchListData(updatedArray)
+        save()
+        console.log("Added",watchListData)
+      }
     }
     
      // If switch is turned off removes crypto.id to async storage
-    if(isWatchList == false){
+    if(isWatchList === true){
       const id = crypto.id
       let existingArray = [...watchListData]
+      
       for( var i = 0; i < existingArray.length; i++){ 
         if ( existingArray[i] == crypto.id) {     
           existingArray.splice(i, 1); 
@@ -62,15 +78,8 @@ export default function DetailCtrl({
       }
       setWatchListData(existingArray)
       save()
-      console.log(watchListData)
-      
+      console.log("Removed",watchListData)
     }
-      //   const watchList_ = await watchListData
-      //   const id = crypto.id
-      //   const existingData = [watchListData]
-      //   const updatedArray = [...watchListData, id]
-      //   setWatchListData(updatedArray)
-
   }
 
   const showBuy = (company) => {
@@ -88,6 +97,10 @@ export default function DetailCtrl({
     load()
   },[])
 
+  useEffect(()=>{
+    evaluateWatchList()
+  },[watchListData])
+
   return (
     <Detail
       // METHOD
@@ -98,6 +111,7 @@ export default function DetailCtrl({
       crypto={crypto}
       isAuthenticated={isAuthenticated}
       isWatchList = {isWatchList}
+      
     />
   );
 }
