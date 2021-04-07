@@ -14,50 +14,53 @@ export default function DetailCtrl({
   const AuthContext = useAuth();
   const WatchListContext = useWatchList();
   const { isAuthenticated } = AuthContext;
-  //const { watchListData, setWatchListData} = WatchListContext;
 
   const [isWatchList, setIsWatchList] = useState(false);
-  const [ watchListData, setWatchListData] = useState([1,2,3]);
+  const [ watchListData, setWatchListData] = useState([]);  
 
-  const save = async() => {
+  const save = async () => {
     try{
-        await AsyncStorage.setItem("watchListArray", JSON.stringify(watchListData))
-        
-        await AsyncStorage.setItem(crypto.id, JSON.stringify(isWatchList))
-    }catch (err){
+      await AsyncStorage.setItem("watchListData", JSON.stringify(watchListData))
+    }catch(err){
       console.log(err)
     }
   }
 
-  const load = async() => {
+  const load = async () => {
     try{
-      let jsonValue = await AsyncStorage.getItem("watchListArray")
-      if(jsonValue != null){
-        setWatchListData(JSON.parse(jsonValue))
+      let watchListData = await AsyncStorage.getItem('watchListData')
+      if(watchListData !== null){
+        setWatchListData(JSON.parse(watchListData))
       }
-
-      let isWatch = await AsyncStorage.getItem(crypto.id)
-      console.log(isWatch)
-      if(!isWatch != null){
-        setIsWatchList(isWatch)
-      } else {
-        setIsWatchList(false)
-      }
-    }catch (err){
+    }catch(err){
       console.log(err)
     }
   }
-  
+
   const toggleSwitch = () => {
-    
     setIsWatchList(previousState => !previousState)
-    console.log(isWatchList)
-    const id = crypto.id
-    const updatedArray = [...watchListData,id]
-    setWatchListData(updatedArray)
-    save()
-    console.log(watchListData[4])
-
+    if(isWatchList == true){
+      const id = crypto.id
+      const updatedArray = [...watchListData, id]
+      setWatchListData(updatedArray)
+      save()
+      console.log(watchListData)
+    }
+    
+    if(isWatchList == false){
+      const id = crypto.id
+      let existingArray = [...watchListData]
+      for( var i = 0; i < existingArray.length; i++){ 
+        if ( existingArray[i] == crypto.id) {     
+          existingArray.splice(i, 1); 
+        }
+      setWatchListData(existingArray)
+      save()
+      console.log(watchListData)
+    }
+      
+    }
+    
       //   const watchList_ = await watchListData
       //   const id = crypto.id
       //   const existingData = [watchListData]
@@ -65,14 +68,6 @@ export default function DetailCtrl({
       //   setWatchListData(updatedArray)
 
   }
-
-  useEffect(()=> {
-    setIsWatchList(isWatchList)   
-  },[isWatchList])
-
-  useEffect(()=>{
-    load()
-  },[]);
 
   const showBuy = (company) => {
     if (!isAuthenticated) return null;
@@ -83,6 +78,10 @@ export default function DetailCtrl({
     if (!isAuthenticated) return null;
     navigation.navigate("Sell", company);
   };
+
+  useEffect(()=> {
+    load()
+  },[])
 
   return (
     <Detail
