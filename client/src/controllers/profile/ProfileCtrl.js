@@ -35,7 +35,6 @@ export default function ProfileCtrl({ navigation }) {
       position.cryptoData = foundCrypto;
       return position;
     });
-
     setPortfolioPositions(positions_);
   };
 
@@ -45,6 +44,7 @@ export default function ProfileCtrl({ navigation }) {
 
   return (
     <Profile
+      key={JSON.stringify(profileData)}
       user={profileData}
       marketsLoaded={marketsLoaded}
       portfolioPositions={portfolioPositions}

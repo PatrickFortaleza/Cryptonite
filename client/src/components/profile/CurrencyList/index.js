@@ -52,7 +52,7 @@ export default function CurrencyList({
 
   return (
     <>
-      {marketsLoaded && markets.length > 1 ? renderData() : renderPlaceholder()}
+      {marketsLoaded && markets.length > 0 ? renderData() : renderPlaceholder()}
     </>
   );
 }

@@ -14,17 +14,6 @@ export function AuthProvider({ children }) {
   const [profileData, setProfileData] = useState(null);
   const [isAuthenticated, setAuthentication] = useState(false);
 
-  const value = {
-    setUserData,
-    userData,
-    setUserToken,
-    userToken,
-    profileData,
-    setProfileData,
-    queryProfileData,
-    isAuthenticated,
-  };
-
   const resetAuth = async () => {
     setUserData(null);
     setUserToken(null);
@@ -84,6 +73,17 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     queryProfileData();
   }, [userToken]);
+
+  const value = {
+    setUserData,
+    userData,
+    setUserToken,
+    userToken,
+    profileData,
+    setProfileData,
+    queryProfileData,
+    isAuthenticated,
+  };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

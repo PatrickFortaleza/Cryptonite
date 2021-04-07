@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import List from "../../components/list/List";
 import { getMarkets } from "../../network";
+import useInterval from "../../hooks/useInterval";
 
 export default function ListCtrl({ navigation }) {
   const [cryptoData_, setCryptoData] = useState([]);
@@ -24,6 +25,11 @@ export default function ListCtrl({ navigation }) {
     queryMarkets();
     evaluateListLoaded();
   }, []);
+
+  // Query markets every 10 minutes.
+  useInterval(() => {
+    queryMarkets();
+  }, 60000);
 
   useEffect(() => {
     evaluateListLoaded();

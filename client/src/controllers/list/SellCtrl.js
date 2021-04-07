@@ -1,50 +1,47 @@
-import React ,{useState, useEffect} from "react";
-import {Alert, Text} from "react-native";
-import Sell from "../../components/list/Sell"
-import {sellCoin} from "../../network"
+import React, { useState, useEffect } from "react";
+import { Alert, Text } from "react-native";
+import Sell from "../../components/list/Sell";
+import { useAuth } from "../../context/AuthContext";
+import { sellCoin } from "../../network";
 
 export default function SellCtrl({
   // PROPERTIES
   crypto,
   navigation,
-  user
-}){
+  user,
+}) {
+  const authContext = useAuth();
+  const [quantity, setQuantity] = useState(0);
+  const [marketPrice, setMarketPrice] = useState(crypto.current_price);
+  const [bookValue, setBookValue] = useState(0);
 
-  const [quantity, setQuantity] = useState(0)
-  const [marketPrice, setMarketPrice] = useState(crypto.current_price)
-  const [bookValue, setBookValue] = useState(0)
+  const { queryProfileData } = authContext;
 
   const submitForm = async (company) => {
-
-    if(quantity <= 0 || !Number.isInteger(quantity)){
-      Alert.alert(
-        "Input not valid",
-        "Please enter a number greater than 0",
-        [
-          {
-            text: "Cancel",
-            onPress: () => console.log("Cancel Pressed"),
-            style: "cancel"
-          },
-          { text: "OK", onPress: () => console.log("OK Pressed") }
-        ]
-      );
+    if (quantity <= 0 || !Number.isInteger(quantity)) {
+      Alert.alert("Input not valid", "Please enter a number greater than 0", [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") },
+      ]);
     }
 
-    if(quantity > 0 && Number.isInteger(quantity)){
+    if (quantity > 0 && Number.isInteger(quantity)) {
       try {
         // network to gateway
-        const response = await sellCoin(crypto.id, quantity)
-  
-        const transaction = { 
-          company, 
+        const response = await sellCoin(crypto.id, quantity);
+        const result = await queryProfileData();
+        const transaction = {
+          company,
           quantity,
-          bookValue 
-        }
-  
-        navigation.navigate("Confirmation", transaction); 
+          bookValue,
+        };
+
+        navigation.navigate("Confirmation", transaction);
         // navigation.navigate("Confirmation", response)
-        
       } catch (error) {
         console.log(error.response.data);
       }
@@ -52,32 +49,28 @@ export default function SellCtrl({
   };
 
   const calculateBookValue = async () => {
-    const result = quantity * marketPrice
-    if(typeof result !== "number") return 0
+    const result = quantity * marketPrice;
+    if (typeof result !== "number") return 0;
 
-    setBookValue(result)
-  }
+    setBookValue(result);
+  };
 
-  useEffect(()=>{
-    calculateBookValue()
-  },[quantity])
+  useEffect(() => {
+    calculateBookValue();
+  }, [quantity]);
 
-  return(
-    <Sell 
+  return (
+    <Sell
       //METHOD
-      setQuantity = {setQuantity}
-      setMarketPrice = {setMarketPrice}
-      setBookValue = {setBookValue}
-      submitForm = {submitForm}
-
+      setQuantity={setQuantity}
+      setMarketPrice={setMarketPrice}
+      setBookValue={setBookValue}
+      submitForm={submitForm}
       //PROPERTIES
-      crypto = {crypto}
-      bookValue = {bookValue}
-      quantity = {quantity}
-      user = {user}
-    
+      crypto={crypto}
+      bookValue={bookValue}
+      quantity={quantity}
+      user={user}
     />
-
-    
-  )
+  );
 }

@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Alert, Text } from "react-native";
 import Buy from "../../components/list/Buy";
+import { useAuth } from "../../context/AuthContext";
 import { buyCoin } from "../../network";
 
 export default function BuyCtrl({
   //PROPERTIES
   crypto,
   navigation,
-  user
+  user,
 }) {
+  const authContext = useAuth();
   const [quantity, setQuantity] = useState(0);
   const [marketPrice, setMarketPrice] = useState(crypto.current_price);
   const [bookValue, setBookValue] = useState(0);
+
+  const { queryProfileData } = authContext;
 
   const submitForm = async (company) => {
     if (quantity <= 0 || !Number.isInteger(quantity)) {
@@ -65,7 +69,7 @@ export default function BuyCtrl({
       crypto={crypto}
       bookValue={bookValue}
       quantity={quantity}
-      user = {user}
+      user={user}
     />
   );
 }

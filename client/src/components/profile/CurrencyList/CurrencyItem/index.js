@@ -14,7 +14,6 @@ export default function CurrencyItem({
     style: "currency",
     currency: "USD",
   });
-  console.log(item);
   return (
     <TouchableOpacity
       onPress={() => navigateToDetail({ crypto: item })}
