@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -8,7 +8,7 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { formatPrice} from "../../../utility"
+import { formatPrice } from "../../../utility";
 
 export default function Buy({
   //METHODS
@@ -17,16 +17,29 @@ export default function Buy({
   //PROPERTIES
   crypto,
   bookValue,
-  user
-
+  user,
+  portfolioStats,
 }) {
-  console.log("Buy component", user)
+  const moneyFormatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.main}>
-        <View style={styles.title}>
-          <Image source={{ uri: crypto.image }} style={styles.image} />
-          <Text style={styles.header}>{crypto.name}</Text>
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ ...styles.listHead, flex: 1 }}>
+            <Text style={styles.heading}>{crypto.name}</Text>
+            <Text style={styles.subheading}>
+              {crypto.symbol.toUpperCase()}&nbsp;&nbsp;| &nbsp;BUY&nbsp;
+            </Text>
+          </View>
+          <View style={{ flex: 1, alignItems: "flex-end", paddingTop: 5 }}>
+            <View style={{ ...styles.imageContainer }}>
+              <Image source={{ uri: crypto.image }} style={styles.image} />
+            </View>
+          </View>
         </View>
 
         <View style={styles.box}>
@@ -44,53 +57,96 @@ export default function Buy({
 
           <View style={styles.pair}>
             <Text style={styles.marketPrice}>Market Price </Text>
-            <Text style={styles.marketPrice}>$ {formatPrice((crypto.current_price).toFixed(2))}</Text>
+            <Text style={styles.marketPrice}>
+              $ {formatPrice(crypto.current_price.toFixed(2))}
+            </Text>
           </View>
 
           <View style={styles.pair}>
             <Text style={styles.total}>Total</Text>
-            <Text style={styles.total}>$  {formatPrice(bookValue.toFixed(2))}</Text>
+            <Text style={styles.total}>
+              $ {formatPrice(bookValue.toFixed(2))}
+            </Text>
           </View>
         </View>
-       
-        
-        <View style={styles.containerBottom}>
-          <View style={styles.userStats}>
-            <Text style={styles.statsHeader}>Key Stats</Text>
-          </View>
 
-          <View style={styles.userStats}>
-            <Text style={styles.stats}>User</Text>
-            <Text style={styles.stats}>{user.userData.username}</Text>
-          </View>
+        <View style={{ ...styles.userStats, marginTop: 7 }}>
+          <Text style={styles.stats}>Available Cash</Text>
+          <Text style={styles.stats}>
+            {!user.profileData.cash
+              ? "$0.00"
+              : `${moneyFormatter.format(user.profileData.cash)}`}{" "}
+            USD
+          </Text>
+        </View>
 
-          <View style={styles.userStats}>
-            <Text style={styles.stats}>Number of Coins</Text>
-            <Text style={styles.stats}>TBA</Text>
-            {/* <Text style={styles.stats}>{!object.numberOfCoins ? "n/a" : object.numberOfCoins}</Text> */}
-          </View>
+        {portfolioStats !== undefined &&
+        Object.keys(portfolioStats).length > 0 ? (
+          <>
+            <View style={styles.containerBottom}>
+              <View
+                style={{
+                  ...styles.userStats,
+                  borderTopWidth: 1,
+                  borderBottomWidth: 2,
+                  borderColor: "#333",
+                  paddingTop: 10,
+                  marginBottom: 10,
+                  backgroundColor: "#232323",
+                }}
+              >
+                <Text style={styles.statsHeader}>CURRENT HOLDINGS</Text>
+              </View>
 
-          
-          <View style={styles.userStats}>
-              <Text style={styles.stats}>Wallet</Text>
-              <Text style={styles.stats}>{!user.profileData.cash ? "0.00" : formatPrice(user.profileData.cash.toFixed(2))}</Text>
+              <View style={styles.userStats}>
+                <Text style={styles.stats}>Position</Text>
+                <Text style={styles.stats}>
+                  {portfolioStats.totalCoins} Coin(s)
+                </Text>
+              </View>
+
+              <View style={styles.userStats}>
+                <Text style={styles.stats}>Book Value Per Coin</Text>
+                <Text style={styles.stats}>
+                  {" "}
+                  {`${moneyFormatter.format(portfolioStats.averagePrice)}`} USD
+                </Text>
+              </View>
+
+              <View style={styles.userStats}>
+                <Text style={styles.stats}>Total Book Value</Text>
+                <Text style={styles.stats}>
+                  {`${moneyFormatter.format(portfolioStats.totalAmount)}`} USD
+                </Text>
+              </View>
+
+              <View style={styles.userStats}>
+                <Text style={styles.stats}>Total Market Value</Text>
+                <Text style={styles.stats}>
+                  {`${moneyFormatter.format(portfolioStats.totalCurrValue)}`}{" "}
+                  USD
+                </Text>
+              </View>
             </View>
+          </>
+        ) : null}
 
-          <View style={styles.userStats}>
-            <Text style={styles.stats}>Portfolio BookValue</Text>
-            <Text style={styles.stats}>{formatPrice(user.profileData.bookValue.toFixed(2))}</Text>
-          </View>
-        </View>
-        
-
-        <View style={styles.buttonBottom}> 
+        <View style={styles.buttonBottom}>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
               submitForm(crypto);
             }}
           >
-            <Text style={styles.buttonText}>BUY</Text>
+            <Text
+              style={{
+                ...styles.buttonText,
+                textTransform: "capitalize",
+                fontWeight: "bold",
+              }}
+            >
+              BUY
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -104,11 +160,11 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   containerBottom: {
-    paddingVertical : 40,
+    paddingVertical: 40,
   },
-  box : {
-    borderWidth : 1,
-    borderColor : "#3273ff"
+  box: {
+    borderWidth: 1,
+    borderColor: "#3273ff",
   },
   title: {
     flexDirection: "row",
@@ -123,24 +179,23 @@ const styles = StyleSheet.create({
     color: "white",
   },
   quantity: {
-    textAlign : "right",
+    textAlign: "right",
     fontSize: 20,
     color: "white",
-   
   },
   marketPrice: {
     fontSize: 20,
     color: "white",
   },
-  userStats:{
+  userStats: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal : 20,
-    paddingBottom: 10
+    paddingHorizontal: 20,
+    paddingBottom: 10,
   },
   statsHeader: {
     fontSize: 20,
-    fontWeight : "bold",
+    fontWeight: "bold",
     color: "white",
   },
 
@@ -162,14 +217,12 @@ const styles = StyleSheet.create({
   amount: {
     flexDirection: "row",
   },
-  buttonBottom : {
+  buttonBottom: {
     position: "absolute",
-    bottom : 0,
-    width : "100%",
-    paddingBottom : 20 ,
-    paddingHorizontal: 50
-    
-    
+    bottom: 0,
+    width: "100%",
+    paddingBottom: 20,
+    paddingHorizontal: 50,
   },
   button: {
     backgroundColor: "#0079ff",
@@ -177,15 +230,40 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 30,
-    
   },
   buttonText: {
     fontSize: 25,
     color: "white",
     textAlign: "center",
   },
+  listHead: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    width: `100%`,
+    paddingRight: 20,
+    paddingLeft: 20,
+    borderBottomColor: "#282828",
+    borderBottomWidth: 1,
+  },
+  heading: {
+    color: "#fff",
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    fontSize: 21,
+  },
+  subheading: {
+    color: "#ccc",
+    fontSize: 12,
+    marginTop: 7,
+  },
+  imageContainer: {
+    width: 75,
+    height: 75,
+    padding: 10,
+  },
   image: {
-    height: 50,
-    width: 50,
+    flex: 1,
+    borderRadius: 75 / 2,
+    overflow: "hidden",
   },
 });

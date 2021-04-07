@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, View, TouchableOpacity } from "react-native";
+import { FlatList, View, TouchableOpacity, Text } from "react-native";
 import CurrencyItem from "./CurrencyItem";
 import ItemPreloader from "../../common/ItemPreloader";
 
@@ -32,15 +32,16 @@ export default function CurrencyList({
     <View style={{ height: "100%", flexDirection: "column", marginTop: 0 }}>
       <FlatList
         data={markets}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.coin}
         renderItem={(item, _index) => {
           return (
             <CurrencyItem
-              coinCount={75}
-              totalBookValue={99000}
-              totalMarketValue={100000}
-              currency={item.item}
-              item={item}
+              coinCount={item.item.totalCoins}
+              totalBookValue={item.item.totalAmount}
+              totalMarketValue={item.item.totalCurrValue}
+              coinName={item.item.coin}
+              currency={item.item.cryptoData}
+              item={item.item.cryptoData}
               navigateToDetail={navigateToDetail}
             />
           );
@@ -49,5 +50,21 @@ export default function CurrencyList({
     </View>
   );
 
-  return <>{marketsLoaded ? renderData() : renderPlaceholder()}</>;
+  const renderEmpty = () => (
+    <View>
+      <Text style={{ color: "white", textAlign: "center" }}>
+        You current do not have any holdings.
+      </Text>
+    </View>
+  );
+
+  return (
+    <>
+      {marketsLoaded && markets.length > 0
+        ? renderData()
+        : !markets || markets.length === 0
+        ? renderEmpty()
+        : renderPlaceholder()}
+    </>
+  );
 }

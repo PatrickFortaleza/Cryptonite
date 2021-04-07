@@ -5,6 +5,7 @@ import config from "./AWSconfig.json";
 import { AuthProvider } from "./src/context/AuthContext";
 import Navigation from "./src/navigation";
 import { NavigationContainer } from "@react-navigation/native";
+import{ WatchListProvider} from "./src/context/WatchListContext";
 
 Amplify.configure({
   Auth: {
@@ -19,9 +20,11 @@ export default function App() {
   return (
     <NavigationContainer styles={styles.container}>
       <SafeAreaView style={styles.container}>
+      <WatchListProvider>
         <AuthProvider>
-          <Navigation />
+            <Navigation />
         </AuthProvider>
+        </WatchListProvider>
       </SafeAreaView>
     </NavigationContainer>
   );
