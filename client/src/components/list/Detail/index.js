@@ -18,11 +18,11 @@ export default function CompanyDetail({
   //METHOD
   showBuy,
   showSell,
-  toggleSwitch,
+  toggleWatchList,
   // PROPERTIES
   crypto,
   isAuthenticated,
-  isWatchList,
+  isInWatchList,
 }) {
   const { price_change_percentage_24h, price_change_24h } = crypto;
   return (
@@ -80,10 +80,10 @@ export default function CompanyDetail({
         <Text style={styles.headingWatchList}>Watchlist</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isWatchList ? "#007AFF" : "#f4f3f4"}
-          onValueChange={toggleSwitch}
-          value={isWatchList}
-          style={{ transform: [{ scaleX: .7 }, { scaleY: .7 }] }}
+          thumbColor={isInWatchList ? "#007AFF" : "#f4f3f4"}
+          onValueChange={toggleWatchList}
+          value={isInWatchList}
+          style={{ transform: [{ scaleX: 0.7 }, { scaleY: 0.7 }] }}
         />
       </View>
       <View
@@ -107,7 +107,7 @@ export default function CompanyDetail({
             borderBottomWidth: 3,
             marginHorizontal: 30,
             marginBottom: 10,
-            marginTop:10,
+            marginTop: 10,
           }}
         />
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingLeft: 10,
     paddingRight: 10,
-    paddingTop: 10
+    paddingTop: 10,
   },
   items: {
     color: "white",
