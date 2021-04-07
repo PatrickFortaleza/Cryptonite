@@ -22,7 +22,7 @@ export default function CompanyDetail({
   // PROPERTIES
   crypto,
   isAuthenticated,
-  isEnabled
+  isWatchList
 }) {
   const { price_change_percentage_24h, price_change_24h } = crypto;
   return (
@@ -77,14 +77,14 @@ export default function CompanyDetail({
         <Text style={styles.subheading}>24h Change</Text>
       </View>
       <View style={styles.pairItem}>
-          <Text style={styles.heading}>Watchlist</Text>
-          <Switch
+        <Text style={styles.headingWatchList}>Watchlist</Text>
+        <Switch
           trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isEnabled ? "#007AFF" : "#f4f3f4"}
+          thumbColor={isWatchList ? "#007AFF" : "#f4f3f4"}
           onValueChange={toggleSwitch}
-          value={isEnabled}
-          style={{ transform: [{ scaleX: .8 }, { scaleY: .8 }] }}
-          />
+          value={isWatchList}
+          style={{ transform: [{ scaleX: .7 }, { scaleY: .7 }] }}
+        />
       </View>
       <View
         style={{
@@ -94,7 +94,7 @@ export default function CompanyDetail({
           borderColor: "#353535",
           paddingVertical: 5,
           paddingHorizontal: 10,
-          marginTop: 20,
+          marginTop: 5,
         }}
       >
         <Text style={styles.heading}>Key Statistics</Text>
@@ -107,7 +107,7 @@ export default function CompanyDetail({
             borderBottomWidth: 3,
             marginHorizontal: 30,
             marginBottom: 10,
-            marginTop: 10,
+            marginTop:10,
           }}
         />
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -259,6 +259,12 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     fontWeight: "bold",
     fontSize: 21,
+  },
+  headingWatchList: {
+    color: "#fff",
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    fontSize: 18,
   },
   subheading: {
     color: "#ccc",

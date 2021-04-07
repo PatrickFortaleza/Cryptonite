@@ -13,26 +13,26 @@ export default function DetailCtrl({
 }) {
   const AuthContext = useAuth();
   const WatchListContext = useWatchList();
-
   const { isAuthenticated } = AuthContext;
   const { watchListData, setWatchListData} = WatchListContext;
-  
-  const toggleSwitch = async () => {
-    //setIsEnabled(previousState => !previousState);
-    //const watchList_ = await watchListData
-  //   const id = crypto.id
-  //   const existingData = [watchListData]
-  //  const updatedArray = [...watchListData, id]
-  //   setWatchListData(updatedArray)
-  //   console.log( existingData)
-  //   console.log(updatedArray)
 
-  console.log(await watchListData)
+  const [isWatchList, setIsWatchList] = useState(isWatchList);
+  
+  const toggleSwitch = () => {
+    setIsWatchList(previousState => !previousState);
+      //   const watchList_ = await watchListData
+      //   const id = crypto.id
+      //   const existingData = [watchListData]
+      //   const updatedArray = [...watchListData, id]
+      //   setWatchListData(updatedArray)
+      //   console.log(existingData)
+      //   console.log(updatedArray)
+      //   console.log(await watchListData)
   }
 
-  // useEffect(()=> {
-  //   setIsEnabled(isEnabled)   
-  // },[isEnabled])
+  useEffect(()=> {
+    setIsWatchList(isWatchList)   
+  },[isWatchList])
 
   const showBuy = (company) => {
     if (!isAuthenticated) return null;
@@ -53,7 +53,7 @@ export default function DetailCtrl({
       // PROPERTIES
       crypto={crypto}
       isAuthenticated={isAuthenticated}
-      //isEnabled = {isEnabled}
+      isWatchList = {isWatchList}
     />
   );
 }
