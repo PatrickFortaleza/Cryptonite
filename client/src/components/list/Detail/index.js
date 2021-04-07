@@ -22,7 +22,7 @@ export default function CompanyDetail({
   // PROPERTIES
   crypto,
   isAuthenticated,
-  isWatchList
+  isWatchList,
 }) {
   const { price_change_percentage_24h, price_change_24h } = crypto;
   return (

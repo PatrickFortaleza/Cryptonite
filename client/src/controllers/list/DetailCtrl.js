@@ -25,9 +25,8 @@ export default function DetailCtrl({
     const id = crypto.id    
     const bool = idArray.includes(id)
 
-    if(bool === true) setIsWatchList(true)
-    if(bool === false) setIsWatchList(false)
-
+    if(bool === false) setIsWatchList(true)
+    if(bool === true) setIsWatchList(false)
   }
 
   // Save / update async storage watchListData
@@ -54,7 +53,7 @@ export default function DetailCtrl({
   const toggleSwitch = () => {
     setIsWatchList(previousState => !previousState)
     // If switch is turned on saves crypto.id to async storage
-    if(isWatchList === false){
+    if(isWatchList === true){
       const id = crypto.id
       const existingArray = [...watchListData]
       const isCoinInArray = existingArray.includes(id)
@@ -62,12 +61,14 @@ export default function DetailCtrl({
         const updatedArray = [...watchListData, id]
         setWatchListData(updatedArray)
         save()
-        console.log("Added",watchListData)
+        console.log(watchListData)
+        console.log(updatedArray)
+        
       }
     }
     
      // If switch is turned off removes crypto.id to async storage
-    if(isWatchList === true){
+    if(isWatchList === false){
       const id = crypto.id
       let existingArray = [...watchListData]
       
@@ -78,7 +79,9 @@ export default function DetailCtrl({
       }
       setWatchListData(existingArray)
       save()
-      console.log("Removed",watchListData)
+      console.log(watchListData)
+      console.log(existingArray)
+      
     }
   }
 
