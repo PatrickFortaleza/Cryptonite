@@ -19,14 +19,17 @@ export default function DetailCtrl({
   const [isWatchList, setIsWatchList] = useState();
   const [watchListData, setWatchListData] = useState([]);  
 
-  const evaluateWatchList = ()=>{
-    const idArray = watchListData
-    if(idArray.length < 1) return
+  const evaluateWatchList = (array)=>{
+    if(array === undefined) return
+    if(array.length < 1) return
     const id = crypto.id    
-    const bool = idArray.includes(id)
+    const bool = array.includes(id)
 
-    if(bool === false) setIsWatchList(true)
-    if(bool === true) setIsWatchList(false)
+    // if(bool === false) setIsWatchList(true)
+    // if(bool === true) setIsWatchList(false)
+
+    if(bool === true) setIsWatchList(true)
+    if(bool === false) setIsWatchList(false)
   }
 
   // Save / update async storage watchListData
@@ -43,7 +46,8 @@ export default function DetailCtrl({
     try{
       const getData = await AsyncStorage.getItem('watchListData')
       if(getData !== null){
-        setWatchListData(JSON.parse(getData))
+        await setWatchListData(JSON.parse(getData))
+        evaluateWatchList(JSON.parse(getData))
       }
     }catch(err){
       console.log(err)
@@ -61,7 +65,6 @@ export default function DetailCtrl({
         const updatedArray = [...watchListData, id]
         setWatchListData(updatedArray)
         save()
-        console.log(watchListData)
         console.log(updatedArray)
         
       }
@@ -79,7 +82,6 @@ export default function DetailCtrl({
       }
       setWatchListData(existingArray)
       save()
-      console.log(watchListData)
       console.log(existingArray)
       
     }
@@ -98,11 +100,12 @@ export default function DetailCtrl({
   //load / set state of watchListData for first render
   useEffect(()=> {
     load()
+    console.log(watchListData)
   },[])
 
   useEffect(()=>{
     evaluateWatchList()
-  },[watchListData])
+  },[])
 
   return (
     <Detail
