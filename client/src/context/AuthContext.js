@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import useAsyncStorage from "../hooks/useAsyncStorage";
 import { Auth } from "aws-amplify";
-import { getUser } from "../network";
+import { getUser, getPortfolio } from "../network";
 const AuthContext = React.createContext();
 
 export function useAuth() {
@@ -58,12 +58,18 @@ export function AuthProvider({ children }) {
   const queryProfileData = async () => {
     if (!userToken) return resetAuth();
 
-    const result = await getUser();
-    if (!result || result.error) return resetAuth();
+    const generalData = await getUser();
+    if (!generalData || generalData.error) return resetAuth();
 
-    console.log("User Profile:");
-    console.log(result);
-    setProfileData(result);
+    const portfolioData = await getPortfolio();
+    if (!portfolioData || portfolioData.error) return resetAuth();
+
+    const profile = {
+      ...generalData,
+      ...portfolioData,
+    };
+
+    setProfileData(profile);
   };
 
   useEffect(() => {

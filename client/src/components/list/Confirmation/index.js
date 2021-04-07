@@ -9,23 +9,24 @@ import {
   View,
 } from "react-native";
 
-import { formatPrice} from "../../../utility"
+import { formatPrice } from "../../../utility";
 
 export default function Confirmation({
   //METHODS
   //PROPERTIES
   transaction,
   navigation,
-  user
-  
+  user,
 }) {
-  console.log(transaction)
   return (
     <SafeAreaView style={styles.container}>
-       <View style={styles.title}>
-          <Image source={{ uri: transaction.company.image }} style={styles.image} />
-          <Text style={styles.header}>{transaction.company.name}</Text>
-        </View>
+      <View style={styles.title}>
+        <Image
+          source={{ uri: transaction.company.image }}
+          style={styles.image}
+        />
+        <Text style={styles.header}>{transaction.company.name}</Text>
+      </View>
       <Text style={styles.subHeader}>Transaction Complete!</Text>
       <Text style={styles.summary}>Summary</Text>
       <View style={styles.line}></View>
@@ -36,14 +37,19 @@ export default function Confirmation({
 
       <View style={styles.pair}>
         <Text style={styles.marketPrice}>Market Price </Text>
-        <Text style={styles.marketPrice}> $ { formatPrice(transaction.company.current_price.toFixed(2))}</Text>
+        <Text style={styles.marketPrice}>
+          {" "}
+          $ {formatPrice(transaction.company.current_price.toFixed(2))}
+        </Text>
       </View>
 
       <View style={styles.lineSecondary}></View>
 
       <View style={styles.pair}>
         <Text style={styles.total}>Total</Text>
-        <Text style={styles.total}>$ {formatPrice(transaction.bookValue.toFixed(2))}</Text>
+        <Text style={styles.total}>
+          $ {formatPrice(transaction.bookValue.toFixed(2))}
+        </Text>
       </View>
 
       <View style={styles.userStats}>
@@ -64,24 +70,30 @@ export default function Confirmation({
 
       <View style={styles.userStats}>
         <Text style={styles.stats}>Wallet</Text>
-        <Text style={styles.stats}>{!user.profileData.cash ? "0.00" : formatPrice(user.profileData.cash.toFixed(2))}</Text>
+        <Text style={styles.stats}>
+          {!user.profileData.cash
+            ? "0.00"
+            : formatPrice(user.profileData.cash.toFixed(2))}
+        </Text>
       </View>
 
       <View style={styles.userStats}>
         <Text style={styles.stats}>Portfolio BookValue</Text>
-        <Text style={styles.stats}>{formatPrice(user.profileData.bookValue.toFixed(2))}</Text>
+        <Text style={styles.stats}>
+          {formatPrice(user.profileData.bookValue.toFixed(2))}
+        </Text>
       </View>
 
       <View style={styles.bottom}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              navigation.navigate("Index");
-            }}
-          >
-            <Text style={styles.buttonText}>Back to Index</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate("Index");
+          }}
+        >
+          <Text style={styles.buttonText}>Back to Index</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
@@ -105,19 +117,19 @@ const styles = StyleSheet.create({
   },
   subHeader: {
     fontSize: 25,
-    textAlign : "center",
+    textAlign: "center",
     color: "white",
- 
-    paddingTop : 5 ,
-    paddingBottom: 35
+
+    paddingTop: 5,
+    paddingBottom: 35,
   },
   summary: {
     fontSize: 20,
-    fontWeight : "bold",
+    fontWeight: "bold",
     color: "white",
     padding: 20,
-    paddingTop : 0,
-    paddingBottom : 0 
+    paddingTop: 0,
+    paddingBottom: 0,
   },
   quantity: {
     fontSize: 18,
@@ -131,18 +143,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "white",
     paddingBottom: 40,
-    
-    borderTopColor : "red"
+
+    borderTopColor: "red",
   },
-  userStats:{
+  userStats: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal : 20,
-    paddingBottom: 5
+    paddingHorizontal: 20,
+    paddingBottom: 5,
   },
   statsHeader: {
     fontSize: 20,
-    fontWeight : "bold",
+    fontWeight: "bold",
     color: "white",
   },
 
@@ -154,21 +166,21 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 20,
-    paddingTop : 0,
-    paddingBottom : 0,
+    paddingTop: 0,
+    paddingBottom: 0,
   },
   line: {
     paddingHorizontal: 50,
-    borderTopWidth : 1.25,
-    borderTopColor : "#3273ff",
+    borderTopWidth: 1.25,
+    borderTopColor: "#3273ff",
     marginHorizontal: 20,
     marginBottom: 10,
     marginTop: 10,
   },
   lineSecondary: {
     paddingHorizontal: 50,
-    borderTopWidth : 1.00,
-    borderTopColor : "gray",
+    borderTopWidth: 1.0,
+    borderTopColor: "gray",
     marginHorizontal: 20,
     marginBottom: 10,
     marginTop: 10,
@@ -182,19 +194,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 30,
-    textAlign : "center"
+    textAlign: "center",
   },
   buttonText: {
     fontSize: 25,
     color: "white",
     textAlign: "center",
   },
-  bottom:{
-    position : "absolute",
-    bottom : 0,
+  bottom: {
+    position: "absolute",
+    bottom: 0,
     paddingBottom: 20,
-    width : "100%",
-    paddingHorizontal : 50
+    width: "100%",
+    paddingHorizontal: 50,
   },
   image: {
     height: 50,

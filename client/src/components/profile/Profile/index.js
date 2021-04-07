@@ -9,11 +9,12 @@ import { parseDate } from "../../../utility";
 export default function Profile({
   user,
   markets,
+  portfolioPositions,
   marketsLoaded,
   navigateToDetail,
   navigateToTransactions,
 }) {
-  if (!user) {
+  if (!user || !portfolioPositions) {
     return (
       <View style={styles.container}>
         <WalletHeader cash={0} username={"Loading"} />
@@ -45,12 +46,11 @@ export default function Profile({
       </View>
     );
   }
-  const { username, cash } = user;
-
+  const { username, cash, portfolioValue } = user;
   return (
     <View style={styles.container}>
       <WalletHeader cash={cash} username={username} />
-      <PortfolioValue value={100} />
+      <PortfolioValue value={portfolioValue} />
       <View
         style={{
           paddingHorizontal: 20,
@@ -79,7 +79,7 @@ export default function Profile({
       </View>
       <View>
         <CurrencyList
-          markets={markets}
+          markets={portfolioPositions}
           navigateToDetail={navigateToDetail}
           marketsLoaded={marketsLoaded}
         />

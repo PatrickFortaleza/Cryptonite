@@ -5,9 +5,9 @@ import { getMarkets } from "../../network";
 
 export default function ProfileCtrl({ navigation }) {
   const authContext = useAuth();
-  const [markets, setMarkets] = useState([]);
   const [marketsLoaded, setMarketsLoaded] = useState(false);
-  const maxMarkets = 5;
+  const [portfolioPositions, setPortfolioPositions] = useState([]);
+  const { profileData } = authContext;
 
   const navigateToDetail = ({ crypto }) => {
     navigation.navigate("CryptoDetail", { crypto: crypto });
@@ -22,23 +22,32 @@ export default function ProfileCtrl({ navigation }) {
     const result = await getMarkets();
     await setMarketsLoaded((bool) => (bool = true));
     if (!result || result.error) {
+      console.log("error querying markets");
       setMarkets([]);
       return;
     }
-    setMarkets(result.slice(0, maxMarkets));
+
+    const positions = await profileData.positions;
+    const positions_ = [...positions].map((position) => {
+      const foundCrypto = result.filter(
+        (cryptoData) => position.coin === cryptoData.id
+      )[0];
+      position.cryptoData = foundCrypto;
+      return position;
+    });
+
+    setPortfolioPositions(positions_);
   };
 
   useEffect(() => {
-    queryMarkets();
-  }, []);
-
-  const { profileData } = authContext;
+    profileData ? queryMarkets() : null;
+  }, [profileData]);
 
   return (
     <Profile
       user={profileData}
       marketsLoaded={marketsLoaded}
-      markets={markets}
+      portfolioPositions={portfolioPositions}
       navigateToDetail={navigateToDetail}
       navigateToTransactions={navigateToTransactions}
     />

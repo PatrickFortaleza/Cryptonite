@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -8,7 +8,7 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { formatPrice} from "../../../utility"
+import { formatPrice } from "../../../utility";
 
 export default function Buy({
   //METHODS
@@ -17,10 +17,8 @@ export default function Buy({
   //PROPERTIES
   crypto,
   bookValue,
-  user
-
+  user,
 }) {
-  console.log("Buy component", user)
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.main}>
@@ -44,16 +42,19 @@ export default function Buy({
 
           <View style={styles.pair}>
             <Text style={styles.marketPrice}>Market Price </Text>
-            <Text style={styles.marketPrice}>$ {formatPrice((crypto.current_price).toFixed(2))}</Text>
+            <Text style={styles.marketPrice}>
+              $ {formatPrice(crypto.current_price.toFixed(2))}
+            </Text>
           </View>
 
           <View style={styles.pair}>
             <Text style={styles.total}>Total</Text>
-            <Text style={styles.total}>$  {formatPrice(bookValue.toFixed(2))}</Text>
+            <Text style={styles.total}>
+              $ {formatPrice(bookValue.toFixed(2))}
+            </Text>
           </View>
         </View>
-       
-        
+
         <View style={styles.containerBottom}>
           <View style={styles.userStats}>
             <Text style={styles.statsHeader}>Key Stats</Text>
@@ -70,20 +71,24 @@ export default function Buy({
             {/* <Text style={styles.stats}>{!object.numberOfCoins ? "n/a" : object.numberOfCoins}</Text> */}
           </View>
 
-          
           <View style={styles.userStats}>
-              <Text style={styles.stats}>Wallet</Text>
-              <Text style={styles.stats}>{!user.profileData.cash ? "0.00" : formatPrice(user.profileData.cash.toFixed(2))}</Text>
-            </View>
+            <Text style={styles.stats}>Wallet</Text>
+            <Text style={styles.stats}>
+              {!user.profileData.cash
+                ? "0.00"
+                : formatPrice(user.profileData.cash.toFixed(2))}
+            </Text>
+          </View>
 
           <View style={styles.userStats}>
             <Text style={styles.stats}>Portfolio BookValue</Text>
-            <Text style={styles.stats}>{formatPrice(user.profileData.bookValue.toFixed(2))}</Text>
+            <Text style={styles.stats}>
+              {formatPrice(user.profileData.bookValue.toFixed(2))}
+            </Text>
           </View>
         </View>
-        
 
-        <View style={styles.buttonBottom}> 
+        <View style={styles.buttonBottom}>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -104,11 +109,11 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   containerBottom: {
-    paddingVertical : 40,
+    paddingVertical: 40,
   },
-  box : {
-    borderWidth : 1,
-    borderColor : "#3273ff"
+  box: {
+    borderWidth: 1,
+    borderColor: "#3273ff",
   },
   title: {
     flexDirection: "row",
@@ -123,24 +128,23 @@ const styles = StyleSheet.create({
     color: "white",
   },
   quantity: {
-    textAlign : "right",
+    textAlign: "right",
     fontSize: 20,
     color: "white",
-   
   },
   marketPrice: {
     fontSize: 20,
     color: "white",
   },
-  userStats:{
+  userStats: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal : 20,
-    paddingBottom: 10
+    paddingHorizontal: 20,
+    paddingBottom: 10,
   },
   statsHeader: {
     fontSize: 20,
-    fontWeight : "bold",
+    fontWeight: "bold",
     color: "white",
   },
 
@@ -162,14 +166,12 @@ const styles = StyleSheet.create({
   amount: {
     flexDirection: "row",
   },
-  buttonBottom : {
+  buttonBottom: {
     position: "absolute",
-    bottom : 0,
-    width : "100%",
-    paddingBottom : 20 ,
-    paddingHorizontal: 50
-    
-    
+    bottom: 0,
+    width: "100%",
+    paddingBottom: 20,
+    paddingHorizontal: 50,
   },
   button: {
     backgroundColor: "#0079ff",
@@ -177,7 +179,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 30,
-    
   },
   buttonText: {
     fontSize: 25,

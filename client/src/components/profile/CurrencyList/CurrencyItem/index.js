@@ -4,7 +4,7 @@ import { StyleSheet, Image, TouchableOpacity, View, Text } from "react-native";
 export default function CurrencyItem({
   currency,
   coinCount,
-  onPress,
+  coinName,
   totalBookValue,
   totalMarketValue,
   navigateToDetail,
@@ -14,10 +14,10 @@ export default function CurrencyItem({
     style: "currency",
     currency: "USD",
   });
-
+  console.log(item);
   return (
     <TouchableOpacity
-      onPress={() => navigateToDetail({ crypto: { ...item } })}
+      onPress={() => navigateToDetail({ crypto: item })}
       style={{
         ...styles.container,
         flexDirection: "row",
@@ -46,7 +46,7 @@ export default function CurrencyItem({
           >
             {currency.symbol}
           </Text>
-          <Text style={{ ...styles.text, fontSize: 10 }}>{currency.name}</Text>
+          <Text style={{ ...styles.text, fontSize: 10 }}>{coinName}</Text>
         </View>
       </View>
       <View style={{ flex: 2, textAlign: "right" }}>
