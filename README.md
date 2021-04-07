@@ -23,3 +23,10 @@ $ cd client
 $ npm install
 $ expo start
 ```
+
+## Mockups
+<img src="./planning/lofiPrototype/image.png" alt="Prototype">
+
+## Demo
+![Buy Coin](./client/demo/buyCoin.gif)
+<img src="./client/demo/searchScreen.gif" alt="Search Screen">
