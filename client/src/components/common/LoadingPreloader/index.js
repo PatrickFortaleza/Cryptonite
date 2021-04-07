@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text } from "react-native";
 
-let mounted = false;
 export default function index() {
+  let mounted = false;
   const [dots, setDots] = useState([]);
 
   useEffect(() => {

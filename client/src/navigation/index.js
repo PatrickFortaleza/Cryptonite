@@ -16,6 +16,7 @@ import Login from "../screens/Profile/Login";
 import Register from "../screens/Profile/Register";
 import Profile from "../screens/Profile/Profile";
 import Signout from "../screens/Profile/Signout";
+import Transactions from "../screens/Profile/Transactions";
 
 // Screens - TRADE
 import List from "../screens/Trade/List";
@@ -107,6 +108,41 @@ function ProfileScreenNavigator() {
           <ScreenStack.Screen
             name="Profile"
             component={Profile}
+            options={{
+              ...navOptions,
+            }}
+          />
+          <ScreenStack.Screen
+            name="Transactions"
+            component={Transactions}
+            options={{
+              ...navOptions,
+            }}
+          />
+          <ScreenStack.Screen
+            name="CryptoDetail"
+            component={Detail}
+            options={{
+              ...navOptions,
+            }}
+          />
+          <ScreenStack.Screen
+            name="Buy"
+            component={Buy}
+            options={{
+              ...navOptions,
+            }}
+          />
+          <ScreenStack.Screen
+            name="Sell"
+            component={Sell}
+            options={{
+              ...navOptions,
+            }}
+          />
+          <ScreenStack.Screen
+            name="Confirmation"
+            component={Confirmation}
             options={{
               ...navOptions,
             }}
