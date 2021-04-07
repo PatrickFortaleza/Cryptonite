@@ -2,6 +2,7 @@ import React from "react";
 import Signout from "../../components/auth/Signout";
 import { Auth } from "aws-amplify";
 import { useAuth } from "../../context/AuthContext";
+import errorAlert from '../../utility/alert';
 
 export default function SignoutCtrl({ navigation }) {
   const authContext = useAuth();
@@ -13,7 +14,7 @@ export default function SignoutCtrl({ navigation }) {
       console.log(result);
       setUserData(null);
     } catch (error) {
-      console.log(error);
+      errorAlert({error});
     }
   };
 

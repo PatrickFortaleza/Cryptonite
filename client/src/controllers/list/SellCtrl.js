@@ -3,6 +3,8 @@ import {Alert, Text} from "react-native";
 import Sell from "../../components/list/Sell"
 import {sellCoin} from "../../network"
 
+import errorAlert from '../../utility/alert';
+
 export default function SellCtrl({
   // PROPERTIES
   crypto,
@@ -46,7 +48,7 @@ export default function SellCtrl({
         // navigation.navigate("Confirmation", response)
         
       } catch (error) {
-        console.log(error.response.data);
+        errorAlert({title: "Error", message: error.response.data});
       }
     }
   };

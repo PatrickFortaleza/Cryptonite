@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import RegisterForm from "../../components/auth/RegisterForm";
 import { Auth } from "aws-amplify";
 import { useAuth } from "../../context/AuthContext";
+import errorAlert from '../../utility/alert';
 
 export default function RegisterFormCtrl({ navigation }) {
   const [username, setUsername] = useState("");
@@ -23,17 +24,21 @@ export default function RegisterFormCtrl({ navigation }) {
           email: email,
         },
       });
-      if (!response) return console.log("registration failed");
+      if (!response) {
+        errorAlert({message: 'Registration failed'});
+        return;
+      }
       const signInResponse = await Auth.signIn({
         username: username,
         password: password,
       });
-      if (!signInResponse)
-        return console.log("unable to authenticate registration");
-      console.log(response);
+      if (!signInResponse){
+        errorAlert({message: 'Unable to authenticate after registration'});
+        return;
+      }
       setUserData({ username: response.user.username });
     } catch (error) {
-      console.log(error);
+      errorAlert({error})
     }
   };
 
