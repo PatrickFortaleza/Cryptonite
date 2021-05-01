@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import RegisterForm from "../../components/auth/RegisterForm";
 import { Auth } from "aws-amplify";
 import { useAuth } from "../../context/AuthContext";
-import errorAlert from '../../utility/alert';
+import errorAlert from "../../utility/alert";
 
 export default function RegisterFormCtrl({ navigation }) {
   const [username, setUsername] = useState("");
@@ -13,7 +13,6 @@ export default function RegisterFormCtrl({ navigation }) {
   const { setUserData, userData } = authContext;
 
   const submitForm = async () => {
-    console.log("attempt submit");
     const passwordsMatch = matchedStrings(password, password_);
     if (!passwordsMatch) return console.log("passwords don't match");
     try {
@@ -25,20 +24,20 @@ export default function RegisterFormCtrl({ navigation }) {
         },
       });
       if (!response) {
-        errorAlert({message: 'Registration failed'});
+        errorAlert({ message: "Registration failed" });
         return;
       }
       const signInResponse = await Auth.signIn({
         username: username,
         password: password,
       });
-      if (!signInResponse){
-        errorAlert({message: 'Unable to authenticate after registration'});
+      if (!signInResponse) {
+        errorAlert({ message: "Unable to authenticate after registration" });
         return;
       }
       setUserData({ username: response.user.username });
     } catch (error) {
-      errorAlert({error})
+      errorAlert({ error });
     }
   };
 

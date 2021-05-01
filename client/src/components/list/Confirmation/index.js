@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
   SafeAreaView,
   Image,
   TouchableOpacity,
   Text,
-  TextInput,
   View,
 } from "react-native";
 
@@ -17,7 +16,12 @@ export default function Confirmation({
   transaction,
   navigation,
   user,
+  portfolioStats,
 }) {
+  const moneyFormatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.title}>
@@ -25,7 +29,9 @@ export default function Confirmation({
           source={{ uri: transaction.company.image }}
           style={styles.image}
         />
-        <Text style={styles.header}>{transaction.company.name}</Text>
+        <Text style={{ ...styles.header, marginLeft: 7 }}>
+          {transaction.company.name}
+        </Text>
       </View>
       <Text style={styles.subHeader}>Transaction Complete!</Text>
       <Text style={styles.summary}>Summary</Text>
@@ -57,16 +63,12 @@ export default function Confirmation({
       </View>
       <View style={styles.line}></View>
 
-      <View style={styles.userStats}>
-        <Text style={styles.stats}>User</Text>
-        <Text style={styles.stats}>{user.userData.username}</Text>
-      </View>
-
-      <View style={styles.userStats}>
-        <Text style={styles.stats}>Number of Coins</Text>
-        <Text style={styles.stats}>TBA</Text>
-        {/* <Text style={styles.stats}>{!object.numberOfCoins ? "n/a" : object.numberOfCoins}</Text> */}
-      </View>
+      {portfolioStats ? (
+        <View style={styles.userStats}>
+          <Text style={styles.stats}>Number of Coins</Text>
+          <Text style={styles.stats}> {portfolioStats.totalCoins} Coin(s)</Text>
+        </View>
+      ) : null}
 
       <View style={styles.userStats}>
         <Text style={styles.stats}>Wallet</Text>
@@ -78,7 +80,7 @@ export default function Confirmation({
       </View>
 
       <View style={styles.userStats}>
-        <Text style={styles.stats}>Portfolio BookValue</Text>
+        <Text style={styles.stats}>Portfolio Book Value</Text>
         <Text style={styles.stats}>
           {formatPrice(user.profileData.bookValue.toFixed(2))}
         </Text>
@@ -211,5 +213,6 @@ const styles = StyleSheet.create({
   image: {
     height: 50,
     width: 50,
+    borderRadius: 50 / 2,
   },
 });

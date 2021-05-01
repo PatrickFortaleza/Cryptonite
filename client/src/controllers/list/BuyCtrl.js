@@ -4,7 +4,7 @@ import Buy from "../../components/list/Buy";
 import { useAuth } from "../../context/AuthContext";
 import { buyCoin } from "../../network";
 
-import errorAlert from '../../utility/alert';
+import errorAlert from "../../utility/alert";
 
 export default function BuyCtrl({
   //PROPERTIES
@@ -37,14 +37,18 @@ export default function BuyCtrl({
       try {
         // network to gateway
         const response = await buyCoin(crypto.id, quantity);
-        if (response.error){
-          errorAlert({title: "Error", message: response.error?.response?.data});
+        if (response.error) {
+          errorAlert({
+            title: "Error",
+            message: response.error?.response?.data,
+          });
           return;
         }
         const transaction = {
           company,
           quantity,
           bookValue,
+          crypto,
         };
 
         navigation.navigate("Confirmation", transaction);
@@ -62,11 +66,9 @@ export default function BuyCtrl({
   };
 
   const findEvaluatePortfolioStat = () => {
-    console.log(crypto.id);
     const foundStat = positions.filter(
       (position) => position.coin === crypto.id
     )[0];
-    console.log(foundStat);
     if (!foundStat) setPortfolioStats({});
     setPortfolioStats(foundStat);
   };

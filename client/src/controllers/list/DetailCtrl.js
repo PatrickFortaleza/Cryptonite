@@ -91,7 +91,6 @@ export default function DetailCtrl({
 
   useEffect(() => {
     saveToStorage();
-    console.log(watchListData);
   }, [watchListData]);
 
   const showBuy = (company) => {

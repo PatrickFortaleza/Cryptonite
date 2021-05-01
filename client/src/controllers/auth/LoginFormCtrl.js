@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LoginForm from "../../components/auth/LoginForm";
 import { Auth } from "aws-amplify";
 import { useAuth } from "../../context/AuthContext";
-import errorAlert from '../../utility/alert';
+import errorAlert from "../../utility/alert";
 
 export default function LoginFormCtrl({ navigation }) {
   const [username, setUsername] = useState("");
@@ -11,7 +11,6 @@ export default function LoginFormCtrl({ navigation }) {
   const { setUserData, userData } = authContext;
 
   const submitForm = async () => {
-    console.log("attempt submit");
     try {
       const response = await Auth.signIn({
         username: username,
@@ -20,7 +19,10 @@ export default function LoginFormCtrl({ navigation }) {
       setUserData({ username: response.username });
       navigation.navigate("Profile");
     } catch (error) {
-      errorAlert({title: 'Login error', message: 'Incorrect username or password'});
+      errorAlert({
+        title: "Login error",
+        message: "Incorrect username or password",
+      });
     }
   };
 
