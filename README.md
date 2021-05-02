@@ -1,24 +1,29 @@
 ## Table of contents
-* [General info](#general-info)
-* [Technologies](#technologies)
-* [Setup](#setup)
-* [Mockups](#mockups)
-* [Demo](#demo)
+
+- [General info](#general-info)
+- [Technologies](#technologies)
+- [Setup](#setup)
+- [Mockups](#mockups)
+- [Demo](#demo)
 
 ## General info
+
 This project is a mobile mock trading app that allows users to “Buy” and “Sell” crypto currency coins within a fake “Portfolio”.
-	
+
 ## Technologies
+
 Project is created with:
-* Client: React Native
-* Server: [Serverless] AWS Lambda, AWS API Gateway
-* Database: MongoDB Cloud
-* Authentication: AWS Cognito + MongoDB
-* API to get coin data: coingecko
+
+- Client: React Native
+- Server: [Serverless] AWS Lambda, AWS API Gateway
+- Database: MongoDB Cloud
+- Authentication: AWS Cognito + MongoDB
+- API to get coin data: coingecko
 
 ## Setup
 
 ### Client
+
 To run this project, install it locally using npm:
 First of all, create a copy of AWSconfig_sample.js in client folder and rename it to AWSconfig.js. Add the required aws credentitals.
 
@@ -31,6 +36,7 @@ $ expo start
 ### Server
 
 #### AWS Lambda
+
 All the lambda function dependencies are configured in the `mongoLayer` and `geckoLayer` layers. Mongolayer is a required dependency for every function, while `geckoLayer` is required only for the cryptoPortfolioPositions, cryptoniteBuyCoin and cryptoniteSellCoin functions.
 
 Each one of the functions in the nodejs directory should be deployed to AWS lambda as a separate function. The configuration script used to set up the environmental variables and the layers is the following:
@@ -57,26 +63,16 @@ The routes defined for this application are:
 - GET /user/portfolio connected to cryptoPortfolioPositions
 
 ## Mockups
+
 <img src="./planning/lofiPrototype/image.png" alt="Prototype">
 
-## Demo
+## Demos
 
-### SearchScreen
-<img src="./client/demo/searchScreen.gif" alt="Search Screen" width=300>
+### Authentication, Searchable List, and Crypto Detail
 
-### Register
-<img src="./client/demo/register.gif" alt="Register" width=300>
+<img width="250" src="./client/demo/cryptotracker__auth.gif" alt="authentication"><img width="250" src="./client/demo/cryptotracker__list.gif" alt="list"><img width="250" src="./client/demo/cryptotracker__detail.gif" alt="crypto detail">
 
-### Sign in and Sign out
-<img src="./client/demo/loginSignout.gif" alt="Sign in Sign out" width=300>
+### Buy, Sell, Transaction History, and Portfolio
 
-### Buy Coins
-<img src="./client/demo/searchScreen.gif" alt="Buy Coin" width=300>
-
-### Sell Coins
-<img src="./client/demo/searchScreen.gif" alt="Sell coin" width=300>
-
-### Transaction History
-<img src="./client/demo/transactionhistory.gif" alt="Transaction History" width=300>
-
-
+<img width="250" src="./client/demo/cryptotracker__buy.gif" alt="buy cryptocurrency">
+<img width="250" src="./client/demo/cryptotracker__sell.gif" alt="sell cryptocurrency">
