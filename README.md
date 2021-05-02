@@ -74,5 +74,4 @@ The routes defined for this application are:
 
 ### Buy, Sell, Transaction History, and Portfolio
 
-<img width="250" src="./client/demo/cryptotracker__buy.gif" alt="buy cryptocurrency">
-<img width="250" src="./client/demo/cryptotracker__sell.gif" alt="sell cryptocurrency">
+<img width="250" src="./client/demo/cryptotracker__buy.gif" alt="buy cryptocurrency"><img width="250" src="./client/demo/cryptotracker__sell.gif" alt="sell cryptocurrency">
