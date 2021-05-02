@@ -1,3 +1,7 @@
+# Cryptonite
+
+A portfolio-tracker and cryptocurrency market index that allows users to watch, track cryptocurrencies. Cryptonite also features a simulated portfolio that allows users to buy-and-sell cryptocurrencies using fictional USD.
+
 ## Table of contents
 
 - [General info](#general-info)
